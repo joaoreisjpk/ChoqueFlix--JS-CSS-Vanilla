@@ -30,14 +30,12 @@ function createImg(className, source, alt) {
 
 
 async function getBannerLinks(array) {
-  const links = array.map(async (query) => {
-    const moviesList = await fetch(`https://mubi.com/services/api/search?query=${query}`)
-    .then((data) => data.json())
-    .then(json => json.films)
-    const link = moviesList[0].still_url;
-    return link;
+  array.forEach((query) => {
+    fetch(`https://mubi.com/services/api/search?query=${query}`)
+      .then((data) => data.json())
+      .then(json => json.films)
+      .then((moviesList) => bannersLinks.push(moviesList[0].still_url))
   })
-  return links;
 }
 
 async function getTrendingFilms() {
@@ -72,7 +70,5 @@ const listaDeFilmes =  async () => {
 window.onload = async () => {
   listaDeFilmes();
   const trendingMovies = await getTrendingFilms()
-  bannersLinks = getBannerLinks(trendingMovies);
-  console.log(trendingMovies)
-  console.log(bannersLinks)
+  getBannerLinks(trendingMovies);
 };
