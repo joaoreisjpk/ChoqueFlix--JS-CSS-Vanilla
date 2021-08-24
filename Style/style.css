@@ -1,13 +1,64 @@
-.nav:hover{
+* {
+  box-sizing: border-box;
+}
+
+.nav a:hover{
   opacity: 0.9;
-  text-shadow: 0 0 1px rgba(0, 0, 0, 0.85);
+  text-shadow:0px 0px 5px #fff;
+}
+
+.nav a {
+  padding: 5px;
+  border-radius: 10%;
+}
+
+.nav:hover ul {
+  display: block;
+}
+
+body {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 3px;
+  background-color: rgba(218, 216, 216, 0.95);
+  width: 100%;
+}
+
+main {
+  margin-top: 5%;
+}
+
+li {
+  float: left;
+  list-style: none;
+  background-color: rgba(218, 216, 216, 0.95);
 }
 
 .nav {
   padding: 5px;
-  margin: 0 5px;
   font-size: 1.2rem;
   cursor: pointer;
+  position: relative;
+  background-color: rgba(218, 216, 216, 0.95);
+}
+
+.nav ul {
+  top: 10px;
+  display: none;
+}
+
+.nav .options {
+  position: absolute;
+  left: -30px;
+}
+
+.nav .options li {
+  min-width: 100px;
 }
 
 .title {
@@ -15,8 +66,8 @@
   font-size: 1.5rem;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   letter-spacing: 0.1rem;
-  text-anchor: middle;
   font-weight: 600;
+  padding: 2px;
 }
 
 #idE {font-size: 1.4rem;}
@@ -28,3 +79,24 @@
 #idL {font-size: 1.3rem;}
 
 #idI {font-size: 1.4rem;}
+
+#film-list {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: auto;
+}
+
+.filme {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  padding: 10px 15px 5px 15px;
+  border: solid thin black;
+  background-color: lightgrey;
+  height: 80vh;
+  margin: 0 20px 30px 0;
+  margin-bottom: 30px;
+}
