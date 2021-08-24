@@ -20,7 +20,16 @@ function createImg(className, source, alt) {
   return img;
 };
 
+/* const carregando = async () => {
+  const section = document.createElement('section');
+  section.innerHTML = 'Loading...';
+  section.className = 'loading';
+  document.querySelector('#film-list').appendChild(section);
+}; */
+// adiciona uma frase 'loading' enquanto se faz a requisição da API
+
 const listaDeFilmes =  async () => {
+  // carregando();
   const lista = await fetch(url);
   const listaJson = await lista.json();
   listaJson.results.forEach(({ title, vote_average, poster_path, overview}) => {
@@ -36,6 +45,7 @@ const listaDeFilmes =  async () => {
   });
 
 };
+// faz a requisição da API e transforma em objeto Json
 
 
 window.onload = () => {
