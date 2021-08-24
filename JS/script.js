@@ -2,7 +2,7 @@ const url = 'https://api.themoviedb.org/3/movie/400?api_key=ca19804bba1e445e3db2
 const urlImg = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
 
 const getIMG = document.getElementById('imgtest');
-const getTitle = document.getElementById('titleTest')
+const getTitle = document.getElementById('titleTest');
 
 function createElement(element, className, content) {
   const el = document.createElement(element);
@@ -19,6 +19,13 @@ function createImg(className, source, alt) {
   return img;
 }
 
+const carregando = async () => {
+  const section = document.createElement('section');
+  section.innerHTML = 'Loading...';
+  section.className = 'loading';
+  document.querySelector('#film-list').appendChild(section);
+  };
+
 const listaDeFilmes =  async () => {
   const lista = await fetch(url);
   const listaJson = await lista.json();
@@ -28,6 +35,8 @@ const listaDeFilmes =  async () => {
   const note = listaJson.vote_average;
   getIMG.src = thumbnail;
   getTitle.innerText = `${title} ${note}`;
+  createElement('div', 'test', listaJson.overview)
+  createImg('imgTest',)
 };
 
 window.onload = () => {
