@@ -1,7 +1,7 @@
 const url = 'https://api.themoviedb.org/3/movie/top_rated?api_key=ca19804bba1e445e3db2ec8fbecda738';
 const urlImg = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
 
-const getDiv = document.getElementById('film-list')
+const getDiv = document.getElementById('film-list');
 const getIMG = document.getElementById('imgtest');
 const getTitle = document.getElementById('titleTest');
 
@@ -43,6 +43,8 @@ const listaDeFilmes =  async () => {
     div.appendChild(h2);
     getDiv.appendChild(div);
   });
+
+  hero(listaJson.results[0])
 
 };
 // faz a requisição da API e transforma em objeto Json
