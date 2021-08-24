@@ -5,3 +5,15 @@
 .title {
   color: red;
 }
+
+#film-list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: auto;
+}
+
+#film-list > * {
+  width: 25%;
+}
