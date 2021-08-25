@@ -1,6 +1,6 @@
-const url = 'https://api.themoviedb.org/3/movie/top_rated?api_key=ca19804bba1e445e3db2ec8fbecda738';
+const apiKey = 'ca19804bba1e445e3db2ec8fbecda738'
+const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`;
 const urlImg = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
-
 const getDiv = document.getElementById('film-list')
 const getIMG = document.getElementById('imgtest');
 const getTitle = document.getElementById('titleTest');
@@ -42,7 +42,7 @@ async function getBannerLinks(array) {
 }
 
 async function getTrendingFilms() {
-  const trendingFilms = await fetch('https://api.themoviedb.org/3/trending/all/week?api_key=ca19804bba1e445e3db2ec8fbecda738')
+  const trendingFilms = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${apiKey}`)
     .then(data => data.json())
     .then(json => json.results)
     .then(results => results.map((film) => film.title));
