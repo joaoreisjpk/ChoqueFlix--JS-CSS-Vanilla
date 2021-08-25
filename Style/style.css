@@ -7,6 +7,10 @@
   text-shadow:0px 0px 5px #fff;
 }
 
+img {
+  min-width: 100%;
+}
+
 .nav:hover ul {
   display: block;
 }
@@ -17,6 +21,11 @@
 
 body {
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+.header {
+  width: 90%;
+  margin: auto;
 }
 
 header {
@@ -35,6 +44,10 @@ main {
 li {
   float: left;
   list-style: none;
+}
+
+ul > li {
+
   background-color: rgba(218, 216, 216, 0.95);
 }
 
@@ -43,7 +56,6 @@ li {
   font-size: 1.2rem;
   cursor: pointer;
   position: relative;
-  background-color: rgba(218, 216, 216, 0.95);
 }
 
 .nav ul {
@@ -66,22 +78,26 @@ li {
 
 .title {
   color: red;
-  font-size: 1.5rem;
+  font-size: 1.95rem;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   letter-spacing: 0.1rem;
   font-weight: 600;
   padding: 2px;
+  display: flex;
+  align-items: flex-start;
+  align-self: flex-start;
+  line-height: 2rem;
 }
 
-#idE {font-size: 1.4rem;}
+#idE {font-size: 1.7rem;}
 
-#idT {font-size: 1.3rem;}
+#idT {font-size: 1.55rem;}
 
-#idF {font-size: 1.25rem;}
+#idF {font-size: 1.45rem;}
 
-#idL {font-size: 1.3rem;}
+#idL {font-size: 1.55rem;}
 
-#idI {font-size: 1.4rem;}
+#idI {font-size: 1.7rem;}
 
 #film-list {
   display: flex;
@@ -95,11 +111,20 @@ li {
 .filme {
   display: flex;
   flex-direction: column;
-  width: 20%;
+  width: 19%;
   padding: 10px 15px 5px 15px;
   border: solid thin black;
   background-color: lightgrey;
-  height: 80vh;
-  margin: 0 20px 30px 0;
+  height: 500px;
   margin-bottom: 30px;
 }
+
+.btn-trailer {
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px;
+  background-color: rgb(156, 156, 156);
+  border-radius: 10px;
+  width: 90px;
+}
+

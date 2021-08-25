@@ -1,12 +1,7 @@
 const apiKey = 'ca19804bba1e445e3db2ec8fbecda738'
 const mainUrl = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`;
 const urlImg = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
-<<<<<<< HEAD
-
-const getDiv = document.getElementById('film-list');
-=======
 const getDiv = document.getElementById('film-list')
->>>>>>> abe7c29e5f5da6a6691e85c1ae34fc1479ea10dc
 const getIMG = document.getElementById('imgtest');
 const getTitle = document.getElementById('titleTest');
 let bannersLinks = [];
@@ -70,7 +65,7 @@ async function getTrailerLink(id) {
   if (json.videos.results[0]){
     const trailerLink = `https://www.youtube.com/watch?v=${json.videos.results[0].key}`
     return trailerLink;
-  }
+  } return 
 }
 
 const listaDeFilmes = async (urlApi) => {
@@ -93,7 +88,9 @@ const listaDeFilmes = async (urlApi) => {
       div.appendChild(trailerBtn);
       getDiv.appendChild(div);
       const trailerLink = await getTrailerLink(id);
-      if (trailerLink) trailerBtn.href = trailerLink;
+      if (trailerLink) {
+        trailerBtn.href = trailerLink;
+      } else { trailerBtn.innerText = 'Trailer não disponível'}
     }
   });
 };
