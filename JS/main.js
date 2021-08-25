@@ -1,4 +1,4 @@
-import { genresObj, urlByGenre, listByGenre } from './navBar.js';
+import { listByGenre, listByRank, listBySuccess, getRandomChoice } from './navBar.js';
 import { getBannerLinks, getTrendingFilms } from './banner.js'
 import { addBtnsWatchlistEventListener } from './watchlist.js'
 const apiKey = 'ca19804bba1e445e3db2ec8fbecda738';
@@ -8,6 +8,9 @@ const getDiv = document.getElementById('film-list');
 const getIMG = document.getElementById('imgtest');
 const getTitle = document.getElementById('titleTest');
 document.getElementById('inicio').addEventListener('click', () => listaDeFilmes(mainUrl));
+document.getElementById('top-votes').addEventListener('click', listByRank);
+document.getElementById('sucessos').addEventListener('click', listBySuccess);
+document.getElementById('random-choice').addEventListener('click', getRandomChoice);
 
 function createElement(element, className, content, id) {
   const el = document.createElement(element);
@@ -90,4 +93,4 @@ window.onload = async () => {
     .forEach((li) => li.addEventListener('click', listByGenre));
 };
 
-export { listaDeFilmes, apiKey, createElement };
+export { listaDeFilmes, apiKey, urlImg, getDiv, getTrailerLink, createImg, createElement };

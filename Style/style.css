@@ -53,7 +53,6 @@ li {
 }
 
 ul > li {
-
   background-color: rgba(218, 216, 216, 0.95);
 }
 
@@ -106,15 +105,25 @@ nav {
   cursor: pointer;
 }
 
-#idE {font-size: 2rem; line-height: 2.1rem;}
+#idC {font-size: 2rem; line-height: 2.1rem;}
 
-#idT {font-size: 2rem; line-height: 2rem;}
+#idH {font-size: 1.9rem; line-height: 2.1rem;}
 
-#idF {font-size: 1.8rem; line-height: 2rem;}
+#idO {font-size: 1.8rem; line-height: 2rem;}
 
-#idL {font-size: 1.9rem; line-height: 2rem;}
+#idQ {font-size: 1.7rem; line-height: 2rem;}
 
-#idI {font-size: 2rem; line-height: 2.1rem;}
+#idU {font-size: 1.6rem; line-height: 2rem;}
+
+#idE {font-size: 1.6rem; line-height: 2.1rem;}
+
+#idF {font-size: 1.7rem; line-height: 2rem;}
+
+#idL {font-size: 1.8rem; line-height: 2rem;}
+
+#idI {font-size: 1.9rem; line-height: 2.1rem;}
+
+#idX {font-size: 2rem; line-height: 2.1rem;}
 
 #film-list {
   display: flex;
@@ -128,7 +137,8 @@ nav {
 .filme {
   display: flex;
   flex-direction: column;
-  padding: 15px;
+  width: 19%;
+  padding: 10px 15px 5px 25px;
   border: solid thin black;
   background-color: rgba(211, 211, 211, 0.219);
   height: 500px;
@@ -136,6 +146,7 @@ nav {
   margin-bottom: 30px;
   color: #ffff;
   border-radius: 10px;
+  overflow: hidden;
 	-moz-transition: all 0.5s;
 }
 .filme:hover {
