@@ -136,7 +136,13 @@ ul > li {
 	-webkit-transform: scale(1.1) ;
 	transform: scale(1.1);
 }
-.btn-trailer {
+
+.btns-div {
+  display: flex;
+  height: 40px;
+}
+
+.btn-trailer, .btn-watchlist {
   text-decoration: none;
   display: inline-block;
   padding: 10px;
@@ -144,6 +150,19 @@ ul > li {
   border-radius: 10px;
   width: 90px;
   color: #ee010d;
-  font-weight: 520;
+  font-weight: 320;
 }
 
+.material-icons {
+  font-family: 'Material Icons';
+  font-size: 16px;
+  display: inline-block;
+  padding: 7px;
+  margin-bottom: 1px;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+}
