@@ -1,4 +1,5 @@
 import { genresObj, urlByGenre, listByGenre } from './navBar.js';
+import { getBannerLinks, getTrendingFilms } from './banner.js'
 
 const apiKey = 'ca19804bba1e445e3db2ec8fbecda738';
 const mainUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
@@ -6,7 +7,6 @@ const urlImg = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
 const getDiv = document.getElementById('film-list');
 const getIMG = document.getElementById('imgtest');
 const getTitle = document.getElementById('titleTest');
-let bannersLinks = [];
 
 document.getElementById('inicio').addEventListener('click', () => listaDeFilmes(mainUrl));
 
@@ -35,30 +35,15 @@ function createImg(className, source, alt) {
 
 // adiciona uma frase 'loading' enquanto se faz a requisição da API
 
-async function getBannerLinks(array) {
-  array.forEach((query) => {
-    fetch(`https://mubi.com/services/api/search?query=${query}`)
-      .then((data) => data.json())
-      .then(json => json.films)
-      .then((moviesList) => bannersLinks.push(moviesList[0].still_url))
-  })
-}
-
-async function getTrendingFilms() {
-  const trendingFilms = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${apiKey}`)
-    .then(data => data.json())
-    .then(json => json.results)
-    .then(results => results.map((film) => film.title));
-
-  return trendingFilms;
-}
-
 async function getTrailerLink(id) {
   const data = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&append_to_response=videos`)
   const json = await data.json();
-  if (json.videos.results[0]){
-    const trailerLink = `https://www.youtube.com/watch?v=${json.videos.results[0].key}`
-    return trailerLink;
+  console.log(json);
+  if (json.videos && json.videos.results.length > 0){
+    if (json.videos.results[0].key !== null){
+      const trailerLink = `https://www.youtube.com/watch?v=${json.videos.results[0].key}`
+      return trailerLink;
+    }
   }
 }
 
@@ -98,4 +83,4 @@ window.onload = async () => {
     .forEach((li) => li.addEventListener('click', listByGenre));
 };
 
-export { listaDeFilmes };
+export { listaDeFilmes, apiKey };
