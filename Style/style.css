@@ -16,6 +16,10 @@
   display: block;
 }
 
+.nav:hover, .nav li:hover {
+  box-shadow: 0 0 2px black;
+}
+
 body {
   background-color: rgba(0, 0, 0, 0.8);
 }
