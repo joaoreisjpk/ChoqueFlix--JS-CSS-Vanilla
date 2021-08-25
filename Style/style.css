@@ -39,6 +39,7 @@ header {
   background-color: rgb(0, 0, 0);
   width: 100%;
   color: white;
+  z-index: 1;
 }
 
 main {
@@ -61,6 +62,7 @@ ul > li {
   position: relative;
   border: 100px;
   margin-right: 15px;
+
 }
 
 .nav ul {
@@ -130,7 +132,6 @@ ul > li {
   border-radius: 10px;
   overflow: hidden;
 	-moz-transition: all 0.5s;
-  cursor: pointer;
 }
 .filme:hover {
 	-moz-transition: scale(1.1);
