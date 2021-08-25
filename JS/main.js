@@ -1,10 +1,12 @@
 const apiKey = 'ca19804bba1e445e3db2ec8fbecda738'
-const mainUrl = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`;
+const mainUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
 const urlImg = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
 const getDiv = document.getElementById('film-list')
 const getIMG = document.getElementById('imgtest');
 const getTitle = document.getElementById('titleTest');
 let bannersLinks = [];
+
+document.getElementById('inicio').addEventListener('click', () => listaDeFilmes(mainUrl))
 
 const genresObj = {// Chaves são conteúdo das opções de categoria e valores são Ids de gêneros
   'Ação': 28,
@@ -65,7 +67,7 @@ async function getTrailerLink(id) {
   if (json.videos.results[0]){
     const trailerLink = `https://www.youtube.com/watch?v=${json.videos.results[0].key}`
     return trailerLink;
-  } return 
+  }
 }
 
 const listaDeFilmes = async (urlApi) => {
