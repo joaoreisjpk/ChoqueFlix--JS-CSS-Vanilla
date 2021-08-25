@@ -1,19 +1,14 @@
-const apiKey = 'ca19804bba1e445e3db2ec8fbecda738'
-const mainUrl = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`;
+import { genresObj, urlByGenre, listByGenre } from './navBar.js';
+import { getBannerLinks, getTrendingFilms } from './banner.js'
+
+const apiKey = 'ca19804bba1e445e3db2ec8fbecda738';
+const mainUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
 const urlImg = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
-const getDiv = document.getElementById('film-list')
+const getDiv = document.getElementById('film-list');
 const getIMG = document.getElementById('imgtest');
 const getTitle = document.getElementById('titleTest');
-let bannersLinks = [];
 
-const genresObj = {// Chaves são conteúdo das opções de categoria e valores são Ids de gêneros
-  'Ação': 28,
-  'Aventura': 12,
-  'Comédia': 35,
-  'Drama': 18,
-  'Suspense': 53,
-  'Terror': 27
-}
+document.getElementById('inicio').addEventListener('click', () => listaDeFilmes(mainUrl));
 
 function createElement(element, className, content, id) {
   const el = document.createElement(element);
@@ -40,32 +35,16 @@ function createImg(className, source, alt) {
 
 // adiciona uma frase 'loading' enquanto se faz a requisição da API
 
-
-async function getBannerLinks(array) {
-  array.forEach((query) => {
-    fetch(`https://mubi.com/services/api/search?query=${query}`)
-      .then((data) => data.json())
-      .then(json => json.films)
-      .then((moviesList) => bannersLinks.push(moviesList[0].still_url))
-  })
-}
-
-async function getTrendingFilms() {
-  const trendingFilms = await fetch(`https://api.themoviedb.org/3/trending/all/week?api_key=${apiKey}`)
-    .then(data => data.json())
-    .then(json => json.results)
-    .then(results => results.map((film) => film.title));
-
-  return trendingFilms;
-}
-
 async function getTrailerLink(id) {
   const data = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&append_to_response=videos`)
   const json = await data.json();
-  if (json.videos.results[0]){
-    const trailerLink = `https://www.youtube.com/watch?v=${json.videos.results[0].key}`
-    return trailerLink;
-  } return 
+  console.log(json);
+  if (json.videos && json.videos.results.length > 0){
+    if (json.videos.results[0].key !== null){
+      const trailerLink = `https://www.youtube.com/watch?v=${json.videos.results[0].key}`
+      return trailerLink;
+    }
+  }
 }
 
 const listaDeFilmes = async (urlApi) => {
@@ -90,19 +69,10 @@ const listaDeFilmes = async (urlApi) => {
       const trailerLink = await getTrailerLink(id);
       if (trailerLink) {
         trailerBtn.href = trailerLink;
-      } else { trailerBtn.innerText = 'Trailer não disponível'}
+      } else { trailerBtn.innerText = 'Trailer indisponível'}
     }
   });
 };
-
-// Recebe uma Id de um gênero e retorna a URL para requisição da Api
-const urlByGenre = (genreId) => `https://api.themoviedb.org/3/discover/movie?api_key=ca19804bba1e445e3db2ec8fbecda738&with_genres=${genreId}&sort_by=prelease_date.desc`;
-// Responsável por listar filmes por gênero
-function listByGenre(event) {
-  const genre = event.target.innerText;
-  const keyId = genresObj[genre];
-  listaDeFilmes(urlByGenre(keyId));
-}
 
 window.onload = async () => {
   listaDeFilmes(mainUrl);
@@ -112,3 +82,5 @@ window.onload = async () => {
   document.querySelectorAll('.options li')
     .forEach((li) => li.addEventListener('click', listByGenre));
 };
+
+export { listaDeFilmes, apiKey };
