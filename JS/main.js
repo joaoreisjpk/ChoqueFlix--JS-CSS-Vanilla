@@ -1,4 +1,4 @@
-import { listByGenre, listByRank, listBySuccess } from './navBar.js';
+import { listByGenre, listByRank, listBySuccess, getRandomChoice } from './navBar.js';
 import { getBannerLinks, getTrendingFilms } from './banner.js'
 
 const apiKey = 'ca19804bba1e445e3db2ec8fbecda738';
@@ -11,6 +11,7 @@ const getTitle = document.getElementById('titleTest');
 document.getElementById('inicio').addEventListener('click', () => listaDeFilmes(mainUrl));
 document.getElementById('top-votes').addEventListener('click', listByRank);
 document.getElementById('sucessos').addEventListener('click', listBySuccess);
+document.getElementById('random-choice').addEventListener('click', getRandomChoice);
 
 function createElement(element, className, content, id) {
   const el = document.createElement(element);
@@ -40,7 +41,7 @@ function createImg(className, source, alt) {
 async function getTrailerLink(id) {
   const data = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&append_to_response=videos`)
   const json = await data.json();
-  console.log(json);
+  // console.log(json);
   if (json.videos && json.videos.results.length > 0){
     if (json.videos.results[0].key !== null){
       const trailerLink = `https://www.youtube.com/watch?v=${json.videos.results[0].key}`
@@ -85,4 +86,4 @@ window.onload = async () => {
     .forEach((li) => li.addEventListener('click', listByGenre));
 };
 
-export { listaDeFilmes, apiKey };
+export { listaDeFilmes, apiKey, getDiv, getTrailerLink, createImg, createElement };
