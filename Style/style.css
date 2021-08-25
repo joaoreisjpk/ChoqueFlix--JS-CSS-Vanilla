@@ -119,7 +119,6 @@ ul > li {
 .filme {
   display: flex;
   flex-direction: column;
-  width: 19%;
   padding: 15px;
   border: solid thin black;
   background-color: rgba(211, 211, 211, 0.219);
@@ -128,7 +127,6 @@ ul > li {
   margin-bottom: 30px;
   color: #ffff;
   border-radius: 10px;
-  overflow: hidden;
 	-moz-transition: all 0.5s;
   cursor: pointer;
 }
