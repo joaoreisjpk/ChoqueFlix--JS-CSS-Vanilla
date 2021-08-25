@@ -105,15 +105,25 @@ nav {
   cursor: pointer;
 }
 
-#idE {font-size: 2rem; line-height: 2.1rem;}
+#idC {font-size: 2rem; line-height: 2.1rem;}
 
-#idT {font-size: 2rem; line-height: 2rem;}
+#idH {font-size: 1.9rem; line-height: 2.1rem;}
 
-#idF {font-size: 1.8rem; line-height: 2rem;}
+#idO {font-size: 1.8rem; line-height: 2rem;}
 
-#idL {font-size: 1.9rem; line-height: 2rem;}
+#idQ {font-size: 1.7rem; line-height: 2rem;}
 
-#idI {font-size: 2rem; line-height: 2.1rem;}
+#idU {font-size: 1.6rem; line-height: 2rem;}
+
+#idE {font-size: 1.6rem; line-height: 2.1rem;}
+
+#idF {font-size: 1.7rem; line-height: 2rem;}
+
+#idL {font-size: 1.8rem; line-height: 2rem;}
+
+#idI {font-size: 1.9rem; line-height: 2.1rem;}
+
+#idX {font-size: 2rem; line-height: 2.1rem;}
 
 #film-list {
   display: flex;
