@@ -90,7 +90,7 @@ const listaDeFilmes = async (urlApi) => {
       const trailerLink = await getTrailerLink(id);
       if (trailerLink) {
         trailerBtn.href = trailerLink;
-      } else { trailerBtn.innerText = 'Trailer não disponível'}
+      } else { trailerBtn.innerText = 'Trailer indisponível'}
     }
   });
 };
