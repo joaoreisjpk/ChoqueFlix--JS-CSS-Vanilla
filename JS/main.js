@@ -1,13 +1,12 @@
 import { genresObj, urlByGenre, listByGenre } from './navBar.js';
 import { getBannerLinks, getTrendingFilms } from './banner.js'
-
+import { addBtnsWatchlistEventListener } from './watchlist.js'
 const apiKey = 'ca19804bba1e445e3db2ec8fbecda738';
 const mainUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
 const urlImg = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
 const getDiv = document.getElementById('film-list');
 const getIMG = document.getElementById('imgtest');
 const getTitle = document.getElementById('titleTest');
-const localStorageList = [];
 document.getElementById('inicio').addEventListener('click', () => listaDeFilmes(mainUrl));
 
 function createElement(element, className, content, id) {
@@ -48,18 +47,6 @@ async function getTrailerLink(id) {
   }
 }
 
-function addMovieToWatchlist(event) {
-  const movieHTML = event.target.parentNode.innerHTML;
-  localStorageList.push(movieHTML);
-  localStorage.setItem('watchlist', JSON.stringify(localStorageList))
-}
-
-function addBtnsWatchlistEventListener() {
-  const btnsWatchlist = document.getElementsByClassName('btn-watchlist');
-  [...btnsWatchlist].forEach((btn) => {
-    btn.addEventListener('click', addMovieToWatchlist)
-  })
-}
 const listaDeFilmes = async (urlApi) => {
   // carregando();
   getDiv.innerHTML = '';
@@ -76,8 +63,8 @@ const listaDeFilmes = async (urlApi) => {
       const btnsDiv = createElement('div', 'btns-div', '')
       const trailerBtn = createElement('a', 'btn-trailer', 'Ver Trailer');
       trailerBtn.target = '_blank';
-      const watchlistBtn = createElement('button', 'btn-watchlist', '');
-      const plusIcon = createElement('span', 'material-icons', 'add');
+      const watchlistBtn = createElement('button', `btn-watchlist`, '', id);
+      const plusIcon = createElement('span', `material-icons`, 'add', id);
       btnsDiv.appendChild(trailerBtn);
       btnsDiv.appendChild(watchlistBtn);
       watchlistBtn.appendChild(plusIcon);
@@ -90,6 +77,7 @@ const listaDeFilmes = async (urlApi) => {
         trailerBtn.href = trailerLink;
       } else { trailerBtn.innerText = 'Trailer indisponível'}
     }
+    addBtnsWatchlistEventListener();
   });
 };
 
@@ -102,4 +90,4 @@ window.onload = async () => {
     .forEach((li) => li.addEventListener('click', listByGenre));
 };
 
-export { listaDeFilmes, apiKey };
+export { listaDeFilmes, apiKey, createElement };

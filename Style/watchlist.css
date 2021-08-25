@@ -1,0 +1,169 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: #111;
+}
+
+img {
+  min-width: 100%;
+}
+
+.nav a:hover{
+  opacity: 0.9;
+  text-shadow:0px 0px 5px #fff;
+  color: white
+}
+
+.nav:hover ul {
+  display: block;
+}
+.options{
+  color: white;
+}
+
+.nav:hover, .nav li:hover {
+  box-shadow: 0 0 2px black;
+}
+
+.header {
+  width: 90%;
+  margin: auto;
+}
+
+header {
+  position: fixed;
+  padding: 3px;
+  background-color: rgb(0, 0, 0);
+  width: 100%;
+  color: white;
+  z-index: 1;
+}
+
+main {
+  margin-top: 5%;
+}
+
+li {
+  float: left;
+  list-style: none;
+}
+
+ul > li {
+
+  background-color: rgba(218, 216, 216, 0.95);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+}
+
+.nav {
+  padding: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  position: relative;
+  border: 100px;
+  margin-right: 15px;
+}
+
+.nav ul {
+  top: 10px;
+  display: none;
+}
+
+.nav .options {
+  position: absolute;
+  left: -30px;
+}
+
+.nav .options li {
+  min-width: 100px;
+  border-radius: 0px;
+  color: black;
+}
+
+.nav a {
+  padding: 5px;
+}
+
+.title {
+  color: #ee010d;
+  font-size: 2.3rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  letter-spacing: 0.1rem;
+  font-weight: 600;
+  padding: 2px;
+  display: flex;
+  align-items: flex-start;
+  line-height: 2.3rem;
+  cursor: pointer;
+}
+
+a {
+  color: white;
+}
+
+#watchlist {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: auto;
+}
+
+.filme {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border: solid thin black;
+  background-color: rgba(211, 211, 211, 0.219);
+  height: 500px;
+  width: 250px;
+  margin-bottom: 30px;
+  color: #ffff;
+  border-radius: 10px;
+	-moz-transition: all 0.5s;
+}
+.filme:hover {
+	-moz-transition: scale(1.1);
+	-webkit-transform: scale(1.1) ;
+	transform: scale(1.1);
+}
+
+.btns-div {
+  display: flex;
+  height: 40px;
+}
+
+.btn-trailer, .btn-watchlist {
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  width: 90px;
+  color: #ee010d;
+  font-weight: 320;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-size: 16px;
+  display: inline-block;
+  padding: 7px;
+  margin-bottom: 1px;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+}
