@@ -1,19 +1,21 @@
-import { genresObj, urlByGenre, listByGenre } from './navBar.js';
+import { listByGenre, listByRank, listBySuccess, getRandomChoice } from './navBar.js';
 import { getBannerLinks, getTrendingFilms } from './banner.js'
-
+import { addBtnsWatchlistEventListener } from './watchlist.js'
 const apiKey = 'ca19804bba1e445e3db2ec8fbecda738';
 const mainUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
 const urlImg = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
 const getDiv = document.getElementById('film-list');
 const getIMG = document.getElementById('imgtest');
 const getTitle = document.getElementById('titleTest');
-
 document.getElementById('inicio').addEventListener('click', () => listaDeFilmes(mainUrl));
+document.getElementById('top-votes').addEventListener('click', listByRank);
+document.getElementById('sucessos').addEventListener('click', listBySuccess);
+document.getElementById('random-choice').addEventListener('click', getRandomChoice);
 
 function createElement(element, className, content, id) {
   const el = document.createElement(element);
   el.className = className;
-  if (content) el.innerText = content;
+  if (content) el.innerHTML = content;
   if (id) el.id = id;
   return el;
 };
@@ -38,11 +40,12 @@ function createImg(className, source, alt) {
 async function getTrailerLink(id) {
   const data = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&append_to_response=videos`)
   const json = await data.json();
-  console.log(json);
-  if (json.videos && json.videos.results.length > 0){
-    if (json.videos.results[0].key !== null){
-      const trailerLink = `https://www.youtube.com/watch?v=${json.videos.results[0].key}`
-      return trailerLink;
+  if (!json.hasOwnProperty('sucess')) { // só vai ter a propriedade sucesso quando ocorer algum erro na requsição 
+    if (json.videos && json.videos.results.length > 0){
+      if (json.videos.results[0].key !== null){
+        const trailerLink = `https://www.youtube.com/watch?v=${json.videos.results[0].key}`
+        return trailerLink;
+      }
     }
   }
 }
@@ -60,17 +63,24 @@ const listaDeFilmes = async (urlApi) => {
       const img = createImg('imgTest', thumbnail, overview);
       const div = createElement('div', 'filme', false, id);
       const h2 = createElement('h2', 'filmTitle', `${title2} ${note}`);
+      const btnsDiv = createElement('div', 'btns-div', '')
       const trailerBtn = createElement('a', 'btn-trailer', 'Ver Trailer');
       trailerBtn.target = '_blank';
+      const watchlistBtn = createElement('button', `btn-watchlist`, '', id);
+      const plusIcon = createElement('span', `material-icons`, 'add', id);
+      btnsDiv.appendChild(trailerBtn);
+      btnsDiv.appendChild(watchlistBtn);
+      watchlistBtn.appendChild(plusIcon);
       div.appendChild(img);
       div.appendChild(h2);
-      div.appendChild(trailerBtn);
+      div.appendChild(btnsDiv);
       getDiv.appendChild(div);
       const trailerLink = await getTrailerLink(id);
       if (trailerLink) {
         trailerBtn.href = trailerLink;
       } else { trailerBtn.innerText = 'Trailer indisponível'}
     }
+    addBtnsWatchlistEventListener();
   });
 };
 
@@ -83,4 +93,4 @@ window.onload = async () => {
     .forEach((li) => li.addEventListener('click', listByGenre));
 };
 
-export { listaDeFilmes, apiKey };
+export { listaDeFilmes, apiKey, urlImg, getDiv, getTrailerLink, createImg, createElement };
