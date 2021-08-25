@@ -20,8 +20,7 @@ h1 {
 	margin: auto;
 };
 
-.logo{
-	vertical-align: middle;
+.logo {  /* Não retirar essa tag */
 }
 
 header {
