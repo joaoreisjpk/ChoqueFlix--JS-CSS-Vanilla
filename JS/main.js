@@ -1,4 +1,4 @@
-import { genresObj, urlByGenre, listByGenre } from './navBar.js';
+import { listByGenre, listByRank, listBySuccess } from './navBar.js';
 import { getBannerLinks, getTrendingFilms } from './banner.js'
 
 const apiKey = 'ca19804bba1e445e3db2ec8fbecda738';
@@ -9,6 +9,8 @@ const getIMG = document.getElementById('imgtest');
 const getTitle = document.getElementById('titleTest');
 
 document.getElementById('inicio').addEventListener('click', () => listaDeFilmes(mainUrl));
+document.getElementById('top-votes').addEventListener('click', listByRank);
+document.getElementById('sucessos').addEventListener('click', listBySuccess);
 
 function createElement(element, className, content, id) {
   const el = document.createElement(element);
