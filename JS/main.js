@@ -1,12 +1,13 @@
 import { listByGenre, listByRank, listBySuccess, getRandomChoice } from './navBar.js';
 import { getBannerLinks, getTrendingFilms } from './banner.js'
-import { addBtnsWatchlistEventListener } from './watchlist.js'
+import { addBtnsWatchlistEventListener, listWatchlist } from './watchlist.js'
 const apiKey = 'ca19804bba1e445e3db2ec8fbecda738';
 const mainUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
 const urlImg = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
 const getDiv = document.getElementById('film-list');
 const getIMG = document.getElementById('imgtest');
 const getTitle = document.getElementById('titleTest');
+document.getElementById('watchlist').addEventListener('click', listWatchlist)
 document.getElementById('inicio').addEventListener('click', () => listaDeFilmes(mainUrl));
 document.getElementById('top-votes').addEventListener('click', listByRank);
 document.getElementById('sucessos').addEventListener('click', listBySuccess);

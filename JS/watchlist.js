@@ -1,7 +1,11 @@
 import { createElement } from './main.js';
-const watchlistArray = JSON.parse(localStorage.getItem('watchlist'));
-const watchlistSection = document.querySelector('#watchlist')
-const localStorageList = [];
+const filmList = document.querySelector('#film-list')
+let localStorageList;
+if (localStorage.getItem('watchlist')) {
+  localStorageList = JSON.parse(localStorage.getItem('watchlist'));
+} else {
+  localStorageList = [];
+}
 
 function addMovieToWatchlist(event) {
   const id = event.target.id;
@@ -18,14 +22,17 @@ function addBtnsWatchlistEventListener() {
   })
 }
 
-function fetchWatchlist() {
+function listWatchlist() {
+  filmList.innerHTML = '';
+  const watchlistArray = JSON.parse(localStorage.getItem('watchlist'));
   watchlistArray.forEach((movie) => {
     console.log(movie);
     const movieCard = createElement('div', 'filme', movie)
-    watchlistSection.appendChild(movieCard);
+    filmList.appendChild(movieCard);
   })
 }
 
-window.onload = fetchWatchlist;
-
-export { addBtnsWatchlistEventListener }
+window.onload = () => {
+ // if (localStorage.getItem('watchlist')) localStorageList = JSOn.parse(localStorage.getItem('watchlist'))
+}
+export { addBtnsWatchlistEventListener, listWatchlist}
