@@ -4,33 +4,55 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+  <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
   <link rel="stylesheet" href="Style/style.css">
   <title>Document</title>
 </head>
 <body>
   <header>
     <section class="header">
-      <nav><li class='title'><b id="idN">C</b><b id="idE">H</b><b id="idT">O</b><b id="idF">F</b><b id="idL">L</b><b id="idI">I</b><b id="idX">X</b></li>
-        <li class="nav" id="inicio"><a>Início</a></li>
-        <li class="nav"><a>Categorias</a>
-          <ul class="options">
-            <li><a>Ação</a></li>
-            <li><a>Aventura</a></li>
-            <li><a>Comédia</a></li>
-            <li><a>Drama</a></li>
-            <li><a>Suspense</a></li>
-            <li><a>Terror</a></li>
-          </ul>
-        </li>
-        <li class="nav"><a>Minha Lista</a></li>
-        <li class="nav"><a>Mais</a>
-          <ul class="options">
-            <li><a>Top 20</a></li>
-            <li><a>Recentes</a></li>
-            <li><a>Sugestão</a></li>
-          </ul>
-        </li>
-        <li class="nav"><a>Sobre</a></li>
+      <nav>
+        <div>
+          <li class='title'>
+            <b id="idN">C</b>
+            <b id="idE">H</b>
+            <b id="idT">O</b><b id="idF">F</b>
+            <b id="idL">L</b><b id="idI">I</b>
+            <b id="idX">X</b></li>
+          </div>
+          <div>
+          <li class="nav" id="inicio"><a>Início</a></li>
+          <li class="nav"><a>Categorias</a>
+            <ul class="options">
+              <li><a>Ação</a></li>
+              <li><a>Aventura</a></li>
+              <li><a>Comédia</a></li>
+              <li><a>Drama</a></li>
+              <li><a>Suspense</a></li>
+              <li><a>Terror</a></li>
+            </ul>
+          </li>
+          <li class="nav"><a>Minha Lista</a></li>
+          <li class="nav"><a>Mais</a>
+            <ul class="options">
+              <li><a>Top 20</a></li>
+              <li><a>Recentes</a></li>
+              <li><a>Sugestão</a></li>
+            </ul>
+          </li>
+          <li class="nav"><a>Sobre</a></li>
+        </div>
+        <div class="ui category search">
+          <div class="ui icon input">
+            <input class="prompt" type="text" placeholder="Search films...">
+            <i class="search icon"></i>
+          </div>
+          <div class="results"></div>
+        </div>
       </nav>
     </section>
   </header>

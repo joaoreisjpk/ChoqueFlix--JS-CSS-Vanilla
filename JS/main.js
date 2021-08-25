@@ -60,7 +60,7 @@ const listaDeFilmes = async (urlApi) => {
       const img = createImg('imgTest', thumbnail, overview);
       const div = createElement('div', 'filme', false, id);
       const h2 = createElement('h2', 'filmTitle', `${title2} ${note}`);
-      const trailerBtn = createElement('a', 'btn-trailer', 'Ver Trailer');
+      const trailerBtn = createElement('a', 'btn-trailer ui red basic button', 'Ver Trailer');
       trailerBtn.target = '_blank';
       div.appendChild(img);
       div.appendChild(h2);
