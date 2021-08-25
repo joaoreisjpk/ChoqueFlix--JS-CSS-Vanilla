@@ -51,7 +51,7 @@ async function getTrendingFilms() {
 }
 
 async function getTrailerLink(id) {
-  const data = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=ca19804bba1e445e3db2ec8fbecda738&append_to_response=videos`)
+  const data = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&append_to_response=videos`)
   const json = await data.json();
   if (json.videos.results[0]){
     const trailerLink = `https://www.youtube.com/watch?v=${json.videos.results[0].key}`
