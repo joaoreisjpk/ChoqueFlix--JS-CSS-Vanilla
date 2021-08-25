@@ -1,21 +1,14 @@
-const apiKey = 'ca19804bba1e445e3db2ec8fbecda738'
+import { genresObj, urlByGenre, listByGenre } from './navBar.js';
+
+const apiKey = 'ca19804bba1e445e3db2ec8fbecda738';
 const mainUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
 const urlImg = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
-const getDiv = document.getElementById('film-list')
+const getDiv = document.getElementById('film-list');
 const getIMG = document.getElementById('imgtest');
 const getTitle = document.getElementById('titleTest');
 let bannersLinks = [];
 
-document.getElementById('inicio').addEventListener('click', () => listaDeFilmes(mainUrl))
-
-const genresObj = {// Chaves são conteúdo das opções de categoria e valores são Ids de gêneros
-  'Ação': 28,
-  'Aventura': 12,
-  'Comédia': 35,
-  'Drama': 18,
-  'Suspense': 53,
-  'Terror': 27
-}
+document.getElementById('inicio').addEventListener('click', () => listaDeFilmes(mainUrl));
 
 function createElement(element, className, content, id) {
   const el = document.createElement(element);
@@ -41,7 +34,6 @@ function createImg(className, source, alt) {
 }; */
 
 // adiciona uma frase 'loading' enquanto se faz a requisição da API
-
 
 async function getBannerLinks(array) {
   array.forEach((query) => {
@@ -97,15 +89,6 @@ const listaDeFilmes = async (urlApi) => {
   });
 };
 
-// Recebe uma Id de um gênero e retorna a URL para requisição da Api
-const urlByGenre = (genreId) => `https://api.themoviedb.org/3/discover/movie?api_key=ca19804bba1e445e3db2ec8fbecda738&with_genres=${genreId}&sort_by=prelease_date.desc`;
-// Responsável por listar filmes por gênero
-function listByGenre(event) {
-  const genre = event.target.innerText;
-  const keyId = genresObj[genre];
-  listaDeFilmes(urlByGenre(keyId));
-}
-
 window.onload = async () => {
   listaDeFilmes(mainUrl);
   const trendingMovies = await getTrendingFilms()
@@ -114,3 +97,5 @@ window.onload = async () => {
   document.querySelectorAll('.options li')
     .forEach((li) => li.addEventListener('click', listByGenre));
 };
+
+export { listaDeFilmes };
