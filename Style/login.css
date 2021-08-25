@@ -1,29 +1,36 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,400i,700");
 
+* {
+	box-sizing: border-box;
+}
+
 body {
+	margin: 0;
 	background-color: #111;
 	font-family: "Montserrat";
 	text-align: center;
 }
 
-.titulo {
-    color: white;
-	font-size:x-large;
+h1 {
+	margin-top: 0;
 }
+
+.container {
+	width: 95%;
+	margin: auto;
+};
+
+.logo{
+	vertical-align: middle;
+}
+
 header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	min-height: 70px;
 }
-.logo{
-	text-decoration: none;
-    font-size: 1.8em;
-    color: #e50914;
-    display: inline-block;
-    vertical-align: middle;
-    cursor: pointer;
-    margin-right: 10px;
-}
+
 .personagens {
 	display: inline-flex;
 	justify-content: space-around;
@@ -60,13 +67,12 @@ header {
 }
 
 .alternativo {
-	color: rgb(172, 172, 172);
-	text-decoration: none;
+	display: inline-block;
 	border-radius: 10px;
-	border: solid 1px ;
+	margin-top: 30px;
+	border: solid 1px rgb(172, 172, 172);
 	padding: 15px;
 	font-size: large;
-	overflow: hidden;
 	-moz-transition: all 0.3s;
 	transition: all 0.3s;
 }
@@ -75,10 +81,57 @@ header {
 	-webkit-transform: scale(1.1) ;
 	transform: scale(1.1);
 }
-.gerenciamento {
-	margin-right: auto;
-	margin-left: auto;
-	margin-top: 210px;
-	font-weight:300;
+.alternativo > a {
+	color: rgb(172, 172, 172);
+	text-decoration: none;
 }
 
+.gerenciamento {
+	font-weight:300;
+	display: flex;
+	margin: auto;
+	justify-content: center;
+	margin-top: -25px;
+	height: max(85vh, 320px);
+}
+
+.gerenciamento > * {
+	margin: auto;
+}
+.title {
+  color: #ee010d;
+  font-size: 2.3rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  letter-spacing: 0.1rem;
+  font-weight: 600;
+  padding: 2px;
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+#idC {font-size: 2.2rem; line-height: 2rem;}
+
+#idH {font-size: 1.9rem; line-height: 1.7rem;}
+
+#idO {font-size: 1.7rem; line-height: 1.7rem;}
+
+#idQ {font-size: 1.5rem; line-height: 1.6rem;}
+
+#idU {font-size: 1.5rem; line-height: 1.6rem;}
+
+#idE {font-size: 1.5rem; line-height: 1.6rem;}
+
+#idF {font-size: 1.6rem; line-height: 1.7rem;}
+
+#idL {font-size: 1.7rem; line-height: 1.7rem;}
+
+#idI {font-size: 2rem; line-height: 1.8rem;}
+
+#idX {font-size: 2.2rem; line-height: 2rem;}
+
+
+.titulo {
+  color: white;
+	font-size: 2.5rem;
+}
