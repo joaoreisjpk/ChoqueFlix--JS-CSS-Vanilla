@@ -1,4 +1,4 @@
-import { listaDeFilmes, apiKey, getDiv, getTrailerLink, createImg, createElement } from './main.js';
+import { listaDeFilmes, apiKey, urlImg, getDiv, getTrailerLink, createImg, createElement } from './main.js';
 
 const genresObj = {// Chaves são conteúdo das opções de categoria e valores são Ids de gêneros
   'Ação': 28,
@@ -27,7 +27,7 @@ const urlBySuccess = () => `https://api.themoviedb.org/3/discover/movie?api_key=
 
 const listBySuccess = () => listaDeFilmes(urlBySuccess());
 
-const randomId = () => parseInt((Math.random() * 62) * 100);
+const randomId = () => parseInt((Math.random() * 62) * 10);
 
 const randomUrl = () => `https://api.themoviedb.org/3/movie/${randomId()}?api_key=${apiKey}`;
 
@@ -46,19 +46,24 @@ async function randomChoice(item) {
   div.appendChild(h2);
   div.appendChild(trailerBtn);
   getDiv.appendChild(div);
+  div.style.marginLeft = '40%';
   const trailerLink = await getTrailerLink(id);
   if (trailerLink) {
     trailerBtn.href = trailerLink;
   } else { trailerBtn.innerText = 'Trailer indisponível'}
 }
 
-function getRandomChoice() {
+async function getRandomChoice() {
   const tries = await fetch(randomUrl());
-  const itemJson = await item.json();
-  if (itemJson.poster_path) randomChoice(tries());
+  const itemJson = await tries.json();
+  if (itemJson.poster_path) randomChoice(itemJson);
   tryAgain();
 }
 
-const tryAgain = () => { if (getDiv.innerHTML === '') getRandomChoice(); }
+const tryAgain = () => {
+  setTimeout(() => {
+    if (getDiv.innerHTML === '') getRandomChoice();
+  }, 800)
+};
 
 export { genresObj, urlByGenre, listByGenre, listByRank, listBySuccess, getRandomChoice };

@@ -86,4 +86,4 @@ window.onload = async () => {
     .forEach((li) => li.addEventListener('click', listByGenre));
 };
 
-export { listaDeFilmes, apiKey, getDiv, getTrailerLink, createImg, createElement };
+export { listaDeFilmes, apiKey, urlImg, getDiv, getTrailerLink, createImg, createElement };
