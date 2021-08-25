@@ -1,10 +1,22 @@
-const url = 'https://api.themoviedb.org/3/movie/top_rated?api_key=ca19804bba1e445e3db2ec8fbecda738';
+//Números de filmes disponíveis: 62 a 2405
+
+const mainUrl = 'https://api.themoviedb.org/3/movie/popular?api_key=ca19804bba1e445e3db2ec8fbecda738';
 const urlImg = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
 
 const getDiv = document.getElementById('film-list')
 const getIMG = document.getElementById('imgtest');
 const getTitle = document.getElementById('titleTest');
 let bannersLinks = [];
+
+const genresObj = {// Chaves são conteúdo das opções de categoria e valores são Ids de gêneros
+  'Ação': 28,
+  'Aventura': 12,
+  'Comédia': 35,
+  'Drama': 18,
+  'Suspense': 53,
+  'Terror': 27
+}
+
 function createElement(element, className, content) {
   const el = document.createElement(element);
   el.className = className;
@@ -47,27 +59,41 @@ async function getTrendingFilms() {
 
   return trendingFilms;
 }
-
-const listaDeFilmes =  async () => {
+// faz a requisição da API e transforma em objeto Json
+const listaDeFilmes =  async (urlApi) => {
   // carregando();
-  const lista = await fetch(url);
+  getDiv.innerHTML = '';
+  const lista = await fetch(urlApi);
   const listaJson = await lista.json();
   listaJson.results.forEach(({ title, vote_average, poster_path, overview}) => {
-    const thumbnail = urlImg + poster_path;
-    const title2 = title;
-    const note = vote_average;
-    const img = createImg('imgTest', thumbnail, overview)
-    const div = createElement('div', 'filme', '')
-    const h2 = createElement('h2', 'filmTitle', `${title2} ${note}`)
-    div.appendChild(img);
-    div.appendChild(h2);
-    getDiv.appendChild(div);
+    if (poster_path) {
+      const thumbnail = urlImg + poster_path;
+      const title2 = title;
+      const note = vote_average;
+      const img = createImg('imgTest', thumbnail, overview)
+      const div = createElement('div', 'filme', '')
+      const h2 = createElement('h2', 'filmTitle', `${title2} ${note}`)
+      div.appendChild(img);
+      div.appendChild(h2);
+      getDiv.appendChild(div);
+    }
   });
 };
-// faz a requisição da API e transforma em objeto Json
+
+// Recebe uma Id de um gênero e retorna a URL para requisição da Api
+const urlByGenre = (genreId) => `https://api.themoviedb.org/3/discover/movie?api_key=ca19804bba1e445e3db2ec8fbecda738&with_genres=${genreId}&sort_by=prelease_date.desc`;
+// Responsável por listar filmes por gênero
+function listByGenre(event) {
+  const genre = event.target.innerText;
+  const keyId = genresObj[genre];
+  listaDeFilmes(urlByGenre(keyId));
+}
 
 window.onload = async () => {
-  listaDeFilmes();
+  listaDeFilmes(mainUrl);
   const trendingMovies = await getTrendingFilms()
   getBannerLinks(trendingMovies);
+
+  document.querySelectorAll('.options li')
+    .forEach((li) => li.addEventListener('click', listByGenre));
 };
