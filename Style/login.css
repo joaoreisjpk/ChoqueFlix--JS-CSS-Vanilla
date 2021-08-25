@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,400i,700");
+
+body {
+	background-color: #111;
+	font-family: "Montserrat";
+	text-align: center;
+}
+
+.titulo {
+    color: white;
+	font-size:x-large;
+}
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.logo{
+	text-decoration: none;
+    font-size: 1.8em;
+    color: #e50914;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.personagens {
+	display: inline-flex;
+	justify-content: space-around;
+	width: 150px;
+	height: 150px;
+	border-radius: 8px;
+	align-items: center;
+	margin-right: 10px;
+	margin-left: 10px;
+	overflow: hidden;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.personagens:hover {
+	-moz-transition: scale(1.1);
+	-webkit-transform: scale(1.1) ;
+	transform: scale(1.1);
+}
+#renan {
+	background-color: red;
+}
+
+#mauricio {
+	background-color: yellow;
+}
+
+#rogerinho {
+	background-color: blue;
+}
+
+#julinho {
+	background-color: purple;
+}
+
+.alternativo {
+	color: rgb(172, 172, 172);
+	text-decoration: none;
+	border-radius: 10px;
+	border: solid 1px ;
+	padding: 15px;
+	font-size: large;
+	overflow: hidden;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+.alternativo:hover {
+	-moz-transition: scale(1.1);
+	-webkit-transform: scale(1.1) ;
+	transform: scale(1.1);
+}
+.gerenciamento {
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 210px;
+	font-weight:300;
+}
+
