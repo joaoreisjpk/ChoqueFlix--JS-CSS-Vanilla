@@ -64,7 +64,7 @@ const listaDeFilmes = async (urlApi) => {
   getFilmList.innerHTML = `<p id="waiting">Buscando conteúdo, aguarde...</p>`;
   const lista = await fetch(urlApi);
   const listaJson = await lista.json();
-  listaJson.results.forEach(async ({ vote_average, poster_path, overview, id }) => {
+  listaJson.results.forEach(async ({ title, vote_average, poster_path, overview, id }) => {
     if (poster_path) {
       // Criando uma section para cada filme
       const createSection = createElement('section', 'filme', false, id);
