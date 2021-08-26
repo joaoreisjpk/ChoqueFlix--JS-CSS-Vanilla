@@ -30,15 +30,6 @@ function createImg(className, source, alt) {
   return img;
 };
 
-/* const carregando = async () => {
-  const section = document.createElement('section');
-  section.innerHTML = 'Loading...';
-  section.className = 'loading';
-  document.querySelector('#film-list').appendChild(section);
-}; */
-
-// adiciona uma frase 'loading' enquanto se faz a requisição da API
-
 async function getTrailerLink(id) {
   const fetchUrl = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${apiKey}`;
   const data = await fetch(fetchUrl);
@@ -62,8 +53,7 @@ const createHtml = (nota, description) =>
   </div>`
 
 const listaDeFilmes = async (urlApi) => {
-  // carregando();
-  getFilmList.innerHTML = '';
+  getFilmList.innerHTML = `<p id="waiting">Buscando conteúdo, aguarde...</p>`;
   const lista = await fetch(urlApi);
   const listaJson = await lista.json();
   listaJson.results.forEach(async ({ title, vote_average, poster_path, overview, id }) => {
@@ -98,6 +88,7 @@ const listaDeFilmes = async (urlApi) => {
     }
     addBtnsWatchlistEventListener();
   });
+  document.querySelector('#waiting').remove();
 };
 
 window.onload = async () => {
@@ -109,4 +100,4 @@ window.onload = async () => {
     .forEach((li) => li.addEventListener('click', listByGenre));
 };
 
-export { listaDeFilmes, apiKey, urlImg, getFilmList, getTrailerLink, createImg, createElement };
+export { listaDeFilmes, apiKey, urlImg, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener };
