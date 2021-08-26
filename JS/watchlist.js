@@ -1,38 +1,44 @@
 import { createElement } from './main.js';
-const filmList = document.querySelector('#film-list')
-let localStorageList;
-if (localStorage.getItem('watchlist')) {
-  localStorageList = JSON.parse(localStorage.getItem('watchlist'));
-} else {
-  localStorageList = [];
-}
+
+const filmList = document.querySelector('#film-list');
+
+let localStorageList = (localStorage.getItem('watchlist')) ?
+  JSON.parse(localStorage.getItem('watchlist')) : [];
 
 function addMovieToWatchlist(event) {
-  const id = event.target.id;
-  const movieElement = document.getElementById(id);
-  console.log(movieElement);
+  const movieId = event.target.id;
+  const movieElement = document.getElementById(movieId);
+  // console.log(movieElement);
   localStorageList.push(movieElement.innerHTML);
-  localStorage.setItem('watchlist', JSON.stringify(localStorageList))
+  localStorage.setItem('watchlist', JSON.stringify(localStorageList));
 }
 
 function addBtnsWatchlistEventListener() {
-  const btnsWatchlist = document.getElementsByClassName('btn-watchlist');
-  [...btnsWatchlist].forEach((btn) => {
-    btn.addEventListener('click', addMovieToWatchlist)
-  })
+  document.querySelectorAll('.btn-watchlist')
+    .forEach((btn) => btn.addEventListener('click', addMovieToWatchlist));
 }
 
 function listWatchlist() {
   filmList.innerHTML = '';
   const watchlistArray = JSON.parse(localStorage.getItem('watchlist'));
-  watchlistArray.forEach((movie) => {
-    console.log(movie);
-    const movieCard = createElement('div', 'filme', movie)
+  if (watchlistArray) watchlistArray.forEach((movie) => {
+    // console.log(movie);
+    const movieCard = createElement('div', 'filme', movie);
+    movieCard.style.margin = '20px auto';
     filmList.appendChild(movieCard);
   })
+  document.querySelectorAll('.btn-watchlist')
+    .forEach((btn) => {
+      const contentBtn = btn.parentElement.parentElement.innerHTML;
+      btn.innerHTML = '☒';
+      btn.style.font = '1.7rem bold'
+      btn.addEventListener('click', () => {
+        const parent = btn.parentElement.parentElement;
+        localStorageList.pop(contentBtn);
+        localStorage.setItem('watchlist', JSON.stringify(localStorageList));
+        parent.remove();
+      });
+    });
 }
 
-window.onload = () => {
- // if (localStorage.getItem('watchlist')) localStorageList = JSOn.parse(localStorage.getItem('watchlist'))
-}
-export { addBtnsWatchlistEventListener, listWatchlist}
+export { addBtnsWatchlistEventListener, listWatchlist }
