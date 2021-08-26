@@ -45,7 +45,7 @@ async function getTrailerLink(id) {
   const json = await data.json();
     const trailerType = (json.results) ?
       (json.results.find(({ type }) => type === 'Trailer')) : false;
-    if (trailerType){
+    if (trailerType) {
       const trailerLink = `https://www.youtube.com/watch?v=${trailerType.key}`;
       return trailerLink;
     }
@@ -58,7 +58,6 @@ const createHtml = (nota, description) =>
     </div>
     <div class='description'>Descrição: 
       <spam class='description--text'>${description.slice(0, 300) + '...'}<span>
-      <a href='https://www.netflix.com/'><i class="play circle huge icon"></i></a>
     </div>
   </div>`
 
@@ -80,12 +79,15 @@ const listaDeFilmes = async (urlApi) => {
       
       // Criando os botões, a classificação, e o overview a ser adicionados na descrição
       const trailerBtn = createElement('a', 'btn-trailer ui inverted red button', 'Ver Trailer'); trailerBtn.target = '_blank';
+      const netflixBtn = createElement('a', '', ''); trailerBtn.target = '_blank';
       const watchlistBtn = createElement('button', `btn-watchlist ui inverted blue button`, '', id);
       const btnsDiv = createElement('div', `btnsDiv`, '');
+      netflixBtn.innerHTML = `<i class="play circle huge icon"></i>`
+      netflixBtn.href = `https://www.netflix.com/search?q=${title}`; netflixBtn.target = '_blank'
       watchlistBtn.innerHTML = `<i class="plus square outline icon"></i>&nbsp;List`;
       description.innerHTML = createHtml(vote_average, overview); // Adicionando a classificação e o overview
       btnsDiv.appendChild(trailerBtn); btnsDiv.appendChild(watchlistBtn); // Inclui os botões
-      description.appendChild(btnsDiv);
+      description.appendChild(btnsDiv); description.appendChild(netflixBtn);
 
       const trailerLink = await getTrailerLink(id);
       if (trailerLink) {
