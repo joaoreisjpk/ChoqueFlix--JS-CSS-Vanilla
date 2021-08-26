@@ -223,4 +223,9 @@ nav {
   margin: 0 !important;
 }
 
+#waiting {
+  color: white;
+  font-size: 2rem;
+  margin: 100px 0 0 300px;
+}
 /* End of Film Style */

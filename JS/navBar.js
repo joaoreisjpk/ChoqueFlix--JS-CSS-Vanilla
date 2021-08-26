@@ -1,4 +1,4 @@
-import { listaDeFilmes, apiKey, urlImg, getFilmList, getTrailerLink, createImg, createElement } from './main.js';
+import { listaDeFilmes, apiKey, urlImg, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener } from './main.js';
 
 const genresObj = {// Chaves são conteúdo das opções de categoria e valores são Ids de gêneros
   'Ação': 28,
@@ -25,29 +25,37 @@ const listByRank = () => listaDeFilmes(urlByRank());
 const urlBySuccess = () => `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=revenue.desc`
 const listBySuccess = () => listaDeFilmes(urlBySuccess());
 
-const randomId = () => parseInt((Math.random() * 62) * 100);
+const randomId = () => parseInt((Math.random() * 62) * 1000);
 const randomUrl = () => `https://api.themoviedb.org/3/movie/${randomId()}?api_key=${apiKey}`;
 
 async function randomChoice(item) {
-  getDiv.innerHTML = '';
-  const { title, vote_average, poster_path, overview, id } = item;
+  getFilmList.innerHTML = '';
+  const { vote_average, poster_path, overview, id } = item;
+  const createSection = createElement('section', 'filme', false, id);
+  createSection.style.margin = 'auto';
+
+  // Adicionando à section a imagem e a descrições do filme
   const thumbnail = urlImg + poster_path;
-  const title2 = title;
-  const note = vote_average;
-  const img = createImg('imgTest', thumbnail, overview);
-  const div = createElement('div', 'filme', false, id);
-  const h2 = createElement('h2', 'filmTitle', `${title2} ${note}`);
-  const trailerBtn = createElement('a', 'btn-trailer', 'Ver Trailer');
-  trailerBtn.target = '_blank';
-  div.appendChild(img);
-  div.appendChild(h2);
-  div.appendChild(trailerBtn);
-  getDiv.appendChild(div);
-  div.style.margin = 'auto';
+  const background = createImg('imgTest', thumbnail, overview); // Cria o background
+  const description = createElement('div', 'description', ''); // Cria a div de descrição
+  createSection.appendChild(background); createSection.appendChild(description); // Adiciona a imagem e a div à section
+  
+  // Criando os botões, a classificação, e o overview a ser adicionados na descrição
+  const trailerBtn = createElement('a', 'btn-trailer ui inverted red button', 'Ver Trailer'); trailerBtn.target = '_blank';
+  const watchlistBtn = createElement('button', `btn-watchlist ui inverted blue button`, '', id);
+  const btnsDiv = createElement('div', `btnsDiv`, '');
+  watchlistBtn.innerHTML = `<i class="plus square outline icon"></i>&nbsp;List`;
+  description.innerHTML = createHtml(vote_average, overview); // Adicionando a classificação e o overview
+  btnsDiv.appendChild(trailerBtn); btnsDiv.appendChild(watchlistBtn); // Inclui os botões
+  description.appendChild(btnsDiv);
+
   const trailerLink = await getTrailerLink(id);
   if (trailerLink) {
     trailerBtn.href = trailerLink;
   } else { trailerBtn.innerText = 'Trailer indisponível'}
+
+  getFilmList.appendChild(createSection);
+  addBtnsWatchlistEventListener();
 }
 
 async function getRandomChoice() {
@@ -58,7 +66,9 @@ async function getRandomChoice() {
 }
 
 const tryAgain = () => {
-    if (getDiv.innerHTML === '') getRandomChoice();
+  setTimeout(() => {
+    if (getFilmList.innerHTML === '') getRandomChoice();
+  }, 400);
 };
 
 export { genresObj, urlByGenre, listByGenre, listByRank, listBySuccess, getRandomChoice };
