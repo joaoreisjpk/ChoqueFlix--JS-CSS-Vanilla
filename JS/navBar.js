@@ -1,4 +1,4 @@
-import { listaDeFilmes, apiKey, urlImg, getDiv, getTrailerLink, createImg, createElement } from './main.js';
+import { listaDeFilmes, apiKey, urlImg, getFilmList, getTrailerLink, createImg, createElement } from './main.js';
 
 const genresObj = {// Chaves são conteúdo das opções de categoria e valores são Ids de gêneros
   'Ação': 28,
