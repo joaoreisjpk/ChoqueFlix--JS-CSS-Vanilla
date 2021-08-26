@@ -152,7 +152,7 @@ nav {
   color: #ffff;
   border-radius: 10px;
   overflow: hidden;
-	-moz-transition: all 0.5s;
+	transition: all 1s;
 }
 .filme:hover {
 	-moz-transition: scale(1.1);
