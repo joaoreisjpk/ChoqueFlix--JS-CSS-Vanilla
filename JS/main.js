@@ -80,10 +80,11 @@ const listaDeFilmes = async (urlApi) => {
       // Criando os botões, a classificação, e o overview a ser adicionados na descrição
       const trailerBtn = createElement('a', 'btn-trailer ui inverted red button', 'Ver Trailer'); trailerBtn.target = '_blank';
       const watchlistBtn = createElement('button', `btn-watchlist ui inverted blue button`, '', id);
-      watchlistBtn.innerHTML = `<i class="plus square outline icon"></i> List`
+      const btnsDiv = createElement('div', `btnsDiv`, '');
+      watchlistBtn.innerHTML = `<i class="plus square outline icon"></i>&nbsp;List`;
       description.innerHTML = createHtml(vote_average, overview); // Adicionando a classificação e o overview
-      description.appendChild(trailerBtn); description.appendChild(watchlistBtn); // Inclui os botões
-
+      btnsDiv.appendChild(trailerBtn); btnsDiv.appendChild(watchlistBtn); // Inclui os botões
+      description.appendChild(btnsDiv);
 
       const trailerLink = await getTrailerLink(id);
       if (trailerLink) {

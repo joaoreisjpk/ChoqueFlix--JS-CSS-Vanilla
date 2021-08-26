@@ -164,10 +164,10 @@ nav {
   display: block;
 }
 
-.btns-div {
+/* .btns-div {
   display: none;
   margin-top: .5rem;
-}
+} */
 
 .nota--value {
   background-color: rgba(255, 255, 255, 0.856);
@@ -207,6 +207,21 @@ nav {
   white-space: nowrap;
   direction: ltr;
 }
+
+.btnsDiv {
+  display: flex;
+  margin: auto;
+  justify-content: space-around;
+}
+
+.btn-watchlist {
+  min-width: 87px !important;
+  margin: 0 !important;
+}
+
+.btn-trailer {
+}
+
 /* End of Film Style */
 
 
