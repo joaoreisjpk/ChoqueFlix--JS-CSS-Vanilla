@@ -20,15 +20,12 @@ function listByGenre(event) {
 }
 
 const urlByRank = () => `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=vote_count.desc`;
-
 const listByRank = () => listaDeFilmes(urlByRank());
 
 const urlBySuccess = () => `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=revenue.desc`
-
 const listBySuccess = () => listaDeFilmes(urlBySuccess());
 
-const randomId = () => parseInt((Math.random() * 62) * 10);
-
+const randomId = () => parseInt((Math.random() * 62) * 100);
 const randomUrl = () => `https://api.themoviedb.org/3/movie/${randomId()}?api_key=${apiKey}`;
 
 async function randomChoice(item) {
@@ -46,7 +43,7 @@ async function randomChoice(item) {
   div.appendChild(h2);
   div.appendChild(trailerBtn);
   getDiv.appendChild(div);
-  div.style.marginLeft = '40%';
+  div.style.margin = 'auto';
   const trailerLink = await getTrailerLink(id);
   if (trailerLink) {
     trailerBtn.href = trailerLink;
@@ -61,9 +58,7 @@ async function getRandomChoice() {
 }
 
 const tryAgain = () => {
-  setTimeout(() => {
     if (getDiv.innerHTML === '') getRandomChoice();
-  }, 800)
 };
 
 export { genresObj, urlByGenre, listByGenre, listByRank, listBySuccess, getRandomChoice };
