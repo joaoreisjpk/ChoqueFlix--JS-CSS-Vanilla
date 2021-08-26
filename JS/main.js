@@ -74,7 +74,7 @@ const listaDeFilmes = async (urlApi) => {
       // Adicionando à section a imagem e a descrições do filme
       const thumbnail = urlImg + poster_path;
       const background = createImg('imgTest', thumbnail, overview); // Cria o background
-      const description = createElement('div', 'btns-div', ''); // Cria a div de descrição
+      const description = createElement('div', 'description', ''); // Cria a div de descrição
       createSection.appendChild(background); createSection.appendChild(description); // Adiciona a imagem e a div à section
       
       // Criando os botões, a classificação, e o overview a ser adicionados na descrição

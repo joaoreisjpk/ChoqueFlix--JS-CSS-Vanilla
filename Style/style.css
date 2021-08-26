@@ -160,14 +160,14 @@ nav {
 	transform: scale(1.1);
 }
 
-.filme:hover .btns-div{
+.filme:hover .description{
   display: block;
 }
 
-/* .btns-div {
+.description {
   display: none;
   margin-top: .5rem;
-} */
+}
 
 .nota--value {
   background-color: rgba(255, 255, 255, 0.856);
