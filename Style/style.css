@@ -236,4 +236,18 @@ nav {
   font-size: 2rem;
   margin: 100px 0 0 300px;
 }
+
+#page-list {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 50px 0 50px 50%;
+  transform: translateX(-25%);
+}
+
+.page {
+  padding: 5px;
+  margin: 15px;
+  cursor: pointer;
+}
 /* End of Film Style */

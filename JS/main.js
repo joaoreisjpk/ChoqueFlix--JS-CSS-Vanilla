@@ -1,18 +1,26 @@
-import { listByGenre, listByRank, listBySuccess, getRandomChoice } from './navBar.js';
+import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl } from './navBar.js';
 import { getBannerLinks, getTrendingFilms } from './banner.js'
 import { addBtnsWatchlistEventListener, listWatchlist } from './watchlist.js'
 
 const apiKey = 'ca19804bba1e445e3db2ec8fbecda738';
 const mainUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
+
 const urlImg = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
 const getFilmList = document.getElementById('film-list');
 
 document.getElementById('watchlist').addEventListener('click', listWatchlist)
-document.getElementById('inicio').addEventListener('click', () => listaDeFilmes(mainUrl));
+
+document.getElementById('inicio').addEventListener('click', () => {
+  listaDeFilmes(mainUrl);
+  pageEvent();
+  document.querySelectorAll('.page').forEach((page) => {
+    page.addEventListener('click', () => listaDeFilmes(pageUrl(mainUrl, page.innerHTML)))
+  });
+});
+
 document.getElementById('top-votes').addEventListener('click', listByRank);
 document.getElementById('sucessos').addEventListener('click', listBySuccess);
 document.getElementById('random-choice').addEventListener('click', getRandomChoice);
-
 
 function createElement(element, className, content, id) {
   const el = document.createElement(element);
@@ -57,7 +65,7 @@ const listaDeFilmes = async (urlApi) => {
   getFilmList.innerHTML = `<p id="waiting">Buscando conteúdo, aguarde...</p>`;
   const lista = await fetch(urlApi);
   const listaJson = await lista.json();
-  listaJson.results.forEach(async ({ title, vote_average, poster_path, overview, id }) => {
+  listaJson.results.forEach(async ({ vote_average, poster_path, overview, id }) => {
     if (poster_path) {
       // Criando uma section para cada filme
       const createSection = createElement('section', 'filme', false, id);
@@ -86,7 +94,7 @@ const listaDeFilmes = async (urlApi) => {
     }
     addBtnsWatchlistEventListener();
   });
-  document.querySelector('#waiting').remove();
+  if (document.querySelector('#waiting')) document.querySelector('#waiting').remove();
 };
 
 window.onload = async () => {
@@ -96,6 +104,9 @@ window.onload = async () => {
 
   document.querySelectorAll('.options li')
     .forEach((li) => li.addEventListener('click', listByGenre));
+  
+  document.querySelectorAll('.page')
+    .forEach((page) => page.addEventListener('click', () => listaDeFilmes(pageUrl(mainUrl, page.innerHTML))));
 };
 
-export { listaDeFilmes, apiKey, urlImg, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener };
+export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener };
