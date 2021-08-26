@@ -1,4 +1,4 @@
-import { listaDeFilmes, apiKey, urlImg, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener } from './main.js';
+import { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener } from './main.js';
 
 const genresObj = {// Chaves são conteúdo das opções de categoria e valores são Ids de gêneros
   'Ação': 28,
@@ -9,6 +9,24 @@ const genresObj = {// Chaves são conteúdo das opções de categoria e valores 
   'Terror': 27
 }
 
+const pageUrl = (url, page) => `${url}&page=${page}`;
+
+function pageEvent() {
+  document.querySelector('#page-list')
+    .innerHTML = `<span><</span>
+    <span class="page">1</span>
+    <span class="page">2</span>
+    <span class="page">3</span>
+    <span class="page">4</span>
+    <span class="page">5</span>
+    <span class="page">6</span>
+    <span class="page">7</span>
+    <span class="page">8</span>
+    <span class="page">9</span>
+    <span class="page">10</span>
+    <span>></span>`
+}
+
 // Recebe uma Id de um gênero e retorna a URL para requisição da Api
 const urlByGenre = (genreId) => `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}&sort_by=prelease_date.desc`;
 
@@ -17,6 +35,11 @@ function listByGenre(event) {
   const genre = event.target.innerText;
   const keyId = genresObj[genre];
   listaDeFilmes(urlByGenre(keyId));
+  pageEvent();
+  const genrePages = (eventPage) => listaDeFilmes(pageUrl(urlByGenre(keyId), eventPage.target.innerHTML));
+  document.querySelectorAll('.page').forEach((page) => {
+    page.addEventListener('click', genrePages);
+  })
 }
 
 const urlByRank = () => `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=vote_count.desc`;
@@ -71,4 +94,4 @@ const tryAgain = () => {
   }, 400);
 };
 
-export { genresObj, urlByGenre, listByGenre, listByRank, listBySuccess, getRandomChoice };
+export { genresObj, urlByGenre, listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl };
