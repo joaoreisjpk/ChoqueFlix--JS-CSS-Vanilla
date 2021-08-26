@@ -40,16 +40,15 @@ function createImg(className, source, alt) {
 // adiciona uma frase 'loading' enquanto se faz a requisição da API
 
 async function getTrailerLink(id) {
-  const data = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&append_to_response=videos`)
+  const fetchUrl = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${apiKey}`;
+  const data = await fetch(fetchUrl);
   const json = await data.json();
-  if (!json.hasOwnProperty('sucess')) { // só vai ter a propriedade sucesso quando ocorer algum erro na requsição 
-    if (json.videos && json.videos.results.length > 0){
-      if (json.videos.results[0].key !== null){
-        const trailerLink = `https://www.youtube.com/watch?v=${json.videos.results[0].key}`
-        return trailerLink;
-      }
+    const trailerType = (json.results) ?
+      (json.results.find(({ type }) => type === 'Trailer')) : false;
+    if (trailerType){
+      const trailerLink = `https://www.youtube.com/watch?v=${trailerType.key}`;
+      return trailerLink;
     }
-  }
 }
 
 const createHtml = (nota, description) =>
