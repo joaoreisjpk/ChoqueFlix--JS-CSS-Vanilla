@@ -1,6 +1,6 @@
 import { listByGenre, listByRank, listBySuccess, getRandomChoice } from './navBar.js';
-import { getBannerLinks, getTrendingFilms } from './banner.js'
 import { addBtnsWatchlistEventListener, listWatchlist } from './watchlist.js'
+import { getBannerMoviesInfo, displayBanner } from './banner.js'
 
 const apiKey = 'ca19804bba1e445e3db2ec8fbecda738';
 const mainUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
@@ -99,11 +99,8 @@ const listaDeFilmes = async (urlApi) => {
 
 window.onload = async () => {
   listaDeFilmes(mainUrl);
-  const trendingMovies = await getTrendingFilms()
-  getBannerLinks(trendingMovies);
-
   document.querySelectorAll('.options li')
     .forEach((li) => li.addEventListener('click', listByGenre));
 };
 
-export { listaDeFilmes, apiKey, urlImg, getFilmList, getTrailerLink, createImg, createElement };
+export { listaDeFilmes, apiKey, urlImg, getFilmList, getTrailerLink, createImg, createElement};
