@@ -31,24 +31,27 @@ async function displayBanner() {
   bannerDiv.appendChild(posterAndInfoDiv);
 }
 
-function getBannerImgLink(query) {
+function getBannerImgLink(query, year) {
   const imgLink = fetch(`https://mubi.com/services/api/search?query=${query}`)
   .then((data) => data.json())
     .then(json => json.films)
-    .then((moviesList) => moviesList[0].still_url);
+    .then((moviesList) => moviesList.find((movie) => movie.year == year && movie.title === query))
+    .then((movie) => movie.still_url);
   return imgLink;
 }
 
 async function getBannerMoviesInfo() {
-  //let bannerMoviesInfos = [];
-  const results = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=ca19804bba1e445e3db2ec8fbecda738`)
+  const randomPage = Math.floor(Math.random() * 5) + 1
+  const results = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=ca19804bba1e445e3db2ec8fbecda738&page=${randomPage}`)
   const json = await results.json();
   const infos = await json.results[currentBannerIndex];
 
-    const {title, overview, realese_date, id, vote_average, genre_ids, poster_path} = infos;
+    const {title, overview, release_date, id, vote_average, genre_ids, poster_path} = infos;
+/*     const year = realease_date.match(/\d{4}/); */
     const poster = urlImg + poster_path;
-    const imgLink = await getBannerImgLink(title);
-    return {title, overview, realese_date, id, vote_average, imgLink, genre_ids, poster};
+    const imgLink = await getBannerImgLink(title, release_date.match(/\d{4}/));
+    console.log(imgLink);
+    return {title, overview, release_date, id, vote_average, imgLink, genre_ids, poster};
     //.then(localStorage.setItem('bannerInfo', JSON.stringify(bannerMoviesInfos)));
   
 }
