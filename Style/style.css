@@ -14,7 +14,7 @@ img {
 
 .nav:hover {
   opacity: 0.9;
-  text-shadow: 0px 0px 3px #fff;
+  text-shadow: 0px 0px 3px rgb(245, 245, 245);
 }
 
 .nav:hover ul li {
@@ -39,8 +39,14 @@ header {
   padding: 3px;
   background-color: rgb(0, 0, 0);
   width: 100%;
+  margin: auto;
   color: white;
   z-index: 1;
+}
+
+.header {
+  width: 90%;
+  margin: auto;
 }
 
 main {
