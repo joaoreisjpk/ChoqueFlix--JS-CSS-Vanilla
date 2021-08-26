@@ -14,7 +14,7 @@ async function displayBanner() {
   const titleElement = createElement('h2', 'movie-title', title)
   infoDiv.appendChild(titleElement);
   const notaDiv = createElement('div', 'nota', "Classificação: ");
-  const nota = createElement('span', 'nota--value', vote_average)
+  const nota = createElement('span', 'nota--value', vote_average.toFixed(1))
   notaDiv.appendChild(nota);
   infoDiv.appendChild(notaDiv);
   const descriptionDiv = createElement('p', 'banner-description', overview)
