@@ -10,19 +10,25 @@
     integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
     crossorigin="anonymous"></script>
   <link rel="stylesheet" href="Style/style.css">
-  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+  />
+  <title>Choflix</title>
 </head>
 <body>
   <header>
     <section class="header">
       <nav>
         <div>
-          <li class='title'>
-            <b id="idN">C</b>
-            <b id="idE">H</b>
-            <b id="idT">O</b><b id="idF">F</b>
-            <b id="idL">L</b><b id="idI">I</b>
-            <b id="idX">X</b></li>
+          <div class="title">
+            <span id="idC">C</span><span id="idH">H</span><span id="idO">O</span>
+            <span id="idQ">Q</span><span id="idU">U</span><span id="idE">E</span>
+            <span id="idF">F</span><span id="idL">L</span><span id="idI">I</span>
+            <span id="idX">X</span>
+        </div>
           </div>
           <div>
           <li class="nav" id="inicio"><a>Início</a></li>
@@ -36,12 +42,12 @@
               <li><a>Terror</a></li>
             </ul>
           </li>
-          <li class="nav"><a>Minha Lista</a></li>
+          <li class="nav" id="watchlist"><a>Minha Lista</a></li>
           <li class="nav"><a>Mais</a>
             <ul class="options">
-              <li><a>Top 20</a></li>
-              <li><a>Recentes</a></li>
-              <li><a>Sugestão</a></li>
+              <li id="top-votes"><a>Mais Votados</a></li>
+              <li id="sucessos"><a>Sucessos de Biblheteria</a></li>
+              <li id="random-choice"><a>Sugestão do Choflix</a></li>
             </ul>
           </li>
           <li class="nav"><a>Sobre</a></li>
