@@ -131,14 +131,11 @@ nav {
 /* Film Style */
 #film-list {
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-start;
   flex-wrap: wrap;
-  height: 3000px;
-  width: 95%;
+  width: 90%;
   margin: auto;
-  flex-direction: column;
-  align-content: space-around;
 }
 
 .filme {
