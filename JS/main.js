@@ -1,13 +1,13 @@
 import { listByGenre, listByRank, listBySuccess, getRandomChoice } from './navBar.js';
-import { getBannerLinks, getTrendingFilms } from './banner.js'
-import { addBtnsWatchlistEventListener, listWatchlist } from './watchlist.js'
+import { getBannerLinks, getTrendingFilms } from './banner.js';
+import { addBtnsWatchlistEventListener, listWatchlist } from './watchlist.js';
+
 const apiKey = 'ca19804bba1e445e3db2ec8fbecda738';
 const mainUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
 const urlImg = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
 const getDiv = document.getElementById('film-list');
-const getIMG = document.getElementById('imgtest');
-const getTitle = document.getElementById('titleTest');
-document.getElementById('watchlist').addEventListener('click', listWatchlist)
+
+document.getElementById('watchlist').addEventListener('click', listWatchlist);
 document.getElementById('inicio').addEventListener('click', () => listaDeFilmes(mainUrl));
 document.getElementById('top-votes').addEventListener('click', listByRank);
 document.getElementById('sucessos').addEventListener('click', listBySuccess);
@@ -19,7 +19,7 @@ function createElement(element, className, content, id) {
   if (content) el.innerHTML = content;
   if (id) el.id = id;
   return el;
-};
+}
 
 function createImg(className, source, alt) {
   const img = document.createElement('img');
@@ -27,28 +27,26 @@ function createImg(className, source, alt) {
   img.src = source;
   img.alt = alt;
   return img;
-};
-
-/* const carregando = async () => {
-  const section = document.createElement('section');
-  section.innerHTML = 'Loading...';
-  section.className = 'loading';
-  document.querySelector('#film-list').appendChild(section);
-}; */
+}
 
 // adiciona uma frase 'loading' enquanto se faz a requisição da API
+// const carregando = async () => {
+//   const section = document.createElement('section');
+//   section.innerHTML = 'Loading...';
+//   section.className = 'loading';
+//   document.querySelector('#film-list').appendChild(section);
+// };
 
 async function getTrailerLink(id) {
-  const data = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&append_to_response=videos`)
+  const fetchUrl = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${apiKey}`;
+  const data = await fetch(fetchUrl);
   const json = await data.json();
-  if (!json.hasOwnProperty('sucess')) { // só vai ter a propriedade sucesso quando ocorer algum erro na requsição 
-    if (json.videos && json.videos.results.length > 0){
-      if (json.videos.results[0].key !== null){
-        const trailerLink = `https://www.youtube.com/watch?v=${json.videos.results[0].key}`
-        return trailerLink;
-      }
+    const trailerType = (json.results) ?
+      (json.results.find(({ type }) => type === 'Trailer')) : false;
+    if (trailerType){
+      const trailerLink = `https://www.youtube.com/watch?v=${trailerType.key}`;
+      return trailerLink;
     }
-  }
 }
 
 const listaDeFilmes = async (urlApi) => {
@@ -79,7 +77,10 @@ const listaDeFilmes = async (urlApi) => {
       const trailerLink = await getTrailerLink(id);
       if (trailerLink) {
         trailerBtn.href = trailerLink;
-      } else { trailerBtn.innerText = 'Trailer indisponível'}
+      } else {
+        trailerBtn.innerText = 'Trailer indisponível';
+        trailerBtn.style.cursor = 'not-allowed';
+      }
     }
     addBtnsWatchlistEventListener();
   });
@@ -94,4 +95,4 @@ window.onload = async () => {
     .forEach((li) => li.addEventListener('click', listByGenre));
 };
 
-export { listaDeFilmes, apiKey, urlImg, getDiv, getTrailerLink, createImg, createElement };
+export { listaDeFilmes, apiKey, urlImg, getDiv, getTrailerLink, createImg, createElement, addBtnsWatchlistEventListener };

@@ -1,4 +1,4 @@
-import { listaDeFilmes, apiKey, urlImg, getDiv, getTrailerLink, createImg, createElement } from './main.js';
+import { listaDeFilmes, apiKey, urlImg, getDiv, getTrailerLink, createImg, createElement, addBtnsWatchlistEventListener } from './main.js';
 
 const genresObj = {// Chaves são conteúdo das opções de categoria e valores são Ids de gêneros
   'Ação': 28,
@@ -25,7 +25,7 @@ const listByRank = () => listaDeFilmes(urlByRank());
 const urlBySuccess = () => `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=revenue.desc`
 const listBySuccess = () => listaDeFilmes(urlBySuccess());
 
-const randomId = () => parseInt((Math.random() * 62) * 100);
+const randomId = () => parseInt((Math.random() * 62) * 1000);
 const randomUrl = () => `https://api.themoviedb.org/3/movie/${randomId()}?api_key=${apiKey}`;
 
 async function randomChoice(item) {
@@ -37,22 +37,29 @@ async function randomChoice(item) {
   const img = createImg('imgTest', thumbnail, overview);
   const div = createElement('div', 'filme', false, id);
   const h2 = createElement('h2', 'filmTitle', `${title2} ${note}`);
+  const btnsDiv = createElement('div', 'btns-div', '')
   const trailerBtn = createElement('a', 'btn-trailer', 'Ver Trailer');
   trailerBtn.target = '_blank';
+  const watchlistBtn = createElement('button', `btn-watchlist`, '', id);
+  const plusIcon = createElement('span', `material-icons`, 'add', id);
+  btnsDiv.appendChild(trailerBtn);
+  btnsDiv.appendChild(watchlistBtn);
+  watchlistBtn.appendChild(plusIcon);
   div.appendChild(img);
   div.appendChild(h2);
-  div.appendChild(trailerBtn);
-  getDiv.appendChild(div);
+  div.appendChild(btnsDiv);
   div.style.margin = 'auto';
+  getDiv.appendChild(div);
   const trailerLink = await getTrailerLink(id);
   if (trailerLink) {
     trailerBtn.href = trailerLink;
   } else { trailerBtn.innerText = 'Trailer indisponível'}
+addBtnsWatchlistEventListener();
 }
 
 async function getRandomChoice() {
-  const tries = await fetch(randomUrl());
-  const itemJson = await tries.json();
+  const require = await fetch(randomUrl());
+  const itemJson = await require.json();
   if (itemJson.poster_path) randomChoice(itemJson);
   tryAgain();
 }

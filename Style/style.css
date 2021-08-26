@@ -12,21 +12,25 @@ img {
   min-width: 100%;
 }
 
-.nav a:hover{
+.nav:hover {
   opacity: 0.9;
-  text-shadow:0px 0px 5px #fff;
-  color: white
+  text-shadow: 0px 0px 3px #fff;
+}
+
+.nav:hover ul li {
+  text-shadow: none;
+}
+
+.nav ul li:hover {
+  text-shadow:  0px 0px 3px #fff;
 }
 
 .nav:hover ul {
   display: block;
 }
-.options{
-  color: white;
-}
 
 .nav:hover, .nav li:hover {
-  box-shadow: 0 0 2px black;
+  box-shadow: 0 0 1px rgba(255, 255, 255, 0.15);
 }
 
 .header {
@@ -52,10 +56,6 @@ li {
   list-style: none;
 }
 
-ul > li {
-  background-color: rgba(218, 216, 216, 0.95);
-}
-
 nav {
   display: flex;
   align-items: center;
@@ -68,7 +68,6 @@ nav {
   font-size: 1.2rem;
   cursor: pointer;
   position: relative;
-  border: 100px;
   margin-right: 15px;
 }
 
@@ -79,17 +78,15 @@ nav {
 
 .nav .options {
   position: absolute;
-  left: -30px;
+  left: -35px;
 }
 
 .nav .options li {
-  min-width: 100px;
   border-radius: 0px;
-  color: black;
-}
-
-.nav a {
-  padding: 5px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.95);
+  width: 200px;
+  padding: 3px;
 }
 
 .title {
@@ -149,6 +146,7 @@ nav {
   overflow: hidden;
 	-moz-transition: all 0.5s;
 }
+
 .filme:hover {
 	-moz-transition: scale(1.1);
 	-webkit-transform: scale(1.1) ;
@@ -157,34 +155,36 @@ nav {
 
 .btns-div {
   display: flex;
+  align-items: center;
   height: 40px;
 }
 
 .btn-trailer, .btn-watchlist {
-  text-decoration: none;
-  display: inline-block;
-  padding: 10px;
+  height: fit-content;
+  /* text-decoration: none; */
+  cursor: copy;
+  padding: 3px;
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   width: 90px;
   color: #ee010d;
-  font-weight: 320;
+}
+
+.btn-trailer {
+  cursor: pointer;
+  padding: 10px;
+  margin-right: 10px;
 }
 
 .material-icons {
   font-family: 'Material Icons';
-  font-size: 16px;
+  font-size: 15px;
   display: inline-block;
-  padding: 7px;
-  margin-bottom: 1px;
+  height: 10px;
   line-height: 1;
   text-transform: none;
   letter-spacing: normal;
   word-wrap: normal;
   white-space: nowrap;
   direction: ltr;
-}
-
-a {
-  color: white;
 }
