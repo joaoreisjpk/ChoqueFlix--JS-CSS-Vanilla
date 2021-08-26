@@ -166,11 +166,11 @@ nav {
 }
 
 .filme:hover .description{
-  opacity: 1;
+  opacity: 100%;
 }
 
 .description {
-  transition: 0.6s;
+  transition: 1s opacity;
   opacity: 0;
   margin-top: .5rem;
 }
@@ -210,6 +210,14 @@ nav {
   word-wrap: normal;
   white-space: nowrap;
   direction: ltr; */
+}
+
+.play {
+  position: absolute;
+  top: 120px;
+  left: 85px;
+  opacity: .8 !important;
+  color: white;
 }
 
 .btnsDiv {
