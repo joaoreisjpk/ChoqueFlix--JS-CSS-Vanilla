@@ -30,10 +30,9 @@ function listWatchlist() {
   document.querySelectorAll('.btn-watchlist')
     .forEach((btn) => {
       const contentBtn = btn.parentElement.parentElement.innerHTML;
-      btn.innerHTML = '☒';
-      btn.style.font = '1.7rem bold'
+      btn.innerHTML = 'Remover';
       btn.addEventListener('click', () => {
-        const parent = btn.parentElement.parentElement;
+        const parent = btn.parentElement.parentElement.parentElement;
         localStorageList.pop(contentBtn);
         localStorage.setItem('watchlist', JSON.stringify(localStorageList));
         parent.remove();

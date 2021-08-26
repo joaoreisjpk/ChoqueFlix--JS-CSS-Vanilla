@@ -12,27 +12,27 @@ img {
   min-width: 100%;
 }
 
-.nav a:hover{
+.nav:hover {
   opacity: 0.9;
-  text-shadow:0px 0px 5px #fff;
-  color: white
+  text-shadow: 0px 0px 3px #fff;
+}
+
+.nav:hover ul li {
+  text-shadow: none;
+}
+
+.nav ul li:hover {
+  text-shadow:  0px 0px 3px #fff;
 }
 
 .nav:hover ul {
   display: block;
 }
-.options{
-  color: white;
-}
 
 .nav:hover, .nav li:hover {
-  box-shadow: 0 0 2px black;
+  box-shadow: 0 0 1px rgba(255, 255, 255, 0.15);
 }
 
-.header {
-  width: 90%;
-  margin: auto;
-}
 
 header {
   position: fixed;
@@ -69,7 +69,6 @@ nav {
   font-size: 1.2rem;
   cursor: pointer;
   position: relative;
-  border: 100px;
   margin-right: 15px;
 }
 
@@ -80,18 +79,21 @@ nav {
 
 .nav .options {
   position: absolute;
-  left: -30px;
+  left: -35px;
 }
 
 .nav .options li {
-  min-width: 100px;
   border-radius: 0px;
-  color: black;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.95);
+  width: 100px;
+  padding: 3px;
 }
 
-.nav a {
-  padding: 5px;
+.nav .options .more-options {
+  width: 200px;
 }
+
 /* End of Navegation style */
 
 /* Title Style */
@@ -148,26 +150,30 @@ nav {
   border: solid thin black;
   background-color: rgba(211, 211, 211, 0.219);
   width: 250px;
+  height: 360px;
   margin-bottom: 30px;
   color: #ffff;
   border-radius: 10px;
   overflow: hidden;
 	transition: all 1s;
 }
+
 .filme:hover {
 	-moz-transition: scale(1.1);
 	-webkit-transform: scale(1.1) ;
 	transform: scale(1.1);
+  height: fit-content;
 }
 
-.filme:hover .btns-div{
-  display: block;
+.filme:hover .description{
+  opacity: 1;
 }
 
-/* .btns-div {
-  display: none;
+.description {
+  transition: 0.6s;
+  opacity: 0;
   margin-top: .5rem;
-} */
+}
 
 .nota--value {
   background-color: rgba(255, 255, 255, 0.856);
@@ -196,16 +202,14 @@ nav {
 
 .material-icons {
   font-family: 'Material Icons';
-  font-size: 16px;
-  display: inline-block;
-  padding: 7px;
+  /* font-size: 16px; */
   margin-bottom: 1px;
-  line-height: 1;
+  /* line-height: 1;
   text-transform: none;
   letter-spacing: normal;
   word-wrap: normal;
   white-space: nowrap;
-  direction: ltr;
+  direction: ltr; */
 }
 
 .btnsDiv {
@@ -219,12 +223,4 @@ nav {
   margin: 0 !important;
 }
 
-.btn-trailer {
-}
-
 /* End of Film Style */
-
-
-a {
-  color: white;
-}

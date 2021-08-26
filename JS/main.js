@@ -1,12 +1,12 @@
 import { listByGenre, listByRank, listBySuccess, getRandomChoice } from './navBar.js';
 import { getBannerLinks, getTrendingFilms } from './banner.js'
 import { addBtnsWatchlistEventListener, listWatchlist } from './watchlist.js'
+
 const apiKey = 'ca19804bba1e445e3db2ec8fbecda738';
 const mainUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
 const urlImg = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
 const getFilmList = document.getElementById('film-list');
-const getIMG = document.getElementById('imgtest');
-const getTitle = document.getElementById('titleTest');
+
 document.getElementById('watchlist').addEventListener('click', listWatchlist)
 document.getElementById('inicio').addEventListener('click', () => listaDeFilmes(mainUrl));
 document.getElementById('top-votes').addEventListener('click', listByRank);
@@ -74,7 +74,7 @@ const listaDeFilmes = async (urlApi) => {
       // Adicionando à section a imagem e a descrições do filme
       const thumbnail = urlImg + poster_path;
       const background = createImg('imgTest', thumbnail, overview); // Cria o background
-      const description = createElement('div', 'btns-div', ''); // Cria a div de descrição
+      const description = createElement('div', 'description', ''); // Cria a div de descrição
       createSection.appendChild(background); createSection.appendChild(description); // Adiciona a imagem e a div à section
       
       // Criando os botões, a classificação, e o overview a ser adicionados na descrição
