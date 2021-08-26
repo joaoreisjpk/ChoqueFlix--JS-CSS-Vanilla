@@ -57,7 +57,8 @@ const createHtml = (nota, description) =>
       <span class='nota--value'>${nota.toFixed(1)}</span>
     </div>
     <div class='description'>Descrição: 
-      <spam class='description--text'>${description}<span>
+      <spam class='description--text'>${description.slice(0, 300) + '...'}<span>
+      <a href='https://www.netflix.com/'><i class="play circle huge icon"></i></a>
     </div>
   </div>`
 
