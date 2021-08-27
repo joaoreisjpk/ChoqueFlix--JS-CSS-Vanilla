@@ -1,4 +1,5 @@
-import { createElement, createImg, urlImg, getTrailerLink, apiKey, getFilmList, createHtml, localStorageList, getName } from './main.js'
+import { createElement, createImg, urlImg, getTrailerLink, apiKey, getFilmList, getLocalStorageWatchlist } from './main.js'
+import { getName} from './watchlist.js'
 let currentBannerIndex = Math.floor(Math.random() * 19) + 0;
 const bannerDiv = document.querySelector('.banner');
 
@@ -69,10 +70,10 @@ async function getBannerMoviesInfo() {
 
   const {title, overview, release_date, id, vote_average, poster_path} = infos;
   const year = release_date ? release_date.match(/\d{4}/) : undefined;
-  const poster = urlImg + poster_path;
+  const thumbnail = urlImg + poster_path;
   if (verifyInfoBanner(year)) {
     const imgLink = await getMubiImgLink(title, year);
-    return {title, overview, id, vote_average, imgLink, poster, year};  
+    return {title, overview, id, vote_average, imgLink, thumbnail, year};  
   }
 }
 
@@ -87,11 +88,11 @@ function verifyInfoBanner(year) {
 async function displayBanner() {
   const bannerMoviesInfos = await getBannerMoviesInfo();
   if (bannerMoviesInfos.title) {
-    const {title, overview, id, vote_average, imgLink, poster, year} = bannerMoviesInfos;
+    const {title, overview, id, vote_average, imgLink, thumbnail, year} = bannerMoviesInfos;
     const bannerImg = createImg('banner-img', imgLink, title);
     const posterAndInfoDiv = createElement('div', 'poster-and-info-div');
     const infoDiv = createElement('div', 'movie-info-div');
-    const posterImg = createImg('poster-img', poster, 'imagem do poster');
+    const posterImg = createImg('poster-img', thumbnail, 'imagem do poster');
     const titleElement = createElement('h2', 'movie-title', title.toUpperCase());
     infoDiv.appendChild(titleElement);
     if (year) {
@@ -113,10 +114,29 @@ async function displayBanner() {
       trailerBtn.innerText = 'Trailer indisponível'
       trailerBtn.className = 'btn-trailer ui inverted grey button unavailable';
     }
-    const watchlistBtn = createElement('button', 'btn-watchlist ui inverted blue button');
-    setTimeout(() => watchlistBtn.addEventListener('click', addCardBannerToStorage), 3000);
+    const watchlistBtn = createElement('button', 'btn-watchlist-banner ui inverted blue button', false, id);
+    let localStorageList = getLocalStorageWatchlist();
+    let isOnWatchlist = localStorageList.some((movieObj) => movieObj.id === id);
+    watchlistBtn.innerHTML = isOnWatchlist ? 'Remover' : '<i class="plus square outline icon"></i>&nbsp;List';
+
+    watchlistBtn.addEventListener('click', (btn) => {
+      console.log(getName);
+      localStorageList = getLocalStorageWatchlist();
+      isOnWatchlist = localStorageList.some((movieObj) => parseInt(movieObj.id) === parseInt(id));
+      console.log(isOnWatchlist)
+      if (!isOnWatchlist) { // se não estiver na watchlist
+        localStorageList.push({ title, vote_average, overview, id, thumbnail, isWatchlistItem: true});
+        localStorage.setItem(`watchlist-${getName}`, JSON.stringify(localStorageList));
+        watchlistBtn.innerHTML = 'Remover';
+        console.log(`cheui`);
+      } else if(isOnWatchlist){ // se estiver
+        console.log(`cheui2`);
+        localStorageList = localStorageList.filter((movieObj) => parseInt(movieObj.id) != id);
+        localStorage.setItem(`watchlist-${getName}`, JSON.stringify(localStorageList));
+        btn.target.innerHTML = '<i class="plus square outline icon"></i>&nbsp;List';
+      }
+    })
     const btnsDiv = createElement('div', `btnsDiv`);
-    watchlistBtn.innerHTML = '<i class="plus square outline icon"></i>&nbsp;List';
     btnsDiv.appendChild(trailerBtn); 
     btnsDiv.appendChild(watchlistBtn);
     posterAndInfoDiv.appendChild(posterImg);
