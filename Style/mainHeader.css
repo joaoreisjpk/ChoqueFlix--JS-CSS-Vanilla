@@ -122,8 +122,20 @@ nav {
   opacity: 1;
   font-weight: 900;
   font-size: 1.3rem;
+  text-shadow: 0px 0px 3px rgb(245, 245, 245);
 }
 
+.options li {
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+
+.options .liActive {
+  opacity: 1;
+  font-weight: 900;
+  font-size: 1.2rem;
+  text-shadow: 0px 0px 3px rgb(245, 245, 245) !important;
+}
 /* Nav-menu Ends */
 
 /* Search-bar Start */

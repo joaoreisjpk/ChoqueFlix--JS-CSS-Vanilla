@@ -1,9 +1,8 @@
 const getFocus = document.querySelectorAll('.imgFocus');
 
-function removeActive(e) {
-  getFocus.forEach(
-    (element) => element.classList.remove('imgActive')
-  ); localStorage.setItem('perfil', e.target.src)
+function choosePerfil(e) {
+  localStorage.setItem('perfil', e.target.src)
+  localStorage.setItem(e.id, e.id);
 }
 
-getFocus.forEach((element) => element.addEventListener('click', removeActive));
+getFocus.forEach((element) => element.addEventListener('click', choosePerfil));

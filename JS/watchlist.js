@@ -2,14 +2,18 @@ import { createElement } from './main.js';
 
 const filmList = document.querySelector('#film-list');
 
-let localStorageList = (localStorage.getItem('watchlist')) ?
-  JSON.parse(localStorage.getItem('watchlist')) : [];
+const getName = localStorage.getItem('perfil').split('images/')[1];
+
+let localStorageList = (localStorage.getItem(`watchlist-${getName}`)) ?
+  JSON.parse(localStorage.getItem(`watchlist-${getName}`)) : [];
 
 function addMovieToWatchlist(event) {
   const movieId = event.target.id;
   const movieElement = document.getElementById(movieId);
-  localStorageList.push(movieElement.innerHTML);
-  localStorage.setItem('watchlist', JSON.stringify(localStorageList));
+  if (!localStorageList.includes(movieElement.innerHTML)) {
+    localStorageList.push(movieElement.innerHTML);
+    localStorage.setItem(`watchlist-${getName}`, JSON.stringify(localStorageList));
+  }
 }
 
 function addBtnsWatchlistEventListener() {
@@ -19,7 +23,7 @@ function addBtnsWatchlistEventListener() {
 
 function listWatchlist() {
   filmList.innerHTML = '';
-  const watchlistArray = JSON.parse(localStorage.getItem('watchlist'));
+  const watchlistArray = JSON.parse(localStorage.getItem(`watchlist-${getName}`));
   if (watchlistArray) watchlistArray.forEach((movie) => {
     const movieCard = createElement('div', 'filme', movie);
     movieCard.style.margin = '20px auto';
@@ -32,7 +36,7 @@ function listWatchlist() {
       btn.addEventListener('click', () => {
         const parent = btn.parentElement.parentElement.parentElement;
         localStorageList.pop(contentBtn);
-        localStorage.setItem('watchlist', JSON.stringify(localStorageList));
+        localStorage.setItem(`watchlist-${getName}`, JSON.stringify(localStorageList));
         parent.remove();
       });
     });
