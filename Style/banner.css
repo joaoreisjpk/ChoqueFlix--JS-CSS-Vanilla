@@ -17,6 +17,7 @@
 }
 
 .banner-img {
+  -webkit-animation: fadein 2s;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -46,6 +47,7 @@
 }
 
 .banner-description {
+  -webkit-animation: fadein 2s;
   margin-top: 7px;
   height: 170px;
   width: 500px;
@@ -63,8 +65,14 @@
 }
 
 .poster-img {
+  -webkit-animation: fadein 2s;
   width: 150px;
   position: relative;
+}
+
+@-webkit-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 .banner .nota {
