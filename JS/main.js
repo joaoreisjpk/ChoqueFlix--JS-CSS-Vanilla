@@ -2,15 +2,13 @@
 import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl } from './navBar.js';
 import { displayBanner } from './banner.js'
 import { addBtnsWatchlistEventListener, listWatchlist } from './watchlist.js'
-import { perfilImg } from './login.js';
 
-console.log(localStorage.getItem('perfil').slice(22,50));
 document.querySelector('.search').innerHTML += `<a href='./index.html'>
   <div class='perfil'>
-    <img src=${localStorage.getItem('perfil').slice(22,50)} class='perfilImg'>
+    <img src=${localStorage.getItem('perfil').slice(22, 50)} class='perfilImg'>
     <i class="angle down icon"></i>
   </div>
-</a>`
+</a>`; console.log(localStorage.getItem('perfil'))
 
 const apiKey = 'ca19804bba1e445e3db2ec8fbecda738';
 const mainUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;

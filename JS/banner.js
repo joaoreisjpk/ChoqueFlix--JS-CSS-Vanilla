@@ -5,7 +5,7 @@ let currentBannerIndex = Math.floor(Math.random() * 19) + 0;
 async function displayBanner() {
   const bannerMoviesInfos= await getBannerMoviesInfo();
   const {title, overview, id, vote_average, imgLink, genre_ids, poster, year} = bannerMoviesInfos;
-  console.log(bannerMoviesInfos);
+  // console.log(bannerMoviesInfos);
   const bannerImg = createImg('banner-img', imgLink, title);
   const posterAndInfoDiv = createElement('div', 'poster-and-info-div', false);
   const infoDiv = createElement('div', 'movie-info-div', false);
