@@ -72,12 +72,9 @@ header {
 	border: solid 1px rgb(172, 172, 172);
 	padding: 15px;
 	font-size: large;
-	-moz-transition: all 0.3s;
 	transition: all 0.3s;
 }
 .alternativo:hover {
-	-moz-transition: scale(1.1);
-	-webkit-transform: scale(1.1) ;
 	transform: scale(1.1);
 }
 .alternativo > a {
@@ -97,7 +94,6 @@ header {
 .gerenciamento > * {
 	margin: auto;
 }
-
 .title {
   color: #ee010d;
   font-size: 2.3rem;

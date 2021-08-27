@@ -1,0 +1,140 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: #111;
+}
+
+main {
+  margin-top: 5%;
+}
+
+/* Film Section Start */
+
+#film-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: auto;
+}
+
+.filme {
+  display: flex;
+  flex-direction: column;
+  /* HEAD */
+  width: 19%;
+  padding: 10px 15px 10px 20px;
+  padding: 15px;
+  border: solid thin black;
+  background-color: rgba(211, 211, 211, 0.219);
+  width: 250px;
+  height: 360px;
+  margin-bottom: 30px;
+  color: #ffff;
+  border-radius: 10px;
+  overflow: hidden;
+	transition: all 1s;
+}
+
+.filme:hover {
+	-moz-transition: scale(1.1);
+	-webkit-transform: scale(1.1) ;
+	transform: scale(1.1);
+  height: fit-content;
+}
+
+.filme:hover .description{
+  opacity: 100%;
+}
+
+.play {
+  position: absolute;
+  top: 120px;
+  left: 85px;
+  opacity: .8 !important;
+  color: white;
+}
+
+/* Filme Section Ends */
+
+/* Description Start */
+
+.description {
+  transition: 1s opacity;
+  opacity: 0;
+  margin-top: .5rem;
+}
+
+.nota--value {
+  background-color: rgba(255, 255, 255, 0.856);
+  color: black;
+  padding: 4px ;
+  border-radius: 100%;
+  font-size: 1.1rem;
+  margin-left: .2rem;
+}
+
+.nota {
+  font-size: 1.3rem;
+}
+
+.description {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.description--text {
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.btnsDiv {
+  display: flex;
+  margin: auto;
+  justify-content: space-around;
+}
+
+.btn-watchlist {
+  min-width: 87px !important;
+  margin: 0 !important;
+}
+
+/* Description End */
+
+/* Extras Start */
+
+#main-section {
+  position: relative;
+  padding-bottom: 100px;
+  min-height: 90vh;
+}
+
+#waiting {
+  color: white;
+  font-size: 2rem;
+  margin: 100px 0 0 300px;
+}
+
+#page-list {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 50px 0 50px 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  bottom: 5px;
+}
+
+.page {
+  padding: 5px;
+  margin: 15px;
+  cursor: pointer;
+}
+/* Extras End*/

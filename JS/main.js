@@ -1,12 +1,11 @@
 import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl } from './navBar.js';
 import { getBannerLinks, getTrendingFilms } from './banner.js'
 import { addBtnsWatchlistEventListener, listWatchlist } from './watchlist.js'
-import { perfilImg } from './login.js';
 
-console.log(localStorage.getItem('perfil').slice(22,50));
+console.log(`./images${localStorage.getItem('perfil').split('images')[1]}`);
 document.querySelector('.search').innerHTML += `<a href='./index.html'>
   <div class='perfil'>
-    <img src=${localStorage.getItem('perfil').slice(22,50)} class='perfilImg'>
+    <img src='./images${localStorage.getItem('perfil').split('images')[1]}' class='perfilImg'>
     <i class="angle down icon"></i>
   </div>
 </a>`
@@ -66,7 +65,7 @@ const createHtml = (nota, description) =>
       <span class='nota--value'>${nota.toFixed(1)}</span>
     </div>
     <div class='description'>Descrição: 
-      <spam class='description--text'>${description.slice(0, 300) + '...'}<span>
+      <spam class='description--text'>${description.slice(0, 150) + '...'}<span>
     </div>
   </div>`
 
