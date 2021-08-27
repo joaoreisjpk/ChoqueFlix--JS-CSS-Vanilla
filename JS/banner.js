@@ -19,7 +19,9 @@ async function displayBanner() {
   const nota = createElement('span', 'nota--value', vote_average.toFixed(1))
   notaDiv.appendChild(nota);
   infoDiv.appendChild(notaDiv);
-  const descriptionDiv = createElement('p', 'banner-description', overview)
+  const descriptionDiv = createElement('p', 'banner-description', overview.length > 550 ?
+   `${overview}./.{1,700}/ + '...' ` + '...' : overview)
+  console.log(overview.length)
   infoDiv.appendChild(descriptionDiv)
   const trailerBtn = createElement('a', 'btn-trailer ui inverted red button', 'Ver Trailer'); trailerBtn.target = '_blank';
   const trailerLink = await getTrailerLink(id);

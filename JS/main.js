@@ -65,7 +65,9 @@ const createHtml = (nota, description) =>
       <span class='nota--value'>${nota.toFixed(1)}</span>
     </div>
     <div class='description'>Descrição: 
-      <spam class='description--text'>${description.slice(0, 150) + '...'}<span>
+      <spam class='description--text'>
+        ${description. length > 150 ? description.slice(0, 150) + '...' : description}
+      <span>
     </div>
   </div>`
 
