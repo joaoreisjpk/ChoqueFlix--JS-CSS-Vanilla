@@ -89,7 +89,11 @@ const listaDeFilmes = async (urlApi) => {
       const trailerLink = await getTrailerLink(id);
       if (trailerLink) {
         trailerBtn.href = trailerLink;
-      } else { trailerBtn.innerText = 'Trailer indisponível'}
+      } else { 
+        trailerBtn.innerText = 'Trailer indisponível'
+        trailerBtn.className = "btn-trailer ui inverted grey button";
+        trailerBtn.classList.add('unavailable');
+      }
 
       getFilmList.appendChild(createSection); // Adiciona a section à lista de filmes;
     }
@@ -99,6 +103,7 @@ const listaDeFilmes = async (urlApi) => {
 
 window.onload = async () => {
   listaDeFilmes(mainUrl);
+  displayBanner();
   document.querySelectorAll('.options li')
     .forEach((li) => li.addEventListener('click', listByGenre));
 };

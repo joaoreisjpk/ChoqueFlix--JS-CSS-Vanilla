@@ -61,4 +61,4 @@ const tryAgain = () => {
     if (getDiv.innerHTML === '') getRandomChoice();
 };
 
-export { genresObj, urlByGenre, listByGenre, listByRank, listBySuccess, getRandomChoice };
+export { genresObj, urlByGenre, urlBySuccess, listByGenre, listByRank, listBySuccess, getRandomChoice };
