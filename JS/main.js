@@ -1,6 +1,6 @@
 
 import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl } from './navBar.js';
-import { displayBanner } from './banner.js'
+import { displayBanner, removeBanner } from './banner.js'
 import { addBtnsWatchlistEventListener, listWatchlist } from './watchlist.js'
 
 document.querySelector('.search').innerHTML += `<a href='./index.html'>
@@ -17,9 +17,14 @@ const urlImg = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
 const getFilmList = document.getElementById('film-list');
 const getFocus = document.querySelectorAll('.navFocus')
 
-document.getElementById('watchlist').addEventListener('click', listWatchlist)
+document.getElementById('watchlist').addEventListener('click', () => {
+  removeBanner();
+  listWatchlist();
+})
 
-document.getElementById('inicio').addEventListener('click', () => {
+document.getElementById('inicio').addEventListener('click', async () => {
+  const banner = document.querySelector('.banner-div');
+  if(banner.style.display === 'none') banner.style.display = 'block';
   listaDeFilmes(mainUrl);
   pageEvent();
   document.querySelectorAll('.page').forEach((page) => {
@@ -27,9 +32,18 @@ document.getElementById('inicio').addEventListener('click', () => {
   });
 });
 
-document.getElementById('top-votes').addEventListener('click', listByRank);
-document.getElementById('sucessos').addEventListener('click', listBySuccess);
-document.getElementById('random-choice').addEventListener('click', getRandomChoice);
+document.getElementById('top-votes').addEventListener('click', () => {
+  removeBanner()
+  listByRank()
+});
+document.getElementById('sucessos').addEventListener('click', () => {
+  removeBanner();
+  listBySuccess()
+});
+document.getElementById('random-choice').addEventListener('click', () => {
+  removeBanner()
+  getRandomChoice()
+});
 
 function createElement(element, className, content, id) {
   const el = document.createElement(element);

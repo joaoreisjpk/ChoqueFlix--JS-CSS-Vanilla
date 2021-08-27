@@ -1,6 +1,11 @@
 import { createElement, createImg, urlImg, getTrailerLink, apiKey } from './main.js'
-const bannerDiv = document.querySelector('.banner')
 let currentBannerIndex = Math.floor(Math.random() * 19) + 0;
+const bannerDiv = document.querySelector('.banner');
+
+const removeBanner = () => {
+  const banner = document.querySelector('.banner-div');
+  banner.style = "display: none;";
+}
 
 async function displayBanner() {
   const bannerMoviesInfos= await getBannerMoviesInfo();
@@ -73,4 +78,4 @@ async function getBannerMoviesInfo() {
     return {title, overview, id, vote_average, imgLink, genre_ids, poster, year};  
 }
 
-export { getBannerMoviesInfo, displayBanner }
+export { getBannerMoviesInfo, displayBanner, removeBanner }
