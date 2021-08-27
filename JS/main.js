@@ -1,7 +1,7 @@
 
 import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl } from './navBar.js';
 import { displayAndVerifyBanner, removeBanner } from './banner.js'
-import { addBtnsWatchlistEventListener, listWatchlist } from './watchlist.js'
+import { addBtnsWatchlistEventListener, listWatchlist, localStorageList, getName } from './watchlist.js'
 
 document.querySelector('.search').innerHTML += `<a href='./index.html'>
   <div class='perfil'>
@@ -144,7 +144,7 @@ getFocus.forEach((element) => element.addEventListener('click', removeActive));
 window.onload = async () => {
   listaDeFilmes(mainUrl);
   displayAndVerifyBanner();
-  setInterval(() => displayAndVerifyBanner(), 60 * 1000);
+  const interval = setInterval(() => displayAndVerifyBanner(), 60 * 1000);
   document.querySelectorAll('.options li')
     .forEach((li) => li.addEventListener('click', listByGenre));
   
@@ -152,4 +152,4 @@ window.onload = async () => {
     .forEach((page) => page.addEventListener('click', () => listaDeFilmes(pageUrl(mainUrl, page.innerHTML))));
 };
 
-export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener };
+export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener, localStorageList, getName };
