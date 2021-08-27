@@ -1,6 +1,6 @@
 
 import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl } from './navBar.js';
-import { displayBanner, removeBanner } from './banner.js'
+import { displayAndVerifyBanner, removeBanner } from './banner.js'
 import { addBtnsWatchlistEventListener, listWatchlist } from './watchlist.js'
 
 document.querySelector('.search').innerHTML += `<a href='./index.html'>
@@ -23,8 +23,8 @@ document.getElementById('watchlist').addEventListener('click', () => {
 })
 
 document.getElementById('inicio').addEventListener('click', async () => {
-  const banner = document.querySelector('.banner-div');
-  if(banner.style.display === 'none') banner.style.display = 'block';
+  document.querySelector('.banner-div').style.display = 'block';
+  getFilmList.style.marginTop = '0';
   listaDeFilmes(mainUrl);
   pageEvent();
   document.querySelectorAll('.page').forEach((page) => {
@@ -128,29 +128,28 @@ const listaDeFilmes = async (urlApi) => {
   if (document.querySelector('#waiting')) document.querySelector('#waiting').remove();
 };
 
+function removeActive(e) {
+  getFocus.forEach((element) => element.classList.remove('navActive'));
+    document.querySelectorAll('.options li')
+    .forEach((li) => li.classList.remove('liActive'));
+
+    if (e.target.parentElement.className === 'options') {
+      e.target.parentElement.parentElement.classList.add('navActive');
+      e.target.className += ' liActive';
+    } else e.target.classList.add('navActive');
+}
+
+getFocus.forEach((element) => element.addEventListener('click', removeActive));
+
 window.onload = async () => {
   listaDeFilmes(mainUrl);
-  displayBanner();
+  displayAndVerifyBanner();
+  setInterval(() => displayAndVerifyBanner(), 60 * 1000);
   document.querySelectorAll('.options li')
     .forEach((li) => li.addEventListener('click', listByGenre));
   
   document.querySelectorAll('.page')
     .forEach((page) => page.addEventListener('click', () => listaDeFilmes(pageUrl(mainUrl, page.innerHTML))));
 };
-
-function removeActive(e) {
-  getFocus.forEach(
-    (element) => element.classList.remove('navActive')
-  );
-  document.querySelectorAll('.options li')
-    .forEach((li) => li.classList.remove('liActive'));
-  
-  if (e.target.parentElement.className === 'options') {
-    e.target.parentElement.parentElement.classList.add('navActive');
-    e.target.className += ' liActive';
-  } else e.target.classList.add('navActive');
-}
-
-getFocus.forEach((element) => element.addEventListener('click', removeActive));
 
 export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener };
