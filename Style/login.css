@@ -27,7 +27,7 @@ header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	min-height: 70px;
+	height: max(70px, 10vh);
 }
 
 .personagens {
@@ -84,11 +84,12 @@ header {
 
 .gerenciamento {
 	font-weight:300;
+	align-self: center;
 	display: flex;
 	margin: auto;
+	flex-direction: column;
 	justify-content: center;
-	margin-top: -25px;
-	height: max(85vh, 320px);
+	height: max(90vh, 540px)
 }
 
 .gerenciamento > * {
