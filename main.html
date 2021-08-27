@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+  <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="Style/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+  />
+  <title>Choflix</title>
+</head>
+<body>
+  <header>
+    <section class="header">
+      <nav>
+        <div>
+          <div class="title">
+            <span id="idC">C</span><span id="idH">H</span><span id="idO">O</span>
+            <span id="idQ">Q</span><span id="idU">U</span><span id="idE">E</span>
+            <span id="idF">F</span><span id="idL">L</span><span id="idI">I</span>
+            <span id="idX">X</span>
+        </div>
+          </div>
+          <div>
+          <li class="nav navFocus navActive" id="inicio">Início</li>
+          <li class="nav navFocus">Categorias
+            <ul class="options">
+              <li>Ação</li>
+              <li>Aventura</li>
+              <li>Comédia</li>
+              <li>Drama</li>
+              <li>Suspense</li>
+              <li>Terror</li>
+            </ul>
+          </li>
+          <li class="nav navFocus" id="watchlist">Minha Lista</li>
+          <li class="nav navFocus">Mais
+            <ul class="options">
+              <li class="more-options" id="top-votes">Mais Votados</li>
+              <li class="more-options" id="sucessos">Sucessos de Bilheteria</li>
+              <li class="more-options" id="random-choice">Sugestão do Choqueflix</li>
+            </ul>
+          </li>
+          <li class="nav navFocus">Sobre</li>
+        </div>
+        <div class="ui category search">
+          <div class="ui icon input" id="test">
+            <input class="prompt searchbar" type="text" placeholder="Search films...">
+            <i class="search icon"></i>
+          </div>
+        </div>
+      </nav>
+    </section>
+  </header>
+  <br>
+  <main>
+    <section id="main-section">
+      <div id="film-list">
+      </div>
+      <div id="page-list">
+        <span></span>
+        <span class="page">1</span>
+        <span class="page">2</span>
+        <span class="page">3</span>
+        <span class="page">4</span>
+        <span class="page">5</span>
+        <span class="page">6</span>
+        <span class="page">7</span>
+        <span class="page">8</span>
+        <span class="page">9</span>
+        <span class="page">10</span>
+        <span>></span>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="JS/main.js"></script>
+  <script type="module" src="JS/searchBar.js"></script>
+</body>
+</html>
