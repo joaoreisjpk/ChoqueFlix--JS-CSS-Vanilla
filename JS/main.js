@@ -3,7 +3,6 @@ import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pag
 import { displayBanner } from './banner.js'
 import { addBtnsWatchlistEventListener, listWatchlist } from './watchlist.js'
 
-console.log(`./images${localStorage.getItem('perfil').split('images')[1]}`);
 document.querySelector('.search').innerHTML += `<a href='./index.html'>
   <div class='perfil'>
     <img src='./images${localStorage.getItem('perfil').split('images')[1]}' class='perfilImg'>

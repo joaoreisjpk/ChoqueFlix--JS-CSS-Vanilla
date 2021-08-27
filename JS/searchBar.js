@@ -51,8 +51,6 @@ const createFilme = async (Title, Poster, imdbRating, Plot, imdbID) => {
   description.innerHTML = createHtml(imdbRating, Plot); // Adicionando a classificação e o overview
   btnsDiv.appendChild(trailerBtn); btnsDiv.appendChild(watchlistBtn); // Inclui os botões
   description.appendChild(btnsDiv); description.appendChild(netflixBtn);
-  console.log(imdbID)
-  console.log(`https://www.imdb.com/video/vi155694361?playlistId=${imdbID}&ref_=tt_ov_vi`)
   trailerBtn.href = `https://www.youtube.com/results?search_query=${Title + ' trailer'}`;
 
   getFilmList.appendChild(createSection); // Adiciona a section à lista de filmes;

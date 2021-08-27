@@ -8,7 +8,6 @@ let localStorageList = (localStorage.getItem('watchlist')) ?
 function addMovieToWatchlist(event) {
   const movieId = event.target.id;
   const movieElement = document.getElementById(movieId);
-  // console.log(movieElement);
   localStorageList.push(movieElement.innerHTML);
   localStorage.setItem('watchlist', JSON.stringify(localStorageList));
 }
@@ -22,7 +21,6 @@ function listWatchlist() {
   filmList.innerHTML = '';
   const watchlistArray = JSON.parse(localStorage.getItem('watchlist'));
   if (watchlistArray) watchlistArray.forEach((movie) => {
-    // console.log(movie);
     const movieCard = createElement('div', 'filme', movie);
     movieCard.style.margin = '20px auto';
     filmList.appendChild(movieCard);
