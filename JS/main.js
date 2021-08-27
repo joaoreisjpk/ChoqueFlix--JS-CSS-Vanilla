@@ -154,7 +154,7 @@ getFocus.forEach((element) => element.addEventListener('click', removeActive));
 window.onload = async () => {
   listaDeFilmes(mainUrl);
   displayAndVerifyBanner();
-  setInterval(() => displayAndVerifyBanner(), 60 * 1000);
+  const interval = setInterval(() => displayAndVerifyBanner(), 60 * 1000);
   document.querySelectorAll('.options li')
     .forEach((li) => li.addEventListener('click', listByGenre));
   
