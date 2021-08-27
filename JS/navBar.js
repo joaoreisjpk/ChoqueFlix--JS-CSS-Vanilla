@@ -94,4 +94,5 @@ const tryAgain = () => {
   }, 400);
 };
 
-export { genresObj, urlByGenre, listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl };
+
+export { genresObj, urlByGenre, listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl, urlBySuccess };

@@ -1,5 +1,6 @@
+
 import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl } from './navBar.js';
-import { getBannerLinks, getTrendingFilms } from './banner.js'
+import { displayBanner } from './banner.js'
 import { addBtnsWatchlistEventListener, listWatchlist } from './watchlist.js'
 
 console.log(`./images${localStorage.getItem('perfil').split('images')[1]}`);
@@ -99,7 +100,11 @@ const listaDeFilmes = async (urlApi) => {
       const trailerLink = await getTrailerLink(id);
       if (trailerLink) {
         trailerBtn.href = trailerLink;
-      } else { trailerBtn.innerText = 'Trailer indisponível'}
+      } else { 
+        trailerBtn.innerText = 'Trailer indisponível'
+        trailerBtn.className = "btn-trailer ui inverted grey button";
+        trailerBtn.classList.add('unavailable');
+      }
 
       getFilmList.appendChild(createSection); // Adiciona a section à lista de filmes;
     }
@@ -110,9 +115,7 @@ const listaDeFilmes = async (urlApi) => {
 
 window.onload = async () => {
   listaDeFilmes(mainUrl);
-  const trendingMovies = await getTrendingFilms()
-  getBannerLinks(trendingMovies);
-
+  displayBanner();
   document.querySelectorAll('.options li')
     .forEach((li) => li.addEventListener('click', listByGenre));
   
