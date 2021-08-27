@@ -8,10 +8,6 @@ body {
   background-color: #111;
 }
 
-img {
-  min-width: 100%;
-}
-
 .nav:hover {
   opacity: 0.9;
   text-shadow: 0px 0px 3px rgb(245, 245, 245);
@@ -263,5 +259,38 @@ nav {
   padding: 5px;
   margin: 15px;
   cursor: pointer;
+}
+
+.navActive {
+  opacity: 1;
+  font-weight: 900;
+  font-size: 1.3rem;
+}
+
+.search {
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchbar {
+  max-height: 38px;
+  align-self: center;
+}
+
+.perfilImg {
+  width: 40px;
+  overflow: hidden;
+  align-self: flex-end;
+}
+
+.perfil {
+  display: flex;
+  margin: 0 0 0 20px;
+  border: 2px solid red;
+}
+
+.angle {
+  align-self: center;
+  color: white;
 }
 /* End of Film Style */

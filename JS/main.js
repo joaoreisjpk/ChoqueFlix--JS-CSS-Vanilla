@@ -1,12 +1,22 @@
 import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl } from './navBar.js';
 import { getBannerLinks, getTrendingFilms } from './banner.js'
 import { addBtnsWatchlistEventListener, listWatchlist } from './watchlist.js'
+import { perfilImg } from './login.js';
+
+console.log(localStorage.getItem('perfil').slice(22,50));
+document.querySelector('.search').innerHTML += `<a href='./index.html'>
+  <div class='perfil'>
+    <img src=${localStorage.getItem('perfil').slice(22,50)} class='perfilImg'>
+    <i class="angle down icon"></i>
+  </div>
+</a>`
 
 const apiKey = 'ca19804bba1e445e3db2ec8fbecda738';
 const mainUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
 
 const urlImg = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
 const getFilmList = document.getElementById('film-list');
+const getFocus = document.querySelectorAll('.navFocus')
 
 document.getElementById('watchlist').addEventListener('click', listWatchlist)
 
@@ -110,5 +120,14 @@ window.onload = async () => {
   document.querySelectorAll('.page')
     .forEach((page) => page.addEventListener('click', () => listaDeFilmes(pageUrl(mainUrl, page.innerHTML))));
 };
+
+function removeActive(e) {
+  getFocus.forEach(
+    (element) => element.classList.remove('navActive')
+  );
+  e.target.classList.add('navActive')
+}
+
+getFocus.forEach((element) => element.addEventListener('click', removeActive));
 
 export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener };
