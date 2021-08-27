@@ -28,8 +28,8 @@ function listWatchlist() {
     const movieCard = createElement('div', 'filme', movie);
     movieCard.style.margin = '20px auto';
     filmList.appendChild(movieCard);
-  });
-  document.querySelectorAll('.btn-watchlist')
+  })
+  document.querySelectorAll('#film-list .btn-watchlist')
     .forEach((btn) => {
       const contentBtn = btn.parentElement.parentElement.innerHTML;
       btn.innerHTML = 'Remover';
@@ -42,4 +42,4 @@ function listWatchlist() {
     });
 }
 
-export { addBtnsWatchlistEventListener, listWatchlist };
+export { addBtnsWatchlistEventListener, listWatchlist, localStorageList, getName }
