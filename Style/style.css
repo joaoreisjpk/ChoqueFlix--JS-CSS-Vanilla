@@ -6,10 +6,7 @@ body {
   margin: 0;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   background-color: #111;
-}
-
-img {
-  min-width: 100%;
+  color: white;
 }
 
 .nav:hover {
@@ -198,6 +195,7 @@ nav {
 
 .nota {
   font-size: 1.3rem;
+  color: white;
 }
 
 .description {
@@ -243,6 +241,71 @@ nav {
   margin: 0 !important;
 }
 
+.ui.inverted.segment, .ui.primary.inverted.segment {
+  background: #1b1c1d;
+  color: rgba(255,255,255,.9);
+  height: 100%;
+}
+
+.banner-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner-div {
+  width: 100%;
+  height: 100%;
+}
+
+.poster-and-info-div {
+  bottom: 0;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  background-image: linear-gradient(transparent,rgba(0, 0, 0, 0.849));
+}
+
+.movie-title, .banner-description {
+  color:white;
+}
+
+.movie-title {
+  margin-left: 50px;
+  text-shadow: 1px 1px rgb(0, 0, 0)
+}
+
+.banner-description {
+  margin-top: 7px;
+  height: 170px;
+  width: 500px;
+}
+
+.release-year {
+  margin: 5px 50px;
+  font-size: 1.3rem;
+}
+
+.banner-description, .poster-img {
+  margin-left: 50px;
+  margin-bottom: 50px;
+}
+
+.poster-img {
+  width: 150px;
+  position: relative;
+}
+
+.banner .nota {
+  margin-left: 50px;
+}
+
+.movie-info-div {
+/*   bottom: 0; */
+  width: auto;
+}
+
 #waiting {
   color: white;
   font-size: 2rem;
@@ -263,5 +326,38 @@ nav {
   padding: 5px;
   margin: 15px;
   cursor: pointer;
+}
+
+.navActive {
+  opacity: 1;
+  font-weight: 900;
+  font-size: 1.3rem;
+}
+
+.search {
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchbar {
+  max-height: 38px;
+  align-self: center;
+}
+
+.perfilImg {
+  width: 40px;
+  overflow: hidden;
+  align-self: flex-end;
+}
+
+.perfil {
+  display: flex;
+  margin: 0 0 0 20px;
+  border: 2px solid red;
+}
+
+.angle {
+  align-self: center;
+  color: white;
 }
 /* End of Film Style */

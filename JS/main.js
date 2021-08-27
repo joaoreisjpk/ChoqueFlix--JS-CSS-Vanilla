@@ -1,13 +1,23 @@
+
 import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl } from './navBar.js';
-import { getBannerLinks, getTrendingFilms } from './banner.js'
+import { getBannerLinks, getTrendingFilms, getBannerMoviesInfo, displayBanner } from './banner.js'
 import { addBtnsWatchlistEventListener, listWatchlist } from './watchlist.js'
-import { avatarImage } from './login.js';
+import { perfilImg } from './login.js';
+
+console.log(localStorage.getItem('perfil').slice(22,50));
+document.querySelector('.search').innerHTML += `<a href='./index.html'>
+  <div class='perfil'>
+    <img src=${localStorage.getItem('perfil').slice(22,50)} class='perfilImg'>
+    <i class="angle down icon"></i>
+  </div>
+</a>`
 
 const apiKey = 'ca19804bba1e445e3db2ec8fbecda738';
 const mainUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
 
 const urlImg = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
 const getFilmList = document.getElementById('film-list');
+const getFocus = document.querySelectorAll('.navFocus')
 
 document.getElementById('watchlist').addEventListener('click', listWatchlist)
 
@@ -91,7 +101,11 @@ const listaDeFilmes = async (urlApi) => {
       const trailerLink = await getTrailerLink(id);
       if (trailerLink) {
         trailerBtn.href = trailerLink;
-      } else { trailerBtn.innerText = 'Trailer indisponível'}
+      } else { 
+        trailerBtn.innerText = 'Trailer indisponível'
+        trailerBtn.className = "btn-trailer ui inverted grey button";
+        trailerBtn.classList.add('unavailable');
+      }
 
       getFilmList.appendChild(createSection); // Adiciona a section à lista de filmes;
     }
@@ -102,17 +116,21 @@ const listaDeFilmes = async (urlApi) => {
 
 window.onload = async () => {
   listaDeFilmes(mainUrl);
-  const trendingMovies = await getTrendingFilms()
-  getBannerLinks(trendingMovies);
-
+  displayBanner();
   document.querySelectorAll('.options li')
     .forEach((li) => li.addEventListener('click', listByGenre));
   
   document.querySelectorAll('.page')
     .forEach((page) => page.addEventListener('click', () => listaDeFilmes(pageUrl(mainUrl, page.innerHTML))));
-  
-  if (avatarImage) document.querySelector('#avatar')
-    .innerHTML = avatarImage;
 };
+
+function removeActive(e) {
+  getFocus.forEach(
+    (element) => element.classList.remove('navActive')
+  );
+  e.target.classList.add('navActive')
+}
+
+getFocus.forEach((element) => element.addEventListener('click', removeActive));
 
 export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener };
