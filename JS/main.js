@@ -112,29 +112,27 @@ const listaDeFilmes = async (urlApi) => {
   if (document.querySelector('#waiting')) document.querySelector('#waiting').remove();
 };
 
+function removeActive(e) {
+  getFocus.forEach((element) => element.classList.remove('navActive'));
+    document.querySelectorAll('.options li')
+    .forEach((li) => li.classList.remove('liActive'));
+
+    if (e.target.parentElement.className === 'options') {
+      e.target.parentElement.parentElement.classList.add('navActive');
+      e.target.className += ' liActive';
+    } else e.target.classList.add('navActive');
+}
+
+getFocus.forEach((element) => element.addEventListener('click', removeActive));
+
 window.onload = async () => {
   listaDeFilmes(mainUrl);
-  displayBanner();
+  setInterval(() => displayBanner(), 60 * 2000);
   document.querySelectorAll('.options li')
     .forEach((li) => li.addEventListener('click', listByGenre));
   
   document.querySelectorAll('.page')
     .forEach((page) => page.addEventListener('click', () => listaDeFilmes(pageUrl(mainUrl, page.innerHTML))));
 };
-
-function removeActive(e) {
-  getFocus.forEach(
-    (element) => element.classList.remove('navActive')
-  );
-  document.querySelectorAll('.options li')
-    .forEach((li) => li.classList.remove('liActive'));
-  
-  if (e.target.parentElement.className === 'options') {
-    e.target.parentElement.parentElement.classList.add('navActive');
-    e.target.className += ' liActive';
-  } else e.target.classList.add('navActive');
-}
-
-getFocus.forEach((element) => element.addEventListener('click', removeActive));
 
 export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener };
