@@ -1,6 +1,6 @@
 
 import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl } from './navBar.js';
-import { getBannerLinks, getTrendingFilms, getBannerMoviesInfo, displayBanner } from './banner.js'
+import { displayBanner } from './banner.js'
 import { addBtnsWatchlistEventListener, listWatchlist } from './watchlist.js'
 import { perfilImg } from './login.js';
 
