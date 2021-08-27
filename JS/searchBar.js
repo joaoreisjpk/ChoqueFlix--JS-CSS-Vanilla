@@ -4,23 +4,6 @@ import { addBtnsWatchlistEventListener, createElement, createImg } from "./main.
 const getSearch = document.querySelector('.searchbar')
 const getFilmList = document.getElementById('film-list');
 
-/* function createElement(element, className, content, id) {
-  const el = document.createElement(element);
-  el.className = className;
-  if (content) el.innerHTML = content;
-  if (id) el.id = id;
-  return el;
-};
-
-function createImg(className, source, alt) {
-  const img = document.createElement('img');
-  img.className = className;
-  img.src = source;
-  img.alt = alt;
-  return img;
-};
-*/
-
 const createHtml = (nota, description) =>
   `<div class='description'>
     <div class='nota'>Classificação: 

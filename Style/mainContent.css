@@ -8,10 +8,6 @@ body {
   background-color: #111;
 }
 
-main {
-  margin-top: 5%;
-}
-
 /* Film Section Start */
 
 #film-list {
@@ -42,8 +38,6 @@ main {
 }
 
 .filme:hover {
-	-moz-transition: scale(1.1);
-	-webkit-transform: scale(1.1) ;
 	transform: scale(1.1);
   height: fit-content;
 }
@@ -67,7 +61,10 @@ main {
 .description {
   transition: 1s opacity;
   opacity: 0;
-  margin-top: .5rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  font-weight: 900;
 }
 
 .nota--value {
@@ -81,13 +78,10 @@ main {
 
 .nota {
   font-size: 1.3rem;
+  color: white;
 }
 
 .description {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-size: 1.2rem;
-  font-weight: 900;
 }
 
 .description--text {

@@ -1,5 +1,4 @@
 const getFocus = document.querySelectorAll('.imgFocus');
-const perfilImg = (url => url);
 
 function removeActive(e) {
   getFocus.forEach(
@@ -8,5 +7,3 @@ function removeActive(e) {
 }
 
 getFocus.forEach((element) => element.addEventListener('click', removeActive));
-
-export { perfilImg };
