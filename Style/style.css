@@ -6,6 +6,7 @@ body {
   margin: 0;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   background-color: #111;
+  color: white;
 }
 
 .nav:hover {
@@ -250,17 +251,22 @@ nav {
 }
 
 .banner-description {
-  font-size: 16px;
-  margin-left: 50px;
-  margin-bottom: 50px;
-  margin-top: 3px;
+  margin-top: 7px;
   height: 170px;
   width: 500px;
 }
 
-.poster-img {
+.release-year {
+  margin: 5px 50px;
+  font-size: 1.3rem;
+}
+
+.banner-description, .poster-img {
   margin-left: 50px;
   margin-bottom: 50px;
+}
+
+.poster-img {
   width: 150px;
   position: relative;
 }
