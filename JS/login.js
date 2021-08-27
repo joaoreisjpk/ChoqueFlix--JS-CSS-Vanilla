@@ -1,14 +1,8 @@
 const getFocus = document.querySelectorAll('.imgFocus');
-const perfilImg = (url => url);
 
-function removeActive(e) {
-  getFocus.forEach(
-    (element) => element.classList.remove('imgActive')
-  );
-  e.target.classList.add('imgActive'); localStorage.setItem('perfil', e.target.src)
-  perfilImg(e.target.src);
+function choosePerfil(e) {
+  localStorage.setItem('perfil', e.target.src)
+  localStorage.setItem(e.id, e.id);
 }
 
-getFocus.forEach((element) => element.addEventListener('click', removeActive));
-
-export { perfilImg };
+getFocus.forEach((element) => element.addEventListener('click', choosePerfil));

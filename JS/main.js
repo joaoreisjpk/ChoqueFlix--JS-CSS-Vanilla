@@ -5,10 +5,10 @@ import { addBtnsWatchlistEventListener, listWatchlist } from './watchlist.js'
 
 document.querySelector('.search').innerHTML += `<a href='./index.html'>
   <div class='perfil'>
-    <img src=${localStorage.getItem('perfil').slice(22, 50)} class='perfilImg'>
+    <img src='./images${localStorage.getItem('perfil').split('images')[1]}' class='perfilImg'>
     <i class="angle down icon"></i>
   </div>
-</a>`; console.log(localStorage.getItem('perfil'))
+</a>`;
 
 const apiKey = 'ca19804bba1e445e3db2ec8fbecda738';
 const mainUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
@@ -65,7 +65,7 @@ const createHtml = (nota, description) =>
       <span class='nota--value'>${nota.toFixed(1)}</span>
     </div>
     <div class='description'>Descrição: 
-      <spam class='description--text'>${description.slice(0, 300) + '...'}<span>
+      <spam class='description--text'>${description.slice(0, 150) + '...'}<span>
     </div>
   </div>`
 
@@ -126,7 +126,13 @@ function removeActive(e) {
   getFocus.forEach(
     (element) => element.classList.remove('navActive')
   );
-  e.target.classList.add('navActive')
+  document.querySelectorAll('.options li')
+    .forEach((li) => li.classList.remove('liActive'));
+  
+  if (e.target.parentElement.className === 'options') {
+    e.target.parentElement.parentElement.classList.add('navActive');
+    e.target.className += ' liActive';
+  } else e.target.classList.add('navActive');
 }
 
 getFocus.forEach((element) => element.addEventListener('click', removeActive));

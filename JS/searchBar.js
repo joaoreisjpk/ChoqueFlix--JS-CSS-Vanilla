@@ -4,23 +4,6 @@ import { addBtnsWatchlistEventListener, createElement, createImg } from "./main.
 const getSearch = document.querySelector('.searchbar')
 const getFilmList = document.getElementById('film-list');
 
-/* function createElement(element, className, content, id) {
-  const el = document.createElement(element);
-  el.className = className;
-  if (content) el.innerHTML = content;
-  if (id) el.id = id;
-  return el;
-};
-
-function createImg(className, source, alt) {
-  const img = document.createElement('img');
-  img.className = className;
-  img.src = source;
-  img.alt = alt;
-  return img;
-};
-*/
-
 const createHtml = (nota, description) =>
   `<div class='description'>
     <div class='nota'>Classificação: 
@@ -51,8 +34,6 @@ const createFilme = async (Title, Poster, imdbRating, Plot, imdbID) => {
   description.innerHTML = createHtml(imdbRating, Plot); // Adicionando a classificação e o overview
   btnsDiv.appendChild(trailerBtn); btnsDiv.appendChild(watchlistBtn); // Inclui os botões
   description.appendChild(btnsDiv); description.appendChild(netflixBtn);
-  console.log(imdbID)
-  console.log(`https://www.imdb.com/video/vi155694361?playlistId=${imdbID}&ref_=tt_ov_vi`)
   trailerBtn.href = `https://www.youtube.com/results?search_query=${Title + ' trailer'}`;
 
   getFilmList.appendChild(createSection); // Adiciona a section à lista de filmes;
