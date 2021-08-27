@@ -1,5 +1,5 @@
 import { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener } from './main.js';
-
+import { removeBanner } from './banner.js';
 const genresObj = {// Chaves são conteúdo das opções de categoria e valores são Ids de gêneros
   'Ação': 28,
   'Aventura': 12,
@@ -32,6 +32,7 @@ const urlByGenre = (genreId) => `https://api.themoviedb.org/3/discover/movie?api
 
 // Responsável por listar filmes por gênero
 function listByGenre(event) {
+  removeBanner();
   const genre = event.target.innerText;
   const keyId = genresObj[genre];
   listaDeFilmes(urlByGenre(keyId));
@@ -43,10 +44,16 @@ function listByGenre(event) {
 }
 
 const urlByRank = () => `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=vote_count.desc`;
-const listByRank = () => listaDeFilmes(urlByRank());
+const listByRank = () => {
+  removeBanner();
+  listaDeFilmes(urlByRank());
+}
 
 const urlBySuccess = () => `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=revenue.desc`
-const listBySuccess = () => listaDeFilmes(urlBySuccess());
+const listBySuccess = () => {
+  removeBanner();
+  listaDeFilmes(urlBySuccess());
+}
 
 const randomId = () => parseInt((Math.random() * 62) * 1000);
 const randomUrl = () => `https://api.themoviedb.org/3/movie/${randomId()}?api_key=${apiKey}`;

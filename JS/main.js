@@ -1,6 +1,6 @@
 
 import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl } from './navBar.js';
-import { displayBanner } from './banner.js'
+import { displayAndVerifyBanner, removeBanner } from './banner.js'
 import { addBtnsWatchlistEventListener, listWatchlist } from './watchlist.js'
 
 document.querySelector('.search').innerHTML += `<a href='./index.html'>
@@ -17,9 +17,14 @@ const urlImg = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
 const getFilmList = document.getElementById('film-list');
 const getFocus = document.querySelectorAll('.navFocus')
 
-document.getElementById('watchlist').addEventListener('click', listWatchlist)
+document.getElementById('watchlist').addEventListener('click', () => {
+  removeBanner();
+  listWatchlist();
+})
 
-document.getElementById('inicio').addEventListener('click', () => {
+document.getElementById('inicio').addEventListener('click', async () => {
+  document.querySelector('.banner-div').style.display = 'block';
+  getFilmList.style.marginTop = '0';
   listaDeFilmes(mainUrl);
   pageEvent();
   document.querySelectorAll('.page').forEach((page) => {
@@ -27,9 +32,18 @@ document.getElementById('inicio').addEventListener('click', () => {
   });
 });
 
-document.getElementById('top-votes').addEventListener('click', listByRank);
-document.getElementById('sucessos').addEventListener('click', listBySuccess);
-document.getElementById('random-choice').addEventListener('click', getRandomChoice);
+document.getElementById('top-votes').addEventListener('click', () => {
+  removeBanner()
+  listByRank()
+});
+document.getElementById('sucessos').addEventListener('click', () => {
+  removeBanner();
+  listBySuccess()
+});
+document.getElementById('random-choice').addEventListener('click', () => {
+  removeBanner()
+  getRandomChoice()
+});
 
 function createElement(element, className, content, id) {
   const el = document.createElement(element);
@@ -127,7 +141,8 @@ getFocus.forEach((element) => element.addEventListener('click', removeActive));
 
 window.onload = async () => {
   listaDeFilmes(mainUrl);
-  setInterval(() => displayBanner(), 60 * 2000);
+  displayAndVerifyBanner();
+  setInterval(() => displayAndVerifyBanner(), 60 * 1000);
   document.querySelectorAll('.options li')
     .forEach((li) => li.addEventListener('click', listByGenre));
   

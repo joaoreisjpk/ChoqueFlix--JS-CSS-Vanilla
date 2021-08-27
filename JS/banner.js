@@ -1,6 +1,11 @@
-import { createElement, createImg, urlImg, getTrailerLink, apiKey } from './main.js'
-const bannerDiv = document.querySelector('.banner')
+import { createElement, createImg, urlImg, getTrailerLink, apiKey, getFilmList } from './main.js'
 let currentBannerIndex = Math.floor(Math.random() * 19) + 0;
+const bannerDiv = document.querySelector('.banner');
+
+const removeBanner = () => {
+  document.querySelector('.banner-div').style.display = 'none';
+  getFilmList.style.marginTop = '5%';
+}
 
 function getMubiImgLink(query, year) {
   bannerDiv.innerText = '';
@@ -42,44 +47,54 @@ function verifyInfoBanner(year) {
 }
 
 async function displayBanner() {
-  const bannerMoviesInfos= await getBannerMoviesInfo();
-  const {title, overview, id, vote_average, imgLink, poster, year} = bannerMoviesInfos;
-  const bannerImg = createImg('banner-img', imgLink, title);
-  const posterAndInfoDiv = createElement('div', 'poster-and-info-div');
-  const infoDiv = createElement('div', 'movie-info-div');
-  const posterImg = createImg('poster-img', poster, 'imagem do poster');
-  const titleElement = createElement('h2', 'movie-title', title.toUpperCase());
-  infoDiv.appendChild(titleElement);
-  if (year) {
-    const releaseYear = createElement('p', 'release-year',  `Ano de lançamento: ${year}`)
-    infoDiv.appendChild(releaseYear);
+  const bannerMoviesInfos = await getBannerMoviesInfo();
+  if (bannerMoviesInfos.title) {
+    const {title, overview, id, vote_average, imgLink, poster, year} = bannerMoviesInfos;
+    const bannerImg = createImg('banner-img', imgLink, title);
+    const posterAndInfoDiv = createElement('div', 'poster-and-info-div');
+    const infoDiv = createElement('div', 'movie-info-div');
+    const posterImg = createImg('poster-img', poster, 'imagem do poster');
+    const titleElement = createElement('h2', 'movie-title', title.toUpperCase());
+    infoDiv.appendChild(titleElement);
+    if (year) {
+      const releaseYear = createElement('p', 'release-year',  `Ano de lançamento: ${year}`)
+      infoDiv.appendChild(releaseYear);
+    }
+    const notaDiv = createElement('div', 'nota', 'Classificação: ');
+    const nota = createElement('span', 'nota--value', vote_average.toFixed(1))
+    notaDiv.appendChild(nota);
+    infoDiv.appendChild(notaDiv);
+    const newOverview = overview.match(/.{500}/) ? overview.match(/.{500}/)[0] + '...' : overview;
+    const descriptionDiv = createElement('p', 'banner-description', newOverview)
+    infoDiv.appendChild(descriptionDiv)
+    const trailerBtn = createElement('a', 'btn-trailer ui inverted red button', 'Ver Trailer'); trailerBtn.target = '_blank';
+    const trailerLink = await getTrailerLink(id);
+    if (trailerLink) {
+      trailerBtn.href = trailerLink;
+    } else {
+      trailerBtn.innerText = 'Trailer indisponível'
+      trailerBtn.className = 'btn-trailer ui inverted grey button unavailable';
+    }
+    const watchlistBtn = createElement('button', 'btn-watchlist ui inverted blue button');
+    const btnsDiv = createElement('div', `btnsDiv`);
+    watchlistBtn.innerHTML = '<i class="plus square outline icon"></i>&nbsp;List';
+    btnsDiv.appendChild(trailerBtn); 
+    btnsDiv.appendChild(watchlistBtn);
+    posterAndInfoDiv.appendChild(posterImg);
+    posterAndInfoDiv.appendChild(infoDiv);
+    posterAndInfoDiv.appendChild(btnsDiv);
+    bannerDiv.appendChild(bannerImg);
+    bannerDiv.appendChild(posterAndInfoDiv);
+    const loader = document.querySelector('#loader-div')
+    if(loader) loader.remove();
   }
-  const notaDiv = createElement('div', 'nota', 'Classificação: ');
-  const nota = createElement('span', 'nota--value', vote_average.toFixed(1))
-  notaDiv.appendChild(nota);
-  infoDiv.appendChild(notaDiv);
-  const descriptionDiv = createElement('p', 'banner-description', overview)
-  infoDiv.appendChild(descriptionDiv)
-  const trailerBtn = createElement('a', 'btn-trailer ui inverted red button', 'Ver Trailer'); trailerBtn.target = '_blank';
-  const trailerLink = await getTrailerLink(id);
-  if (trailerLink) {
-    trailerBtn.href = trailerLink;
-  } else {
-    trailerBtn.innerText = 'Trailer indisponível'
-    trailerBtn.className = 'btn-trailer ui inverted grey button unavailable';
-  }
-  const watchlistBtn = createElement('button', 'btn-watchlist ui inverted blue button');
-  const btnsDiv = createElement('div', `btnsDiv`);
-  watchlistBtn.innerHTML = '<i class="plus square outline icon"></i>&nbsp;List';
-  btnsDiv.appendChild(trailerBtn); 
-  btnsDiv.appendChild(watchlistBtn);
-  posterAndInfoDiv.appendChild(posterImg);
-  posterAndInfoDiv.appendChild(infoDiv);
-  posterAndInfoDiv.appendChild(btnsDiv);
-  bannerDiv.appendChild(bannerImg);
-  bannerDiv.appendChild(posterAndInfoDiv);
-  const loader = document.querySelector('#loader-div')
-  if(loader) loader.remove();
 }
 
-export { getBannerMoviesInfo, displayBanner }
+function displayAndVerifyBanner() {
+  displayBanner();
+  setTimeout(() => {
+    if (!document.querySelector('.poster-and-info-div')) displayBanner();
+  }, 10000);
+}
+
+export { getBannerMoviesInfo, displayAndVerifyBanner, removeBanner }
