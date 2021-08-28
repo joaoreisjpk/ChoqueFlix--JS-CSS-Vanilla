@@ -112,6 +112,10 @@ body {
   min-height: 90vh;
 }
 
+.not-homepage {
+  margin-top: 56px;
+}
+
 #waiting {
   color: white;
   font-size: 2rem;
@@ -134,6 +138,13 @@ div#page-list {
   font-size: 1.7rem;
   cursor: pointer;
   align-self: center;
+}
+
+#page-title {
+  color: white;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 30px;
 }
 
 .watchlist-empty {
