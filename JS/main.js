@@ -1,6 +1,6 @@
 
 import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl } from './navBar.js';
-import { displayAndVerifyBanner, removeBanner } from './banner.js'
+import { displayAndVerifyBanner, removeBanner, displayBanner, newDisplayBanner } from './banner.js'
 import { addBtnsWatchlistEventListener, addRemoveFromWatchlistEventListeners, listWatchlist, getName } from './watchlist.js'
 
 document.querySelector('.search').innerHTML += `<a href='./index.html'>
@@ -16,7 +16,7 @@ const mainUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
 const urlImg = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
 const getFilmList = document.getElementById('film-list');
 const getFocus = document.querySelectorAll('.navFocus')
-const getLocalStorageWatchlist = () => (localStorage.getItem(`watchlist-${getName}`)) ?
+const getLocalStorageWatchlist = () => localStorage.getItem(`watchlist-${getName}`) ?
 JSON.parse(localStorage.getItem(`watchlist-${getName}`)) : [];
 
 document.getElementById('watchlist').addEventListener('click', () => {
@@ -89,7 +89,6 @@ const createHtml = (nota, description) =>
 
 const createMovieCard = async ({ title, vote_average, poster_path, overview, id, thumbnail, isWatchlistItem }) => {
   if (poster_path || thumbnail) {
-    console.log(isWatchlistItem)
     // Criando uma section para cada filme
     const sectionClassName = isWatchlistItem === undefined ? `filme` : `filme watchlist-item` // se for um item da watchlist terá a clase watchlist-item
     const createSection = createElement('section', sectionClassName, false, id);
@@ -110,6 +109,7 @@ const createMovieCard = async ({ title, vote_average, poster_path, overview, id,
     netflixBtn.innerHTML = `<i class="play circle huge icon"></i>`
     netflixBtn.href = `https://www.netflix.com/search?q=${title}`; netflixBtn.target = '_blank'
     let localStorageList = getLocalStorageWatchlist();
+    console.log(localStorageList);
     let isOnWatchlist = localStorageList.some((movieObj) => movieObj.id === id);
     watchlistBtn.innerHTML = isOnWatchlist ? `Remover` : `<i class="plus square outline icon"></i>&nbsp;List`;
     description.innerHTML = createHtml(parseFloat(vote_average), overview); // Adicionando a classificação e o overview
@@ -153,7 +153,9 @@ getFocus.forEach((element) => element.addEventListener('click', removeActive));
 
 window.onload = async () => {
   listaDeFilmes(mainUrl);
-  displayAndVerifyBanner();
+  newDisplayBanner();
+  //displayBanner();
+  //displayAndVerifyBanner();
   const interval = setInterval(() => displayAndVerifyBanner(), 60 * 1000);
   document.querySelectorAll('.options li')
     .forEach((li) => li.addEventListener('click', listByGenre));
