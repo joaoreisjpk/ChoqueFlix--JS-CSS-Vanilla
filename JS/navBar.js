@@ -1,5 +1,10 @@
-import { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener } from './main.js';
+import { listaDeFilmes, apiKey, urlImg, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener } from './main.js';
 import { removeBanner } from './banner.js';
+
+let intervalId;
+let index = 1;
+const text = 'Em Breve . . .';
+
 const genresObj = {// Chaves são conteúdo das opções de categoria e valores são Ids de gêneros
   'Ação': 28,
   'Aventura': 12,
@@ -25,6 +30,7 @@ function pageEvent() {
     <span class="page">9</span>
     <span class="page">10</span>
     <span>></span>`
+  if (intervalId) clearInterval(intervalId);
 }
 
 // Recebe uma Id de um gênero e retorna a URL para requisição da Api
@@ -101,5 +107,23 @@ const tryAgain = () => {
   }, 400);
 };
 
+function about() {
+  const comming = document.createElement('p');
+  comming.id = 'waiting';
+  getFilmList.innerHTML = ''
+  getFilmList.appendChild(comming);
+  intervalId = setInterval(() => {
+    comming.innerText = text.slice(0, index);
+    index += 1;
+    if (index === 16) {
+      setTimeout(() => {
+        comming.innerText = '';
+        index = 1;
+      }, 1000);
+    }
+  }, 200);
+  removeBanner();
+  document.querySelector('#page-list').style = 'display: none';
+}
 
-export { genresObj, urlByGenre, listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl, urlBySuccess };
+export { genresObj, urlByGenre, listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl, urlBySuccess, about };

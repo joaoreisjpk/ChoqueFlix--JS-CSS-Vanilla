@@ -1,5 +1,5 @@
 
-import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl } from './navBar.js';
+import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl, about } from './navBar.js';
 import { displayAndVerifyBanner, removeBanner } from './banner.js'
 import { addBtnsWatchlistEventListener, addRemoveFromWatchlistEventListeners, listWatchlist, getName } from './watchlist.js'
 
@@ -89,9 +89,8 @@ const createHtml = (nota, description) =>
 
 const createMovieCard = async ({ title, vote_average, poster_path, overview, id, thumbnail, isWatchlistItem }) => {
   if (poster_path || thumbnail) {
-    console.log(isWatchlistItem)
     // Criando uma section para cada filme
-    const sectionClassName = isWatchlistItem === undefined ? `filme` : `filme watchlist-item` // se for um item da watchlist terá a clase watchlist-item
+    const sectionClassName = !isWatchlistItem ? `filme` : `filme watchlist-item` // se for um item da watchlist terá a clase watchlist-item
     const createSection = createElement('section', sectionClassName, false, id);
     // Adicionando à section a imagem e a descrições do filme
     if (!thumbnail) thumbnail = urlImg + poster_path; // fazendo essa condicional porque thumbnail pode vir da func listWatchlist.
@@ -101,17 +100,17 @@ const createMovieCard = async ({ title, vote_average, poster_path, overview, id,
     createSection.appendChild(titleDiv)
     const description = createElement('div', 'description', ''); // Cria a div de descrição
     createSection.appendChild(background); createSection.appendChild(description); // Adiciona a imagem e a div à section
-    
+
     // Criando os botões, a classificação, e o overview a ser adicionados na descrição
     const trailerBtn = createElement('a', 'btn-trailer ui inverted red button', 'Ver Trailer'); trailerBtn.target = '_blank';
-    const netflixBtn = createElement('a', '', ''); trailerBtn.target = '_blank';
+    const netflixBtn = createElement('a', '', '');
     const watchlistBtn = createElement('button', `btn-watchlist ui inverted blue button`, '', id);
     const btnsDiv = createElement('div', `btnsDiv`, '');
     netflixBtn.innerHTML = `<i class="play circle huge icon"></i>`
     netflixBtn.href = `https://www.netflix.com/search?q=${title}`; netflixBtn.target = '_blank'
     let localStorageList = getLocalStorageWatchlist();
-    let isOnWatchlist = localStorageList.some((movieObj) => movieObj.id === id);
-    watchlistBtn.innerHTML = isOnWatchlist ? `Remover` : `<i class="plus square outline icon"></i>&nbsp;List`;
+    let isOnWatchlist = localStorageList.some(({ id: movieId }) => +(movieId) === id);
+    watchlistBtn.innerHTML = isOnWatchlist ? 'Remover' : '<i class="plus square outline icon"></i>&nbsp;List';
     description.innerHTML = createHtml(parseFloat(vote_average), overview); // Adicionando a classificação e o overview
     btnsDiv.appendChild(trailerBtn); btnsDiv.appendChild(watchlistBtn); // Inclui os botões
     description.appendChild(btnsDiv); description.appendChild(netflixBtn);
@@ -133,20 +132,21 @@ const listaDeFilmes = async (urlApi) => {
   getFilmList.innerHTML = `<p id="waiting">Buscando conteúdo, aguarde...</p>`;
   const lista = await fetch(urlApi);
   const listaJson = await lista.json();
-  listaJson.results.forEach(createMovieCard);
-  if (document.querySelector('#waiting')) document.querySelector('#waiting').remove();
+  listaJson.results.forEach((film) => createMovieCard(film));
+  const wait = document.querySelector('#waiting');
+  if (wait) wait.remove();
   document.querySelector('#page-list').style = 'display: block'
 };
 
-function removeActive(e) {
+function removeActive(ev) {
   getFocus.forEach((element) => element.classList.remove('navActive'));
     document.querySelectorAll('.options li')
     .forEach((li) => li.classList.remove('liActive'));
 
-    if (e.target.parentElement.className === 'options') {
-      e.target.parentElement.parentElement.classList.add('navActive');
-      e.target.className += ' liActive';
-    } else e.target.classList.add('navActive');
+    if (ev.target.parentElement.className === 'options') {
+      ev.target.parentElement.parentElement.classList.add('navActive');
+      ev.target.className += ' liActive';
+    } else ev.target.classList.add('navActive');
 }
 
 getFocus.forEach((element) => element.addEventListener('click', removeActive));
@@ -160,6 +160,8 @@ window.onload = async () => {
   
   document.querySelectorAll('.page')
     .forEach((page) => page.addEventListener('click', () => listaDeFilmes(pageUrl(mainUrl, page.innerHTML))));
+
+  document.querySelector('#about').addEventListener('click', about);
 };
 
 export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener, createMovieCard, getLocalStorageWatchlist };
