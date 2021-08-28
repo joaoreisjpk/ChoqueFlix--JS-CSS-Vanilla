@@ -177,3 +177,34 @@ nav {
 }
 
 /* Perfil Ends */
+
+
+/* Responsividade */
+
+@media (max-width: 1000px) {
+  .title--div {
+    display: none;
+  }
+  .nav {
+    margin-right: 5px;
+  }
+  #about {
+    display: none;
+  }
+  .poster-img {
+    display: none;
+  }
+  .poster-and-info-div {
+    flex-direction: column;
+  }
+  div.btnsDiv {
+    justify-content: space-evenly;
+    margin: 0;
+    margin-bottom: 20px;
+  }
+  p.banner-description {
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+}
