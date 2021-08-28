@@ -25,7 +25,7 @@ document.querySelectorAll('.watchlist').forEach((item) => item.addEventListener(
   listWatchlist();
 }));
 
-document.querySelectorAll('.inicio').forEach((element) => element.addEventListener('click', async () => {
+document.querySelectorAll('.inicio').forEach((element) => element.addEventListener('click', () => {
   document.querySelector('.banner-div').style.display = 'block';
   getFilmList.style.marginTop = '0';
   listaDeFilmes(mainUrl, 'Filmes Populares');
@@ -35,14 +35,19 @@ document.querySelectorAll('.inicio').forEach((element) => element.addEventListen
   });
 }));
 
+document.querySelectorAll('div .item')
+  .forEach((li) => li.addEventListener('click', listByGenre));
+
 document.querySelectorAll('.top-votes').forEach((item) => item.addEventListener('click', () => {
   removeBanner()
   listByRank()
 }));
+
 document.querySelectorAll('.sucessos').forEach((item) => item.addEventListener('click', () => {
   removeBanner();
   listBySuccess()
 }));
+
 document.querySelectorAll('.random-choice').forEach((item) => item.addEventListener('click', () => {
   removeBanner()
   getRandomChoice()
@@ -76,25 +81,10 @@ async function getTrailerLink(id) {
     };
 };
 
-function getRating(vote) {
-  const star = '★'; 
-  const halfStar = '½';
-  let newRateString = '';
-  const convertedRate = vote * 5;
-  for (let i = convertedRate; i > 0; i -= 10) {
-    if (i > 10) {
-      newRateString += star
-    } else {
-      newRateString += halfStar
-    }
-  }
-  return newRateString;
-}
-
 const createHtml = (nota, description) =>
   `<div class='description'>
     <div class='nota'>Classificação: 
-      <span class='nota--value'>${getRating(nota)}</span>
+      <span class='nota--value'>${nota.toFixed(1)}</span>
     </div>
     <div class='description'>Descrição: 
       <spam class='description--text'>
@@ -173,16 +163,11 @@ window.onload = async () => {
   listaDeFilmes(mainUrl, 'Filmes Populares');
   displayAndVerifyBanner();
   const interval = setInterval(() => displayAndVerifyBanner(), 60 * 1000);
-  document.querySelectorAll('.options li')
-    .forEach((li) => li.addEventListener('click', listByGenre));
 
-  document.querySelectorAll('.options div')
-    .forEach((li) => li.addEventListener('click', listByGenre));
-  
   document.querySelectorAll('.page')
     .forEach((page) => page.addEventListener('click', () => listaDeFilmes(pageUrl(mainUrl, page.innerHTML), 'Filmes Populares')));
 
-  document.querySelector('#about').addEventListener('click', about);
+  document.getElementById('about').addEventListener('click', about);
 };
 
-export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener, createMovieCard, getLocalStorageWatchlist, getRating };
+export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener, createMovieCard, getLocalStorageWatchlist };

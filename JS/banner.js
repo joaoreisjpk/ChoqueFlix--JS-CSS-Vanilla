@@ -1,4 +1,4 @@
-import { createElement, createImg, urlImg, getTrailerLink, apiKey, getFilmList, getLocalStorageWatchlist, getRating } from './main.js'
+import { createElement, createImg, urlImg, getTrailerLink, apiKey, getFilmList, getLocalStorageWatchlist } from './main.js'
 import { getName} from './watchlist.js'
 let currentBannerIndex = Math.floor(Math.random() * 19) + 0;
 const bannerDiv = document.querySelector('.banner');
@@ -61,15 +61,14 @@ async function displayBanner() {
       infoDiv.appendChild(releaseYear);
     }
     const notaDiv = createElement('div', 'nota', 'Classificação: ');
-    console.log(getRating(vote_average))
-    const nota = createElement('span', 'nota--value', getRating(vote_average))
+    const nota = createElement('span', 'nota--value', vote_average)
     notaDiv.appendChild(nota);
     infoDiv.appendChild(notaDiv);
     const newOverview = overview.match(/.{500}/) ? overview.match(/.{500}/)[0] + '...' : overview;
-    const descriptionDiv = createElement('p', 'banner-description', newOverview)
+    const descriptionDiv = createElement('p', 'banner-description', newOverview, 'arrow-down')
     infoDiv.appendChild(descriptionDiv)
     const angleIcon = createElement('a', 'btn-angle-down', `<i class="angle down icon"></i>`)
-    angleIcon.href = "#movie-info-div";
+    angleIcon.href = "#arrow-down";
     const trailerBtn = createElement('a', 'btn-trailer ui inverted red button', 'Ver Trailer'); trailerBtn.target = '_blank';
     const trailerLink = await getTrailerLink(id);
     if (trailerLink) {

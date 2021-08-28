@@ -1,4 +1,4 @@
-import { listaDeFilmes, apiKey, urlImg, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener, createMovieCard } from './main.js';
+import { listaDeFilmes, apiKey, getFilmList, createMovieCard } from './main.js';
 import { removeBanner } from './banner.js';
 
 let intervalId;
@@ -18,7 +18,7 @@ const pageUrl = (url, page) => `${url}&page=${page}`;
 
 function pageEvent() {
   document.querySelector('#page-list')
-    .innerHTML = `<span><</span>
+    .innerHTML = `<span><i class="angle large left icon"></i></span>
     <span class="page">1</span>
     <span class="page">2</span>
     <span class="page">3</span>
@@ -29,7 +29,7 @@ function pageEvent() {
     <span class="page">8</span>
     <span class="page">9</span>
     <span class="page">10</span>
-    <span>></span>`
+    <span><i class="angle large right icon"></i></span>`
   if (intervalId) clearInterval(intervalId);
 }
 
@@ -37,28 +37,40 @@ function pageEvent() {
 const urlByGenre = (genreId) => `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}&sort_by=prelease_date.desc`;
 
 // Responsável por listar filmes por gênero
-function listByGenre(event) {
+function listByGenre() {
   removeBanner();
-  const genre = event.target.innerText;
+  const genre = this.innerText;
   const keyId = genresObj[genre];
   listaDeFilmes(urlByGenre(keyId), genre);
   pageEvent();
-  const genrePages = (eventPage) => listaDeFilmes(pageUrl(urlByGenre(keyId), eventPage.target.innerHTML), genre);
+
   document.querySelectorAll('.page').forEach((page) => {
-    page.addEventListener('click', genrePages);
-  })
+    page.addEventListener('click', () =>
+      listaDeFilmes(pageUrl(urlByGenre(keyId), page.innerHTML), genre));
+  });
 }
 
 const urlByRank = () => `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=vote_count.desc`;
 const listByRank = () => {
   removeBanner();
   listaDeFilmes(urlByRank(), 'Filmes Mais Votados');
+  pageEvent();
+
+  document.querySelectorAll('.page').forEach((page) => {
+    page.addEventListener('click', () => listaDeFilmes(pageUrl(urlByRank(), page.innerHTML), `Filmes Mais Votados: ${page.innerHTML}`));
+  });
 }
 
 const urlBySuccess = () => `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=revenue.desc`
+
 const listBySuccess = () => {
   removeBanner();
-  listaDeFilmes(urlBySuccess(), "Sucessos de Bilheteria");
+  listaDeFilmes(urlBySuccess(), 'Sucessos de Bilheteria');
+  pageEvent();
+  document.querySelectorAll('.page').forEach((page) => {
+    page.addEventListener('click', () =>
+    listaDeFilmes(pageUrl(urlBySuccess(), page.innerHTML), `Sucessos de Bilheteria: ${page.innerHTML}`));
+  });
 }
 
 const randomId = () => parseInt(Math.random() * ((Math.random() + 1) * 100000));
