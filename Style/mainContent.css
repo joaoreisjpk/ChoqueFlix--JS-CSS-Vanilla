@@ -117,18 +117,22 @@ body {
   margin: 100px 0 0 300px;
 }
 
-#page-list {
+div#page-list {
   color: white;
   font-size: 1.1rem;
   font-weight: 600;
   margin: 20px auto 40px;
   align-self: center;
+  display: flex;
+  align-items: center;
 }
 
 .page {
   padding: 5px;
-  margin: 15px;
+  margin: 0 15px;
+  font-size: 1.7rem;
   cursor: pointer;
+  align-self: center;
 }
 
 .watchlist-empty {
