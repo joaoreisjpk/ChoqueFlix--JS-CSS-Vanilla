@@ -37,16 +37,17 @@ function pageEvent() {
 const urlByGenre = (genreId) => `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}&sort_by=prelease_date.desc`;
 
 // Responsável por listar filmes por gênero
-function listByGenre(event) {
+function listByGenre() {
   removeBanner();
-  const genre = event.target.innerText;
+  const genre = this.innerText;
   const keyId = genresObj[genre];
   listaDeFilmes(urlByGenre(keyId), genre);
   pageEvent();
-  const genrePages = (eventPage) => listaDeFilmes(pageUrl(urlByGenre(keyId), eventPage.target.innerHTML), genre);
-  document.querySelectorAll('.page').forEach((page) => {
-    page.addEventListener('click', genrePages);
-  })
+
+  document.querySelectorAll('div .page').forEach((page) => {
+    page.addEventListener('click', () =>
+      listaDeFilmes(pageUrl(urlByGenre(keyId), page.innerHTML), genre));
+  });
 }
 
 const urlByRank = () => `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=vote_count.desc`;
@@ -54,21 +55,21 @@ const listByRank = () => {
   removeBanner();
   listaDeFilmes(urlByRank(), 'Filmes Mais Votados');
   pageEvent();
-  const rankPages = (eventPage) =>
-    listaDeFilmes(pageUrl(urlByRank(), eventPage.target.innerHTML), `Filmes Mais Votados: ${eventPage.target.innerHTML}`);
-  document.querySelectorAll('.page').forEach((page) => {
-    page.addEventListener('click', rankPages);
+
+  document.querySelectorAll('div .page').forEach((page) => {
+    page.addEventListener('click', () => listaDeFilmes(pageUrl(urlByRank(), page.innerHTML), `Filmes Mais Votados: ${page.innerHTML}`));
   });
 }
 
 const urlBySuccess = () => `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=revenue.desc`
+
 const listBySuccess = () => {
   removeBanner();
-  pageEvent();
   listaDeFilmes(urlBySuccess(), 'Sucessos de Bilheteria');
-  document.querySelectorAll('.page').forEach((page) => {
+  pageEvent();
+  document.querySelectorAll('div .page').forEach((page) => {
     page.addEventListener('click', () =>
-      listaDeFilmes(pageUrl(urlBySuccess(), page.innerHTML), `Sucessos de Bilheteria: ${page.innerHTML}`));
+    listaDeFilmes(pageUrl(urlBySuccess(), page.innerHTML), `Sucessos de Bilheteria: ${eventPage.target.innerHTML}`));
   });
 }
 

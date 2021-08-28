@@ -20,12 +20,12 @@ const getFocus = document.querySelectorAll('.navFocus')
 const getLocalStorageWatchlist = () => (localStorage.getItem(`watchlist-${getName}`)) ?
 JSON.parse(localStorage.getItem(`watchlist-${getName}`)) : [];
 
-documentq.querySelectorAll('.watchlist').forEach((btn) => btn.addEventListener('click', () => {
+document.querySelectorAll('.watchlist').forEach((item) => item.addEventListener('click', () => {
   removeBanner();
   listWatchlist();
 }));
 
-document.querySelectorAll('.inicio').forEach((element) => element.addEventListener('click', async () => {
+document.querySelectorAll('.inicio').forEach((element) => element.addEventListener('click', () => {
   document.querySelector('.banner-div').style.display = 'block';
   getFilmList.style.marginTop = '0';
   listaDeFilmes(mainUrl, 'Filmes Populares');
@@ -39,10 +39,12 @@ document.querySelectorAll('.top-votes').forEach((item) => item.addEventListener(
   removeBanner()
   listByRank()
 }));
+
 document.querySelectorAll('.sucessos').forEach((item) => item.addEventListener('click', () => {
   removeBanner();
   listBySuccess()
 }));
+
 document.querySelectorAll('.random-choice').forEach((item) => item.addEventListener('click', () => {
   removeBanner()
   getRandomChoice()
@@ -174,16 +176,13 @@ window.onload = async () => {
   displayAndVerifyBanner();
   const interval = setInterval(() => displayAndVerifyBanner(), 60 * 1000);
 
-  document.querySelectorAll('ul .genre')
-  .forEach((li) => li.addEventListener('click', listByGenre));
-
 document.querySelectorAll('div .item')
   .forEach((li) => li.addEventListener('click', listByGenre));
 
   document.querySelectorAll('.page')
     .forEach((page) => page.addEventListener('click', () => listaDeFilmes(pageUrl(mainUrl, page.innerHTML), 'Filmes Populares')));
 
-  document.querySelector('#about').addEventListener('click', about);
+  document.getElementById('about').addEventListener('click', about);
 };
 
 export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener, createMovieCard, getLocalStorageWatchlist, getRating };

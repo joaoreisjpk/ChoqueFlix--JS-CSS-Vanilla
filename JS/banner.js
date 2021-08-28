@@ -61,7 +61,6 @@ async function displayBanner() {
       infoDiv.appendChild(releaseYear);
     }
     const notaDiv = createElement('div', 'nota', 'Classificação: ');
-    console.log(getRating(vote_average))
     const nota = createElement('span', 'nota--value', getRating(vote_average))
     notaDiv.appendChild(nota);
     infoDiv.appendChild(notaDiv);
