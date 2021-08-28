@@ -3,37 +3,6 @@ import { getName} from './watchlist.js'
 let currentBannerIndex = Math.floor(Math.random() * 19) + 0;
 const bannerDiv = document.querySelector('.banner');
 
-function getCardBannerInfos() {
-  return {
-    title: document.querySelector('.movie-title').innerText,
-    poster_path: document.querySelector('.poster-img').src,
-    vote_average: +(document.querySelector('.nota--value').innerText),
-    overview: document.querySelector('.banner-description').innerText,
-    btns: document.querySelector('.banner .btnsDiv').innerHTML,
-  };
-}
-
-function createCardFromBanner(object) {
-  const { title, vote_average, poster_path, overview, btns } = object;
-  const cardDiv = createElement('div', 'filme');
-
-  // Adicionando à section a imagem e a descrições do filme
-  const thumbnail = urlImg + poster_path;
-  const background = createImg('imgTest', thumbnail, overview); // Cria o background
-  const description = createElement('div', 'description'); // Cria a div de descrição
-  cardDiv.appendChild(background); cardDiv.appendChild(description); // Adiciona a imagem e a div à section
-
-  // Criando os botões, a classificação, e o overview a ser adicionados na descrição
-  const netflixBtn = createElement('a', '', '');
-  const btnsDiv = createElement('div', `btnsDiv`);
-  netflixBtn.innerHTML = `<i class="play circle huge icon"></i>`
-  netflixBtn.href = `https://www.netflix.com/search?q=${title}`; netflixBtn.target = '_blank'
-  description.innerHTML = createHtml(vote_average, overview); // Adicionando a classificação e o overview
-  btnsDiv.innerHTML = btns; // Inclui os botões
-  description.appendChild(btnsDiv); description.appendChild(netflixBtn);
-  return cardDiv;
-}
-
 const removeBanner = () => {
   document.querySelector('.banner-div').style.display = 'none';
   getFilmList.style.marginTop = '5%';
