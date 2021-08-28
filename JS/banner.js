@@ -61,7 +61,7 @@ async function displayBanner() {
       infoDiv.appendChild(releaseYear);
     }
     const notaDiv = createElement('div', 'nota', 'Classificação: ');
-    const nota = createElement('span', 'nota--value', getRating(vote_average))
+    const nota = createElement('span', 'nota--value', vote_average)
     notaDiv.appendChild(nota);
     infoDiv.appendChild(notaDiv);
     const newOverview = overview.match(/.{500}/) ? overview.match(/.{500}/)[0] + '...' : overview;

@@ -78,25 +78,10 @@ async function getTrailerLink(id) {
     };
 };
 
-function getRating(vote) {
-  const star = '★'; 
-  const halfStar = '½';
-  let newRateString = '';
-  const convertedRate = vote * 5;
-  for (let i = convertedRate; i > 0; i -= 10) {
-    if (i > 10) {
-      newRateString += star
-    } else {
-      newRateString += halfStar
-    }
-  }
-  return newRateString;
-}
-
 const createHtml = (nota, description) =>
   `<div class='description'>
     <div class='nota'>Classificação: 
-      <span class='nota--value'>${getRating(nota)}</span>
+      <span class='nota--value'>${nota.toFixed(1)}</span>
     </div>
     <div class='description'>Descrição: 
       <spam class='description--text'>
@@ -185,4 +170,4 @@ document.querySelectorAll('div .item')
   document.getElementById('about').addEventListener('click', about);
 };
 
-export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener, createMovieCard, getLocalStorageWatchlist, getRating };
+export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener, createMovieCard, getLocalStorageWatchlist };
