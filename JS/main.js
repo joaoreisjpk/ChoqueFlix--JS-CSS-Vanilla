@@ -35,6 +35,9 @@ document.querySelectorAll('.inicio').forEach((element) => element.addEventListen
   });
 }));
 
+document.querySelectorAll('div .item')
+  .forEach((li) => li.addEventListener('click', listByGenre));
+
 document.querySelectorAll('.top-votes').forEach((item) => item.addEventListener('click', () => {
   removeBanner()
   listByRank()
@@ -160,9 +163,6 @@ window.onload = async () => {
   listaDeFilmes(mainUrl, 'Filmes Populares');
   displayAndVerifyBanner();
   const interval = setInterval(() => displayAndVerifyBanner(), 60 * 1000);
-
-document.querySelectorAll('div .item')
-  .forEach((li) => li.addEventListener('click', listByGenre));
 
   document.querySelectorAll('.page')
     .forEach((page) => page.addEventListener('click', () => listaDeFilmes(pageUrl(mainUrl, page.innerHTML), 'Filmes Populares')));

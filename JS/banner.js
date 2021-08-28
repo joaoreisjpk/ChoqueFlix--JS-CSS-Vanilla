@@ -1,4 +1,4 @@
-import { createElement, createImg, urlImg, getTrailerLink, apiKey, getFilmList, getLocalStorageWatchlist, getRating } from './main.js'
+import { createElement, createImg, urlImg, getTrailerLink, apiKey, getFilmList, getLocalStorageWatchlist } from './main.js'
 import { getName} from './watchlist.js'
 let currentBannerIndex = Math.floor(Math.random() * 19) + 0;
 const bannerDiv = document.querySelector('.banner');

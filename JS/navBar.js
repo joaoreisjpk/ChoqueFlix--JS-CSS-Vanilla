@@ -44,7 +44,7 @@ function listByGenre() {
   listaDeFilmes(urlByGenre(keyId), genre);
   pageEvent();
 
-  document.querySelectorAll('div .page').forEach((page) => {
+  document.querySelectorAll('.page').forEach((page) => {
     page.addEventListener('click', () =>
       listaDeFilmes(pageUrl(urlByGenre(keyId), page.innerHTML), genre));
   });
@@ -56,7 +56,7 @@ const listByRank = () => {
   listaDeFilmes(urlByRank(), 'Filmes Mais Votados');
   pageEvent();
 
-  document.querySelectorAll('div .page').forEach((page) => {
+  document.querySelectorAll('.page').forEach((page) => {
     page.addEventListener('click', () => listaDeFilmes(pageUrl(urlByRank(), page.innerHTML), `Filmes Mais Votados: ${page.innerHTML}`));
   });
 }
@@ -67,9 +67,9 @@ const listBySuccess = () => {
   removeBanner();
   listaDeFilmes(urlBySuccess(), 'Sucessos de Bilheteria');
   pageEvent();
-  document.querySelectorAll('div .page').forEach((page) => {
+  document.querySelectorAll('.page').forEach((page) => {
     page.addEventListener('click', () =>
-    listaDeFilmes(pageUrl(urlBySuccess(), page.innerHTML), `Sucessos de Bilheteria: ${eventPage.target.innerHTML}`));
+    listaDeFilmes(pageUrl(urlBySuccess(), page.innerHTML), `Sucessos de Bilheteria: ${page.innerHTML}`));
   });
 }
 
