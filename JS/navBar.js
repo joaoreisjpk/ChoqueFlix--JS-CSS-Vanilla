@@ -1,4 +1,4 @@
-import { listaDeFilmes, apiKey, urlImg, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener } from './main.js';
+import { listaDeFilmes, apiKey, urlImg, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener, createMovieCard } from './main.js';
 import { removeBanner } from './banner.js';
 
 let intervalId;
@@ -64,48 +64,16 @@ const listBySuccess = () => {
 const randomId = () => parseInt((Math.random() * 62) * 1000);
 const randomUrl = () => `https://api.themoviedb.org/3/movie/${randomId()}?api_key=${apiKey}`;
 
-async function randomChoice(item) {
-  getFilmList.innerHTML = '';
-  const { vote_average, poster_path, overview, id } = item;
-  const createSection = createElement('section', 'filme', false, id);
-  createSection.style.margin = 'auto';
-
-  // Adicionando à section a imagem e a descrições do filme
-  const thumbnail = urlImg + poster_path;
-  const background = createImg('imgTest', thumbnail, overview); // Cria o background
-  const description = createElement('div', 'description', ''); // Cria a div de descrição
-  createSection.appendChild(background); createSection.appendChild(description); // Adiciona a imagem e a div à section
-  
-  // Criando os botões, a classificação, e o overview a ser adicionados na descrição
-  const trailerBtn = createElement('a', 'btn-trailer ui inverted red button', 'Ver Trailer'); trailerBtn.target = '_blank';
-  const watchlistBtn = createElement('button', `btn-watchlist ui inverted blue button`, '', id);
-  const btnsDiv = createElement('div', `btnsDiv`, '');
-  watchlistBtn.innerHTML = `<i class="plus square outline icon"></i>&nbsp;List`;
-  description.innerHTML = createHtml(vote_average, overview); // Adicionando a classificação e o overview
-  btnsDiv.appendChild(trailerBtn); btnsDiv.appendChild(watchlistBtn); // Inclui os botões
-  description.appendChild(btnsDiv);
-
-  const trailerLink = await getTrailerLink(id);
-  if (trailerLink) {
-    trailerBtn.href = trailerLink;
-  } else { trailerBtn.innerText = 'Trailer indisponível'}
-
-  getFilmList.appendChild(createSection);
-  addBtnsWatchlistEventListener();
-}
-
 async function getRandomChoice() {
-  const tries = await fetch(randomUrl());
+  const tryUrl = randomUrl();
+  const tries = await fetch(tryUrl);
   const itemJson = await tries.json();
-  if (itemJson.poster_path) randomChoice(itemJson);
-  tryAgain();
+  (itemJson.poster_path) ? await createMovieCard(itemJson) : tryAgain();
+  document.querySelector('#page-list').style.display = 'none';
+  document.querySelector('.filme').style.margin = 'auto';
 }
 
-const tryAgain = () => {
-  setTimeout(() => {
-    if (getFilmList.innerHTML === '') getRandomChoice();
-  }, 400);
-};
+const tryAgain = () => getRandomChoice();
 
 function about() {
   const comming = document.createElement('p');
