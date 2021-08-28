@@ -117,7 +117,7 @@ body {
   margin: 100px 0 0 300px;
 }
 
-#page-list {
+div#page-list {
   color: white;
   font-size: 1.1rem;
   font-weight: 600;
