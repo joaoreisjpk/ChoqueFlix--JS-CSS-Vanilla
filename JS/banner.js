@@ -3,37 +3,6 @@ import { getName} from './watchlist.js'
 let currentBannerIndex = Math.floor(Math.random() * 19) + 0;
 const bannerDiv = document.querySelector('.banner');
 
-function getCardBannerInfos() {
-  return {
-    title: document.querySelector('.movie-title').innerText,
-    poster_path: document.querySelector('.poster-img').src,
-    vote_average: +(document.querySelector('.nota--value').innerText),
-    overview: document.querySelector('.banner-description').innerText,
-    btns: document.querySelector('.banner .btnsDiv').innerHTML,
-  };
-}
-
-function createCardFromBanner(object) {
-  const { title, vote_average, poster_path, overview, btns } = object;
-  const cardDiv = createElement('div', 'filme');
-
-  // Adicionando à section a imagem e a descrições do filme
-  const thumbnail = urlImg + poster_path;
-  const background = createImg('imgTest', thumbnail, overview); // Cria o background
-  const description = createElement('div', 'description'); // Cria a div de descrição
-  cardDiv.appendChild(background); cardDiv.appendChild(description); // Adiciona a imagem e a div à section
-
-  // Criando os botões, a classificação, e o overview a ser adicionados na descrição
-  const netflixBtn = createElement('a', '', '');
-  const btnsDiv = createElement('div', `btnsDiv`);
-  netflixBtn.innerHTML = `<i class="play circle huge icon"></i>`
-  netflixBtn.href = `https://www.netflix.com/search?q=${title}`; netflixBtn.target = '_blank'
-  description.innerHTML = createHtml(vote_average, overview); // Adicionando a classificação e o overview
-  btnsDiv.innerHTML = btns; // Inclui os botões
-  description.appendChild(btnsDiv); description.appendChild(netflixBtn);
-  return cardDiv;
-}
-
 const removeBanner = () => {
   document.querySelector('.banner-div').style.display = 'none';
   getFilmList.style.marginTop = '5%';
@@ -44,7 +13,7 @@ function getMubiImgLink(query, year) {
   const imgLink = fetch(`https://mubi.com/services/api/search?query=${query}`)
   .then((data) => data.json())
     .then(json => json.films)
-    .then((moviesList) => moviesList.find((movie) => movie.year == year && movie.title === query))
+    .then((moviesList) => moviesList.find((movie) => movie.year == year && movie.title.toLowerCase() === query.toLowerCase()))
     .then((movie) => { 
       if(movie) return movie.still_url;
       displayBanner()
@@ -79,7 +48,7 @@ function verifyInfoBanner(year) {
 
 async function displayBanner() {
   const bannerMoviesInfos = await getBannerMoviesInfo();
-  if (bannerMoviesInfos.title) {
+  if (bannerMoviesInfos.imgLink) {
     const {title, overview, id, vote_average, imgLink, thumbnail, year} = bannerMoviesInfos;
     const bannerImg = createImg('banner-img', imgLink, title);
     const posterAndInfoDiv = createElement('div', 'poster-and-info-div');
@@ -114,7 +83,6 @@ async function displayBanner() {
     watchlistBtn.addEventListener('click', (btn) => {
       localStorageList = getLocalStorageWatchlist();
       isOnWatchlist = localStorageList.some(({ id: movieId }) => +(movieId) === +(id));
-      console.log(isOnWatchlist)
       if (!isOnWatchlist) { // se não estiver na watchlist
         localStorageList.push({ title, vote_average, overview, id, thumbnail, isWatchlistItem: true});
         localStorage.setItem(`watchlist-${getName}`, JSON.stringify(localStorageList));
