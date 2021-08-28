@@ -1,7 +1,8 @@
 // import {  } from "./watchlist.js";
 import { addBtnsWatchlistEventListener, createElement, createImg } from "./main.js";
+import { removeBanner } from "./banner.js";
 
-const getSearch = document.querySelector('.searchbar')
+const getSearch = document.querySelectorAll('.searchbar')
 const getFilmList = document.getElementById('film-list');
 
 const createHtml = (nota, description) =>
@@ -40,15 +41,15 @@ const createFilme = async (Title, Poster, imdbRating, Plot, imdbID) => {
   addBtnsWatchlistEventListener()
 }
 
-getSearch.addEventListener('keyup', async (e) => {
+getSearch.forEach((item) => item.addEventListener('keyup', async (e) => {
   if (e.keyCode === 13) {
-    const data = await fetch(`https://www.omdbapi.com/?t=${getSearch.value}&apikey=1b999e04`)
+    const data = await fetch(`https://www.omdbapi.com/?t=${item.value}&apikey=1b999e04`)
     const dataJson = await data.json()
     const { Title, Poster, imdbRating, Plot, imdbID } = dataJson
     createFilme(Title, Poster, imdbRating, Plot, imdbID);
     removeBanner();
   }
-})
+}));
 
   
 

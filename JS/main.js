@@ -3,7 +3,7 @@ import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pag
 import { displayAndVerifyBanner, removeBanner } from './banner.js'
 import { addBtnsWatchlistEventListener, addRemoveFromWatchlistEventListeners, listWatchlist, getName } from './watchlist.js'
 
-document.querySelector('.search').innerHTML += `<a href='./index.html'>
+document.querySelector('.search-input').innerHTML += `<a href='./index.html'>
   <div class='perfil'>
     <img src='./images${localStorage.getItem('perfil').split('images')[1]}' class='perfilImg'>
     <i class="angle down icon"></i>
@@ -35,15 +35,15 @@ document.querySelectorAll('.inicio').forEach((element) => element.addEventListen
   });
 }));
 
-document.querySelectorAll('.top-votes').forEach((btn) => btn.addEventListener('click', () => {
+document.querySelectorAll('.top-votes').forEach((item) => item.addEventListener('click', () => {
   removeBanner()
   listByRank()
 }));
-document.querySelectorAll('.sucessos').forEach((btn) => btn.addEventListener('click', () => {
+document.querySelectorAll('.sucessos').forEach((item) => item.addEventListener('click', () => {
   removeBanner();
   listBySuccess()
 }));
-document.querySelectorAll('.random-choice').forEach((btn) => btn.addEventListener('click', () => {
+document.querySelectorAll('.random-choice').forEach((item) => item.addEventListener('click', () => {
   removeBanner()
   getRandomChoice()
 }));
