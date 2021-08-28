@@ -123,12 +123,16 @@ body {
   font-weight: 600;
   margin: 20px auto 40px;
   align-self: center;
+  display: flex;
+  align-items: center;
 }
 
 .page {
   padding: 5px;
-  margin: 15px;
+  margin: 0 15px;
+  font-size: 1.7rem;
   cursor: pointer;
+  align-self: center;
 }
 
 .watchlist-empty {

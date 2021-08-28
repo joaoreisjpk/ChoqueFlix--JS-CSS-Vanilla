@@ -191,25 +191,4 @@ nav {
   #about {
     display: none;
   }
-  .poster-img {
-    display: none;
-  }
-  .poster-and-info-div {
-    flex-direction: column;
-  }
-  div.btnsDiv {
-    justify-content: space-evenly;
-    margin: 0;
-    margin-bottom: 20px;
-  }
-  p.banner-description {
-    height: auto;
-    margin-bottom: 20px;
-  }
-  span.page {
-    margin: 8px
-  }
-  div#page-list {
-    margin: 0;
-  }
 }

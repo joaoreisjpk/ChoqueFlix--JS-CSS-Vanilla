@@ -90,3 +90,23 @@
   margin: 100px 0 0 300px;
 }
 /* End of Film Style */
+
+/* Responsividade */
+
+@media (max-width: 1000px) {
+  .poster-img {
+    display: none;
+  }
+  .poster-and-info-div {
+    flex-direction: column;
+  }
+  div.btnsDiv {
+    justify-content: space-evenly;
+    margin: 0;
+    margin-bottom: 20px;
+  }
+  p.banner-description {
+    height: auto;
+    margin-bottom: 20px;
+  }
+}
