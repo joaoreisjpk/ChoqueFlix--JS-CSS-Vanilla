@@ -24,7 +24,7 @@ function getMubiImgLink(query, year) {
 }
 
 async function getBannerMoviesInfo() {
-  const randomPage = Math.floor(Math.random() * 10) + 1
+  const randomPage = Math.floor(Math.random() * 15) + 1
   const results = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=revenue.desc&page=${randomPage}`)  
   const json = await results.json();
   const infos = await json.results[currentBannerIndex];
