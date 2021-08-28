@@ -52,7 +52,7 @@ async function displayBanner() {
     const {title, overview, id, vote_average, imgLink, thumbnail, year} = bannerMoviesInfos;
     const bannerImg = createImg('banner-img', imgLink, title);
     const posterAndInfoDiv = createElement('div', 'poster-and-info-div');
-    const infoDiv = createElement('div', 'movie-info-div');
+    const infoDiv = createElement('div', 'movie-info-div', false, 'movie-info-div');
     const posterImg = createImg('poster-img', thumbnail, 'imagem do poster');
     const titleElement = createElement('h2', 'movie-title', title.toUpperCase());
     infoDiv.appendChild(titleElement);
@@ -68,7 +68,7 @@ async function displayBanner() {
     const descriptionDiv = createElement('p', 'banner-description', newOverview)
     infoDiv.appendChild(descriptionDiv)
     const angleIcon = createElement('a', 'btn-angle-down', `<i class="angle down icon"></i>`)
-    angleIcon.href = "#film-list";
+    angleIcon.href = "#movie-info-div";
     const trailerBtn = createElement('a', 'btn-trailer ui inverted red button', 'Ver Trailer'); trailerBtn.target = '_blank';
     const trailerLink = await getTrailerLink(id);
     if (trailerLink) {
