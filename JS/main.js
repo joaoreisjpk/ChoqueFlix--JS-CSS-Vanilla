@@ -20,7 +20,7 @@ const getFocus = document.querySelectorAll('.navFocus')
 const getLocalStorageWatchlist = () => (localStorage.getItem(`watchlist-${getName}`)) ?
 JSON.parse(localStorage.getItem(`watchlist-${getName}`)) : [];
 
-document.querySelectorAll('.watchlist').forEach((btn) => btn.addEventListener('click', () => {
+documentq.querySelectorAll('.watchlist').forEach((btn) => btn.addEventListener('click', () => {
   removeBanner();
   listWatchlist();
 }));
