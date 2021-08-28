@@ -20,10 +20,10 @@ const getFocus = document.querySelectorAll('.navFocus')
 const getLocalStorageWatchlist = () => (localStorage.getItem(`watchlist-${getName}`)) ?
 JSON.parse(localStorage.getItem(`watchlist-${getName}`)) : [];
 
-document.getElementById('watchlist').addEventListener('click', () => {
+document.querySelectorAll('.watchlist').forEach((btn) => btn.addEventListener('click', () => {
   removeBanner();
   listWatchlist();
-})
+}));
 
 document.querySelectorAll('.inicio').forEach((element) => element.addEventListener('click', async () => {
   document.querySelector('.banner-div').style.display = 'block';
@@ -158,12 +158,13 @@ window.onload = async () => {
   listaDeFilmes(mainUrl, 'Filmes Populares');
   displayAndVerifyBanner();
   const interval = setInterval(() => displayAndVerifyBanner(), 60 * 1000);
-  document.querySelectorAll('.options li')
-    .forEach((li) => li.addEventListener('click', listByGenre));
 
-  document.querySelectorAll('.options div')
-    .forEach((li) => li.addEventListener('click', listByGenre));
-  
+  document.querySelectorAll('ul .genre')
+  .forEach((li) => li.addEventListener('click', listByGenre));
+
+document.querySelectorAll('div .item')
+  .forEach((li) => li.addEventListener('click', listByGenre));
+
   document.querySelectorAll('.page')
     .forEach((page) => page.addEventListener('click', () => listaDeFilmes(pageUrl(mainUrl, page.innerHTML), 'Filmes Populares')));
 

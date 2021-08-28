@@ -65,10 +65,10 @@ async function displayBanner() {
     notaDiv.appendChild(nota);
     infoDiv.appendChild(notaDiv);
     const newOverview = overview.match(/.{500}/) ? overview.match(/.{500}/)[0] + '...' : overview;
-    const descriptionDiv = createElement('p', 'banner-description', newOverview)
+    const descriptionDiv = createElement('p', 'banner-description', newOverview, 'arrow-down')
     infoDiv.appendChild(descriptionDiv)
     const angleIcon = createElement('a', 'btn-angle-down', `<i class="angle down icon"></i>`)
-    angleIcon.href = "#movie-info-div";
+    angleIcon.href = "#arrow-down";
     const trailerBtn = createElement('a', 'btn-trailer ui inverted red button', 'Ver Trailer'); trailerBtn.target = '_blank';
     const trailerLink = await getTrailerLink(id);
     if (trailerLink) {
