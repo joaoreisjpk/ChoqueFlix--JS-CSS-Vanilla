@@ -109,10 +109,15 @@ i.icon.angle.down:before {
   }
   div.btnsDiv {
     justify-content: flex-start;
-    margin: 0 0 40px 50px;
+    margin: 40px 0 40px 50px;
   }
   p.banner-description {
     height: auto;
-    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  p.banner-description {
+    display: none;
   }
 }
