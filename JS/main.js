@@ -157,6 +157,9 @@ window.onload = async () => {
   const interval = setInterval(() => displayAndVerifyBanner(), 60 * 1000);
   document.querySelectorAll('.options li')
     .forEach((li) => li.addEventListener('click', listByGenre));
+
+  document.querySelectorAll('.options div')
+    .forEach((li) => li.addEventListener('click', listByGenre));
   
   document.querySelectorAll('.page')
     .forEach((page) => page.addEventListener('click', () => listaDeFilmes(pageUrl(mainUrl, page.innerHTML))));

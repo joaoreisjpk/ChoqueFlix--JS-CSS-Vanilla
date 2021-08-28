@@ -49,8 +49,15 @@
 .banner-description {
   -webkit-animation: fadein 2s;
   margin-top: 7px;
-  height: 170px;
+  height: 130px;
   width: 500px;
+}
+
+i.icon.angle.down:before {
+  font-size: 30px;
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
 }
 
 .release-year {
@@ -102,10 +109,10 @@
   }
   div.btnsDiv {
     justify-content: flex-start;
-    margin: 0 0 20px 50px;
+    margin: 0 0 40px 50px;
   }
   p.banner-description {
     height: auto;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
   }
 }
