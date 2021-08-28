@@ -69,11 +69,10 @@ body {
 }
 
 .nota--value {
-  background-color: rgba(255, 255, 255, 0.856);
-  color: black;
-  padding: 4px ;
+  color: #fbbd08;
+  padding: 4px;
   border-radius: 100%;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   margin-left: .2rem;
 }
 
