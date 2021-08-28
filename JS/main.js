@@ -35,7 +35,6 @@ document.querySelectorAll('.inicio').forEach((element) => element.addEventListen
   });
 }));
 
-<<<<<<< HEAD
 document.querySelectorAll('.top-votes').forEach((item) => item.addEventListener('click', () => {
   removeBanner()
   listByRank()
@@ -45,17 +44,6 @@ document.querySelectorAll('.sucessos').forEach((item) => item.addEventListener('
   listBySuccess()
 }));
 document.querySelectorAll('.random-choice').forEach((item) => item.addEventListener('click', () => {
-=======
-document.querySelectorAll('.top-votes').forEach((btn) => btn.addEventListener('click', () => {
-  removeBanner()
-  listByRank()
-}));
-document.querySelectorAll('.sucessos').forEach((btn) => btn.addEventListener('click', () => {
-  removeBanner();
-  listBySuccess()
-}));
-document.querySelectorAll('.random-choice').forEach((btn) => btn.addEventListener('click', () => {
->>>>>>> 4e5971218d0f7974ae5ad4fb36a1a6c3141c7693
   removeBanner()
   getRandomChoice()
 }));
