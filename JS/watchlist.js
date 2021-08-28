@@ -5,7 +5,7 @@ const filmList = document.querySelector('#film-list');
 const getName = localStorage.getItem('perfil').split('images/')[1];
 
 function addMovieToWatchlist(event) {
-  const id = event.target.id;
+  const id = event.target.parentNode.parentNode.querySelector('.btn-watchlist').id;
   let localStorageList = getLocalStorageWatchlist();
   if (!localStorageList.some(({ id: movieId }) => movieId === id)) { // se não estiver no locastorage
   const movieElement = document.getElementById(id);
@@ -15,9 +15,9 @@ function addMovieToWatchlist(event) {
   const thumbnail = movieElement.querySelector('.imgTest').src; 
     localStorageList.push({ title, vote_average, overview, id, thumbnail, isWatchlistItem: true });
     localStorage.setItem(`watchlist-${getName}`, JSON.stringify(localStorageList));
-    event.target.innerHTML = 'Remover'
+    event.target.parentNode.parentNode.querySelector('.btn-watchlist').innerHTML = 'Remover'
   } else {
-    localStorageList = localStorageList.filter(({ movieId }) => +(movieId) != id);
+    localStorageList = localStorageList.filter(({id: movieId}) => +(movieId) != id);
     localStorage.setItem(`watchlist-${getName}`, JSON.stringify(localStorageList));
     event.target.innerHTML = '<i class="plus square outline icon"></i>&nbsp;List';
   }
@@ -33,12 +33,13 @@ function addRemoveFromWatchlistEventListeners() {
     .forEach((btn) => {
       btn.innerHTML = 'Remover';
       btn.addEventListener('click', (event) => {
-        const onTarget = event.target;
-        const id = onTarget.id
+        const id = event.target.parentNode.parentNode.querySelector('.btn-watchlist').id
+        const movies = document.querySelectorAll('.filme');
+        const clickedElement = [...movies].find((movie) => movie.id === id);
         let localStorageList = getLocalStorageWatchlist();
         localStorageList = localStorageList.filter((movieObject) => +(movieObject.id) !== +(id));
         localStorage.setItem(`watchlist-${getName}`, JSON.stringify(localStorageList));
-        onTarget.parentElement.parentElement.parentElement.remove();
+        clickedElement.parentElement.parentElement.parentElement.remove();
       });
     });
 }
