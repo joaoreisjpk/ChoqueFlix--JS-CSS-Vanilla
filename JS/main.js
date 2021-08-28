@@ -15,6 +15,7 @@ const mainUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
 
 const urlImg = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
 const getFilmList = document.getElementById('film-list');
+const getMainSection = document.querySelector('#main-section');
 const getFocus = document.querySelectorAll('.navFocus')
 const getLocalStorageWatchlist = () => (localStorage.getItem(`watchlist-${getName}`)) ?
 JSON.parse(localStorage.getItem(`watchlist-${getName}`)) : [];
@@ -27,13 +28,14 @@ document.getElementById('watchlist').addEventListener('click', () => {
 document.querySelectorAll('.inicio').forEach((element) => element.addEventListener('click', async () => {
   document.querySelector('.banner-div').style.display = 'block';
   getFilmList.style.marginTop = '0';
-  listaDeFilmes(mainUrl);
+  listaDeFilmes(mainUrl, 'Filmes Populares');
   pageEvent();
   document.querySelectorAll('.page').forEach((page) => {
-    page.addEventListener('click', () => listaDeFilmes(pageUrl(mainUrl, page.innerHTML)))
+    page.addEventListener('click', () => listaDeFilmes(pageUrl(mainUrl, page.innerHTML), 'Filmes Populares'))
   });
 }));
 
+<<<<<<< HEAD
 document.querySelectorAll('.top-votes').forEach((item) => item.addEventListener('click', () => {
   removeBanner()
   listByRank()
@@ -43,6 +45,17 @@ document.querySelectorAll('.sucessos').forEach((item) => item.addEventListener('
   listBySuccess()
 }));
 document.querySelectorAll('.random-choice').forEach((item) => item.addEventListener('click', () => {
+=======
+document.querySelectorAll('.top-votes').forEach((btn) => btn.addEventListener('click', () => {
+  removeBanner()
+  listByRank()
+}));
+document.querySelectorAll('.sucessos').forEach((btn) => btn.addEventListener('click', () => {
+  removeBanner();
+  listBySuccess()
+}));
+document.querySelectorAll('.random-choice').forEach((btn) => btn.addEventListener('click', () => {
+>>>>>>> 4e5971218d0f7974ae5ad4fb36a1a6c3141c7693
   removeBanner()
   getRandomChoice()
 }));
@@ -128,7 +141,9 @@ const createMovieCard = async ({ title, vote_average, poster_path, overview, id,
   }
 }
 
-const listaDeFilmes = async (urlApi) => {
+const listaDeFilmes = async (urlApi, pageName) => {
+  document.getElementById("page-title").innerText = pageName; 
+  getMainSection.className = (pageName === "Filmes Populares") ? 'homepage' : 'not-homepage';
   getFilmList.innerHTML = `<p id="waiting">Buscando conteúdo, aguarde...</p>`;
   const lista = await fetch(urlApi);
   const listaJson = await lista.json();
@@ -152,7 +167,7 @@ function removeActive(ev) {
 getFocus.forEach((element) => element.addEventListener('click', removeActive));
 
 window.onload = async () => {
-  listaDeFilmes(mainUrl);
+  listaDeFilmes(mainUrl, 'Filmes Populares');
   displayAndVerifyBanner();
   const interval = setInterval(() => displayAndVerifyBanner(), 60 * 1000);
   document.querySelectorAll('.options li')
@@ -162,7 +177,7 @@ window.onload = async () => {
     .forEach((li) => li.addEventListener('click', listByGenre));
   
   document.querySelectorAll('.page')
-    .forEach((page) => page.addEventListener('click', () => listaDeFilmes(pageUrl(mainUrl, page.innerHTML))));
+    .forEach((page) => page.addEventListener('click', () => listaDeFilmes(pageUrl(mainUrl, page.innerHTML), 'Filmes Populares')));
 
   document.querySelector('#about').addEventListener('click', about);
 };

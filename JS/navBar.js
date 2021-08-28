@@ -41,9 +41,9 @@ function listByGenre(event) {
   removeBanner();
   const genre = event.target.innerText;
   const keyId = genresObj[genre];
-  listaDeFilmes(urlByGenre(keyId));
+  listaDeFilmes(urlByGenre(keyId), genre);
   pageEvent();
-  const genrePages = (eventPage) => listaDeFilmes(pageUrl(urlByGenre(keyId), eventPage.target.innerHTML));
+  const genrePages = (eventPage) => listaDeFilmes(pageUrl(urlByGenre(keyId), eventPage.target.innerHTML), genre);
   document.querySelectorAll('.page').forEach((page) => {
     page.addEventListener('click', genrePages);
   })
@@ -52,16 +52,16 @@ function listByGenre(event) {
 const urlByRank = () => `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=vote_count.desc`;
 const listByRank = () => {
   removeBanner();
-  listaDeFilmes(urlByRank());
+  listaDeFilmes(urlByRank(), 'Filmes Mais Votados');
 }
 
 const urlBySuccess = () => `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=revenue.desc`
 const listBySuccess = () => {
   removeBanner();
-  listaDeFilmes(urlBySuccess());
+  listaDeFilmes(urlBySuccess(), "Sucessos de Bilheteria");
 }
 
-const randomId = () => parseInt((Math.random() * 62) * 1000);
+const randomId = () => parseInt(Math.random() * ((Math.random() + 1) * 100000));
 const randomUrl = () => `https://api.themoviedb.org/3/movie/${randomId()}?api_key=${apiKey}`;
 
 async function getRandomChoice() {

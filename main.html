@@ -18,6 +18,7 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
   />
+  <link rel="icon" type="imagem/png" href="./images/cFavIcon.png">
   <title>Choqueflix</title>
 </head>
 <body>
@@ -47,9 +48,9 @@
                 Mais
                 <i class="caret right icon"></i>
                 <div class="menu options">
-                  <div class="item more-options top-votes" id="">Mais Votados</div>
-                  <div class="item more-options sucessos" id="sucessos">Sucesso de Bilheteria</div>
-                  <div class="item more-options random-choice" id="random-choice">Sugestão Choqueflix</div>
+                  <div class="item more-options top-votes">Mais Votados</div>
+                  <div class="item more-options sucessos">Sucesso de Bilheteria</div>
+                  <div class="item more-options random-choice">Sugestão ChoqueFlix</div>
                 </div>
               </div>
               <div class="item">Sobre</div>
@@ -76,31 +77,27 @@
 
 
         <!-- Código Antigo -->
-        <div id="large-screen">
-          <div class="item nav navFocus navActive inicio">Início</div>
-          <div class="ui simple dropdown item nav navFocus">
-            Categorias
-            <i class="caret down icon"></i>
-            <div class="menu options">
-              <div class="item">Ação</div>
-              <div class="item">Aventura</div>
-              <div class="item">Comédia</div>
-              <div class="item">Drama</div>
-              <div class="item">Suspense</div>
-              <div class="item">Terror</div>
-            </div>
-          </div>
-          <div class="item nav navFocus" id="watchlist">Minha Lista</div>
-          <div class="ui simple dropdown item nav navFocus">
-            Mais
-            <i class="caret down icon"></i>
-            <div class="menu options">
-              <div class="item more-options top-votes" id="top-votes">Mais Votados</div>
-              <div class="item more-options sucessos" id="sucessos">Sucesso de Bilheteria</div>
-              <div class="item more-options random-choice" id="random-choice">Sugestão Choqueflix</div>
-            </div>
-          </div>
-          <div id='about' class="item nav navFocus">Sobre</div>
+        <div>
+          <li class="nav navFocus navActive inicio">Início</li>
+          <li class="nav navFocus">Categorias
+            <ul class="options">
+              <li>Ação</li>
+              <li>Aventura</li>
+              <li>Comédia</li>
+              <li>Drama</li>
+              <li>Suspense</li>
+              <li>Terror</li>
+            </ul>
+          </li>
+          <li class="nav navFocus" id="watchlist">Minha Lista</li>
+          <li class="nav navFocus">Mais
+            <ul class="options">
+              <li class="more-options top-votes">Mais Votados</li>
+              <li class="more-options sucessos">Sucessos de Bilheteria</li>
+              <li class="more-options random-choice">Sugestão do Choqueflix</li>
+            </ul>
+          </li>
+          <li id="about" class="nav navFocus">Sobre</li>
         </div>
         <div class="ui category search search-input">
           <div class="ui icon input" id="input-large">
@@ -121,6 +118,7 @@
   <br>
   <main>
     <section id="main-section">
+      <h1 id="page-title"></h1>
       <div id="film-list">
       </div>
       <div id="page-list">
