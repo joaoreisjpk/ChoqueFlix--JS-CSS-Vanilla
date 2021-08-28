@@ -116,22 +116,19 @@ async function displayBanner() {
     }
     const watchlistBtn = createElement('button', 'btn-watchlist-banner ui inverted blue button', false, id);
     let localStorageList = getLocalStorageWatchlist();
-    let isOnWatchlist = localStorageList.some((movieObj) => movieObj.id === id);
+    let isOnWatchlist = localStorageList.some(({ id: movieId }) => +(movieId) === id);
     watchlistBtn.innerHTML = isOnWatchlist ? 'Remover' : '<i class="plus square outline icon"></i>&nbsp;List';
 
     watchlistBtn.addEventListener('click', (btn) => {
-      console.log(getName);
       localStorageList = getLocalStorageWatchlist();
-      isOnWatchlist = localStorageList.some((movieObj) => parseInt(movieObj.id) === parseInt(id));
+      isOnWatchlist = localStorageList.some(({ id: movieId }) => +(movieId) === +(id));
       console.log(isOnWatchlist)
       if (!isOnWatchlist) { // se não estiver na watchlist
         localStorageList.push({ title, vote_average, overview, id, thumbnail, isWatchlistItem: true});
         localStorage.setItem(`watchlist-${getName}`, JSON.stringify(localStorageList));
         watchlistBtn.innerHTML = 'Remover';
-        console.log(`cheui`);
       } else if(isOnWatchlist){ // se estiver
-        console.log(`cheui2`);
-        localStorageList = localStorageList.filter((movieObj) => parseInt(movieObj.id) != id);
+        localStorageList = localStorageList.filter(({ id: movieId }) => +(movieId) != id);
         localStorage.setItem(`watchlist-${getName}`, JSON.stringify(localStorageList));
         btn.target.innerHTML = '<i class="plus square outline icon"></i>&nbsp;List';
       }

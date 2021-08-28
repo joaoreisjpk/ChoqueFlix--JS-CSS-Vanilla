@@ -5,20 +5,19 @@ const filmList = document.querySelector('#film-list');
 const getName = localStorage.getItem('perfil').split('images/')[1];
 
 function addMovieToWatchlist(event) {
-  const id = event.target.parentNode.parentNode.querySelector('.btn-watchlist').id;
+  const id = event.target.id;
+  let localStorageList = getLocalStorageWatchlist();
+  if (!localStorageList.some(({ id: movieId }) => movieId === id)) { // se não estiver no locastorage
   const movieElement = document.getElementById(id);
   const title = movieElement.querySelector('.title-hidden').innerText;
   const vote_average = movieElement.querySelector('.nota--value').innerText;
   const overview = movieElement.querySelector('.description--text').innerText;
   const thumbnail = movieElement.querySelector('.imgTest').src; 
-  let localStorageList = getLocalStorageWatchlist();
-  console.log(thumbnail);
-  if (!localStorageList.some((movieObj) => movieObj.id === id)) { // se não estiver no locastorage
-    localStorageList.push({ title, vote_average, overview, id, thumbnail, isWatchlistItem: true});
+    localStorageList.push({ title, vote_average, overview, id, thumbnail, isWatchlistItem: true });
     localStorage.setItem(`watchlist-${getName}`, JSON.stringify(localStorageList));
-    event.target.parentNode.parentNode.querySelector('.btn-watchlist').innerHTML = 'Remover'
+    event.target.innerHTML = 'Remover'
   } else {
-    localStorageList = localStorageList.filter((movieObj) => parseInt(movieObj.id) != id);
+    localStorageList = localStorageList.filter(({ movieId }) => +(movieId) != id);
     localStorage.setItem(`watchlist-${getName}`, JSON.stringify(localStorageList));
     event.target.innerHTML = '<i class="plus square outline icon"></i>&nbsp;List';
   }
@@ -30,28 +29,24 @@ function addBtnsWatchlistEventListener() {
 };
 
 function addRemoveFromWatchlistEventListeners() {
-  const btns = document.querySelectorAll('.btn-watchlist');
-  for (let btn of btns) {
-    console.log(`cheguei`);
-    btn.innerHTML = 'Remover';
-    btn.addEventListener('click', (el) => {
-      const id = el.target.parentNode.parentNode.querySelector('.btn-watchlist').id
-      const movies = document.querySelectorAll('.filme');
-      const clickedElement = [...movies].find((movie) => movie.id === id);
-      console.log(clickedElement)
-      let localStorageList = getLocalStorageWatchlist();
-      localStorageList = localStorageList.filter((movieObject) => parseInt(movieObject.id) !== parseInt(id));
-      localStorage.setItem(`watchlist-${getName}`, JSON.stringify(localStorageList));
-      clickedElement.remove();
+  document.querySelectorAll('.btn-watchlist')
+    .forEach((btn) => {
+      btn.innerHTML = 'Remover';
+      btn.addEventListener('click', (event) => {
+        const onTarget = event.target;
+        const id = onTarget.id
+        let localStorageList = getLocalStorageWatchlist();
+        localStorageList = localStorageList.filter((movieObject) => +(movieObject.id) !== +(id));
+        localStorage.setItem(`watchlist-${getName}`, JSON.stringify(localStorageList));
+        onTarget.parentElement.parentElement.parentElement.remove();
+      });
     });
-  }
 }
 
 function listWatchlist() {
   filmList.innerHTML = '';
-  document.querySelector('#page-list').style = 'display: none'
+  document.querySelector('#page-list').style = 'display: none';
   const watchlistArray = getLocalStorageWatchlist();
-  console.log(watchlistArray)
   if (watchlistArray.length === 0) {
     const isEmpty = createElement('p', 'watchlist-empty', 'Sua lista está vazia');
     document.querySelector('#film-list').appendChild(isEmpty)
@@ -61,5 +56,6 @@ function listWatchlist() {
     if (isEmpty) isEmpty.remove();
     await createMovieCard(movieObj);
   })
-} 
+}
+
 export { addBtnsWatchlistEventListener, listWatchlist, getName, addRemoveFromWatchlistEventListeners }

@@ -89,9 +89,8 @@ const createHtml = (nota, description) =>
 
 const createMovieCard = async ({ title, vote_average, poster_path, overview, id, thumbnail, isWatchlistItem }) => {
   if (poster_path || thumbnail) {
-    console.log(isWatchlistItem)
     // Criando uma section para cada filme
-    const sectionClassName = isWatchlistItem === undefined ? `filme` : `filme watchlist-item` // se for um item da watchlist terá a clase watchlist-item
+    const sectionClassName = !isWatchlistItem ? `filme` : `filme watchlist-item` // se for um item da watchlist terá a clase watchlist-item
     const createSection = createElement('section', sectionClassName, false, id);
     // Adicionando à section a imagem e a descrições do filme
     if (!thumbnail) thumbnail = urlImg + poster_path; // fazendo essa condicional porque thumbnail pode vir da func listWatchlist.
@@ -110,8 +109,8 @@ const createMovieCard = async ({ title, vote_average, poster_path, overview, id,
     netflixBtn.innerHTML = `<i class="play circle huge icon"></i>`
     netflixBtn.href = `https://www.netflix.com/search?q=${title}`; netflixBtn.target = '_blank'
     let localStorageList = getLocalStorageWatchlist();
-    let isOnWatchlist = localStorageList.some((movieObj) => movieObj.id === id);
-    watchlistBtn.innerHTML = isOnWatchlist ? `Remover` : `<i class="plus square outline icon"></i>&nbsp;List`;
+    let isOnWatchlist = localStorageList.some(({ id: movieId }) => +(movieId) === id);
+    watchlistBtn.innerHTML = isOnWatchlist ? 'Remover' : '<i class="plus square outline icon"></i>&nbsp;List';
     description.innerHTML = createHtml(parseFloat(vote_average), overview); // Adicionando a classificação e o overview
     btnsDiv.appendChild(trailerBtn); btnsDiv.appendChild(watchlistBtn); // Inclui os botões
     description.appendChild(btnsDiv); description.appendChild(netflixBtn);
@@ -133,20 +132,20 @@ const listaDeFilmes = async (urlApi) => {
   getFilmList.innerHTML = `<p id="waiting">Buscando conteúdo, aguarde...</p>`;
   const lista = await fetch(urlApi);
   const listaJson = await lista.json();
-  listaJson.results.forEach(createMovieCard);
+  listaJson.results.forEach((film) => createMovieCard(film));
   if (document.querySelector('#waiting')) document.querySelector('#waiting').remove();
   document.querySelector('#page-list').style = 'display: block'
 };
 
-function removeActive(e) {
+function removeActive(ev) {
   getFocus.forEach((element) => element.classList.remove('navActive'));
     document.querySelectorAll('.options li')
     .forEach((li) => li.classList.remove('liActive'));
 
-    if (e.target.parentElement.className === 'options') {
-      e.target.parentElement.parentElement.classList.add('navActive');
-      e.target.className += ' liActive';
-    } else e.target.classList.add('navActive');
+    if (ev.target.parentElement.className === 'options') {
+      ev.target.parentElement.parentElement.classList.add('navActive');
+      ev.target.className += ' liActive';
+    } else ev.target.classList.add('navActive');
 }
 
 getFocus.forEach((element) => element.addEventListener('click', removeActive));
