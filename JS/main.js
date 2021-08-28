@@ -34,18 +34,18 @@ document.querySelectorAll('.inicio').forEach((element) => element.addEventListen
   });
 }));
 
-document.getElementById('top-votes').addEventListener('click', () => {
+document.querySelectorAll('.top-votes').forEach((btn) => btn.addEventListener('click', () => {
   removeBanner()
   listByRank()
-});
-document.getElementById('sucessos').addEventListener('click', () => {
+}));
+document.querySelectorAll('.sucessos').forEach((btn) => btn.addEventListener('click', () => {
   removeBanner();
   listBySuccess()
-});
-document.getElementById('random-choice').addEventListener('click', () => {
+}));
+document.querySelectorAll('.random-choice').forEach((btn) => btn.addEventListener('click', () => {
   removeBanner()
   getRandomChoice()
-});
+}));
 
 function createElement(element, className, content, id) {
   const el = document.createElement(element);
