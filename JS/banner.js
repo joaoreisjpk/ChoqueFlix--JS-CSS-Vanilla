@@ -24,7 +24,7 @@ function getMubiImgLink(query, year) {
 }
 
 async function getBannerMoviesInfo() {
-  const randomPage = Math.floor(Math.random() * 10) + 1
+  const randomPage = Math.floor(Math.random() * 15) + 1
   const results = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=revenue.desc&page=${randomPage}`)  
   const json = await results.json();
   const infos = await json.results[currentBannerIndex];
@@ -67,6 +67,8 @@ async function displayBanner() {
     const newOverview = overview.match(/.{500}/) ? overview.match(/.{500}/)[0] + '...' : overview;
     const descriptionDiv = createElement('p', 'banner-description', newOverview)
     infoDiv.appendChild(descriptionDiv)
+    const angleIcon = createElement('a', 'btn-angle-down', `<i class="angle down icon"></i>`)
+    angleIcon.href = "#film-list";
     const trailerBtn = createElement('a', 'btn-trailer ui inverted red button', 'Ver Trailer'); trailerBtn.target = '_blank';
     const trailerLink = await getTrailerLink(id);
     if (trailerLink) {
@@ -101,6 +103,7 @@ async function displayBanner() {
     posterAndInfoDiv.appendChild(btnsDiv);
     bannerDiv.appendChild(bannerImg);
     bannerDiv.appendChild(posterAndInfoDiv);
+    bannerDiv.appendChild(angleIcon); 
     const loader = document.querySelector('#loader-div')
     if(loader) loader.remove();
   }
