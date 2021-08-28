@@ -3,7 +3,7 @@ import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pag
 import { displayAndVerifyBanner, removeBanner } from './banner.js'
 import { addBtnsWatchlistEventListener, addRemoveFromWatchlistEventListeners, listWatchlist, getName } from './watchlist.js'
 
-document.querySelector('.search').innerHTML += `<a href='./index.html'>
+document.querySelector('.search-input').innerHTML += `<a href='./index.html'>
   <div class='perfil'>
     <img src='./images${localStorage.getItem('perfil').split('images')[1]}' class='perfilImg'>
     <i class="angle down icon"></i>
@@ -35,15 +35,15 @@ document.querySelectorAll('.inicio').forEach((element) => element.addEventListen
   });
 }));
 
-document.querySelectorAll('.top-votes').forEach((btn) => btn.addEventListener('click', () => {
+document.querySelectorAll('.top-votes').forEach((item) => item.addEventListener('click', () => {
   removeBanner()
   listByRank()
 }));
-document.querySelectorAll('.sucessos').forEach((btn) => btn.addEventListener('click', () => {
+document.querySelectorAll('.sucessos').forEach((item) => item.addEventListener('click', () => {
   removeBanner();
   listBySuccess()
 }));
-document.querySelectorAll('.random-choice').forEach((btn) => btn.addEventListener('click', () => {
+document.querySelectorAll('.random-choice').forEach((item) => item.addEventListener('click', () => {
   removeBanner()
   getRandomChoice()
 }));
@@ -76,10 +76,25 @@ async function getTrailerLink(id) {
     };
 };
 
+function getRating(vote) {
+  const star = '★'; 
+  const halfStar = '½';
+  let newRateString = '';
+  const convertedRate = vote * 5;
+  for (let i = convertedRate; i > 0; i -= 10) {
+    if (i > 10) {
+      newRateString += star
+    } else {
+      newRateString += halfStar
+    }
+  }
+  return newRateString;
+}
+
 const createHtml = (nota, description) =>
   `<div class='description'>
     <div class='nota'>Classificação: 
-      <span class='nota--value'>${nota.toFixed(1)}</span>
+      <span class='nota--value'>${getRating(nota)}</span>
     </div>
     <div class='description'>Descrição: 
       <spam class='description--text'>
@@ -171,4 +186,4 @@ document.querySelectorAll('div .item')
   document.querySelector('#about').addEventListener('click', about);
 };
 
-export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener, createMovieCard, getLocalStorageWatchlist };
+export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener, createMovieCard, getLocalStorageWatchlist, getRating };

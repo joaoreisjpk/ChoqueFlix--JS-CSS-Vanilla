@@ -69,11 +69,10 @@ body {
 }
 
 .nota--value {
-  background-color: rgba(255, 255, 255, 0.856);
-  color: black;
-  padding: 4px ;
+  color: #fbbd08;
+  padding: 4px;
   border-radius: 100%;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   margin-left: .2rem;
 }
 
@@ -158,3 +157,25 @@ div#page-list {
   justify-content: center;
 }
 /* Extras End*/
+
+@media (max-width: 700px) {
+  .page {
+    margin-right: 5px;
+  }
+}
+@media (max-width: 600px) {
+  #film-list {
+    justify-content: center;
+  }
+  .page-8, .page-9, .page-10 {
+    display: none;
+  }
+}
+@media (max-width: 400px) {
+  #film-list {
+    justify-content: center;
+  }
+  .page-6, .page-7,.page-8, .page-9, .page-10 {
+    display: none;
+  }
+}
