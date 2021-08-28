@@ -61,7 +61,7 @@ const listBySuccess = () => {
   listaDeFilmes(urlBySuccess());
 }
 
-const randomId = () => parseInt((Math.random() * 62) * 1000);
+const randomId = () => parseInt(Math.random() * ((Math.random() + 1) * 100000));
 const randomUrl = () => `https://api.themoviedb.org/3/movie/${randomId()}?api_key=${apiKey}`;
 
 async function getRandomChoice() {
