@@ -107,7 +107,7 @@ i.icon.angle.down:before {
   .poster-and-info-div {
     flex-direction: column;
   }
-  div.btnsDiv {
+  .banner div.btnsDiv {
     justify-content: flex-start;
     margin: 0 0 40px 50px;
   }
