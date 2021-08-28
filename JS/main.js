@@ -79,7 +79,7 @@ async function getTrailerLink(id) {
 const createHtml = (nota, description) =>
   `<div class='description'>
     <div class='nota'>Classificação: 
-      <span class='nota--value'>${vote_average.toFixed(1)}</span>
+      <span class='nota--value'>${nota.toFixed(1)}</span>
     </div>
     <div class='description'>Descrição: 
       <spam class='description--text'>
