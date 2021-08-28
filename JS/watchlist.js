@@ -39,7 +39,7 @@ function addRemoveFromWatchlistEventListeners() {
         let localStorageList = getLocalStorageWatchlist();
         localStorageList = localStorageList.filter((movieObject) => +(movieObject.id) !== +(id));
         localStorage.setItem(`watchlist-${getName}`, JSON.stringify(localStorageList));
-        clickedElement.parentElement.parentElement.parentElement.remove();
+        if (clickedElement) clickedElement.remove();
       });
     });
 }
