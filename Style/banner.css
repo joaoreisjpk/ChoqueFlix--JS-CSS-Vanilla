@@ -101,9 +101,8 @@
     flex-direction: column;
   }
   div.btnsDiv {
-    justify-content: space-evenly;
-    margin: 0;
-    margin-bottom: 20px;
+    justify-content: flex-start;
+    margin: 0 0 20px 50px;
   }
   p.banner-description {
     height: auto;
