@@ -44,7 +44,7 @@ function getMubiImgLink(query, year) {
   const imgLink = fetch(`https://mubi.com/services/api/search?query=${query}`)
   .then((data) => data.json())
     .then(json => json.films)
-    .then((moviesList) => moviesList.find((movie) => movie.year == year && movie.title === query))
+    .then((moviesList) => moviesList.find((movie) => movie.year == year && movie.title.toLowerCase() === query.toLowerCase()))
     .then((movie) => { 
       if(movie) return movie.still_url;
       displayBanner()
@@ -79,7 +79,7 @@ function verifyInfoBanner(year) {
 
 async function displayBanner() {
   const bannerMoviesInfos = await getBannerMoviesInfo();
-  if (bannerMoviesInfos.title) {
+  if (bannerMoviesInfos.imgLink) {
     const {title, overview, id, vote_average, imgLink, thumbnail, year} = bannerMoviesInfos;
     const bannerImg = createImg('banner-img', imgLink, title);
     const posterAndInfoDiv = createElement('div', 'poster-and-info-div');
@@ -114,7 +114,6 @@ async function displayBanner() {
     watchlistBtn.addEventListener('click', (btn) => {
       localStorageList = getLocalStorageWatchlist();
       isOnWatchlist = localStorageList.some(({ id: movieId }) => +(movieId) === +(id));
-      console.log(isOnWatchlist)
       if (!isOnWatchlist) { // se não estiver na watchlist
         localStorageList.push({ title, vote_average, overview, id, thumbnail, isWatchlistItem: true});
         localStorage.setItem(`watchlist-${getName}`, JSON.stringify(localStorageList));
