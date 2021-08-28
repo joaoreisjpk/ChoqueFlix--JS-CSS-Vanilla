@@ -1,5 +1,5 @@
 
-import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl } from './navBar.js';
+import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl, about } from './navBar.js';
 import { displayAndVerifyBanner, removeBanner } from './banner.js'
 import { addBtnsWatchlistEventListener, addRemoveFromWatchlistEventListeners, listWatchlist, getName } from './watchlist.js'
 
@@ -100,10 +100,10 @@ const createMovieCard = async ({ title, vote_average, poster_path, overview, id,
     createSection.appendChild(titleDiv)
     const description = createElement('div', 'description', ''); // Cria a div de descrição
     createSection.appendChild(background); createSection.appendChild(description); // Adiciona a imagem e a div à section
-    
+
     // Criando os botões, a classificação, e o overview a ser adicionados na descrição
     const trailerBtn = createElement('a', 'btn-trailer ui inverted red button', 'Ver Trailer'); trailerBtn.target = '_blank';
-    const netflixBtn = createElement('a', '', ''); trailerBtn.target = '_blank';
+    const netflixBtn = createElement('a', '', '');
     const watchlistBtn = createElement('button', `btn-watchlist ui inverted blue button`, '', id);
     const btnsDiv = createElement('div', `btnsDiv`, '');
     netflixBtn.innerHTML = `<i class="play circle huge icon"></i>`
@@ -133,7 +133,8 @@ const listaDeFilmes = async (urlApi) => {
   const lista = await fetch(urlApi);
   const listaJson = await lista.json();
   listaJson.results.forEach((film) => createMovieCard(film));
-  if (document.querySelector('#waiting')) document.querySelector('#waiting').remove();
+  const wait = document.querySelector('#waiting');
+  if (wait) wait.remove();
   document.querySelector('#page-list').style = 'display: block'
 };
 
@@ -159,6 +160,8 @@ window.onload = async () => {
   
   document.querySelectorAll('.page')
     .forEach((page) => page.addEventListener('click', () => listaDeFilmes(pageUrl(mainUrl, page.innerHTML))));
+
+  document.querySelector('#about').addEventListener('click', about);
 };
 
 export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener, createMovieCard, getLocalStorageWatchlist };
