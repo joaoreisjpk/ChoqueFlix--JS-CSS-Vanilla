@@ -206,5 +206,10 @@ nav {
     height: auto;
     margin-bottom: 20px;
   }
-
+  span.page {
+    margin: 8px
+  }
+  div#page-list {
+    margin: 0;
+  }
 }

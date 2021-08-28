@@ -106,7 +106,8 @@ body {
 
 #main-section {
   position: relative;
-  padding-bottom: 100px;
+  display: flex;
+  flex-direction: column;
   min-height: 90vh;
 }
 
@@ -120,10 +121,8 @@ body {
   color: white;
   font-size: 1.1rem;
   font-weight: 600;
-  margin: 50px 0 50px 50%;
-  transform: translateX(-50%);
-  position: absolute;
-  bottom: 5px;
+  margin: 20px auto 40px;
+  align-self: center;
 }
 
 .page {
