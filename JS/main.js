@@ -24,7 +24,7 @@ document.getElementById('watchlist').addEventListener('click', () => {
   listWatchlist();
 })
 
-document.getElementById('inicio').addEventListener('click', async () => {
+document.querySelectorAll('.inicio').forEach((element) => element.addEventListener('click', async () => {
   document.querySelector('.banner-div').style.display = 'block';
   getFilmList.style.marginTop = '0';
   listaDeFilmes(mainUrl);
@@ -32,7 +32,7 @@ document.getElementById('inicio').addEventListener('click', async () => {
   document.querySelectorAll('.page').forEach((page) => {
     page.addEventListener('click', () => listaDeFilmes(pageUrl(mainUrl, page.innerHTML)))
   });
-});
+}));
 
 document.getElementById('top-votes').addEventListener('click', () => {
   removeBanner()

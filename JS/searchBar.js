@@ -46,6 +46,7 @@ getSearch.addEventListener('keyup', async (e) => {
     const dataJson = await data.json()
     const { Title, Poster, imdbRating, Plot, imdbID } = dataJson
     createFilme(Title, Poster, imdbRating, Plot, imdbID);
+    removeBanner();
   }
 })
 

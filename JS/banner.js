@@ -34,14 +34,6 @@ function createCardFromBanner(object) {
   return cardDiv;
 }
 
-const addCardBannerToStorage = () => {
-  const card = createCardFromBanner(getCardBannerInfos());
-  if (!localStorageList.includes(card.innerHTML)) {
-    localStorageList.push(card.innerHTML);
-    localStorage.setItem(`watchlist-${getName}`, JSON.stringify(localStorageList));
-  }
-}
-
 const removeBanner = () => {
   document.querySelector('.banner-div').style.display = 'none';
   getFilmList.style.marginTop = '5%';
