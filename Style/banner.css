@@ -124,6 +124,12 @@ i.icon.angle.down:before {
 }
 
 @media (max-width: 600px) {
+  .banner-div {
+    width: 100%;
+    height: max(50vh, 200px);
+    position: relative;
+    top: 55px;
+  }
   .movie-title {
     font-size: 22px;
     margin-bottom: 5px;
