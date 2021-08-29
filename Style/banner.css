@@ -26,7 +26,7 @@
 
 .banner-div {
   width: 100%;
-  height: max(85vh, 580px);
+  height: max(92vh, 200px);
   position: relative;
   top: 55px;
 }
@@ -124,13 +124,6 @@ i.icon.angle.down:before {
 }
 
 @media (max-width: 600px) {
-  .banner-div{
-    height: 60%;;
-  }
-  .banner {
-    height: 100%;
-    position: relative;
-  }
   .movie-title {
     font-size: 22px;
     margin-bottom: 5px;
