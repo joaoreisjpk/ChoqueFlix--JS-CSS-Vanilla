@@ -25,7 +25,7 @@ document.querySelectorAll('.watchlist').forEach((item) => item.addEventListener(
   listWatchlist();
 }));
 
-document.querySelectorAll('.inicio').forEach((element) => element.addEventListener('click', () => {
+document.querySelectorAll('.inicio').forEach((element) => element.addEventListener('click', async () => {
   document.querySelector('.banner-div').style.display = 'block';
   getFilmList.style.marginTop = '0';
   listaDeFilmes(mainUrl, 'Filmes Populares');
@@ -42,13 +42,11 @@ document.querySelectorAll('.top-votes').forEach((item) => item.addEventListener(
   removeBanner()
   listByRank()
 }));
-
-document.querySelectorAll('.sucessos').forEach((item) => item.addEventListener('click', () => {
+document.querySelectorAll('.sucessos').forEach((btn) => btn.addEventListener('click', () => {
   removeBanner();
   listBySuccess()
 }));
-
-document.querySelectorAll('.random-choice').forEach((item) => item.addEventListener('click', () => {
+document.querySelectorAll('.random-choice').forEach((btn) => btn.addEventListener('click', () => {
   removeBanner()
   getRandomChoice()
 }));

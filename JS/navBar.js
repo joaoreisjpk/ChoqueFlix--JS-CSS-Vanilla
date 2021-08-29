@@ -58,7 +58,7 @@ const listByRank = () => {
   pageEvent();
 
   document.querySelectorAll('.page').forEach((page) => {
-    page.addEventListener('click', () => listaDeFilmes(pageUrl(urlByRank(), page.innerHTML), `Filmes Mais Votados: ${page.innerHTML}`));
+    page.addEventListener('click', () => listaDeFilmes(pageUrl(urlByRank(), page.innerHTML), `Filmes Mais Votados`));
   });
 }
 
@@ -70,7 +70,7 @@ const listBySuccess = () => {
   pageEvent();
   document.querySelectorAll('.page').forEach((page) => {
     page.addEventListener('click', () =>
-    listaDeFilmes(pageUrl(urlBySuccess(), page.innerHTML), `Sucessos de Bilheteria: ${page.innerHTML}`));
+    listaDeFilmes(pageUrl(urlBySuccess(), page.innerHTML), `Sucessos de Bilheteria`));
   });
 }
 
