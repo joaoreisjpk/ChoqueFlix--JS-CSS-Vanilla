@@ -107,6 +107,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 90vh;
+  top: 55px;
 }
 
 .not-homepage {
@@ -173,7 +174,6 @@ div#page-list {
   #subpage-list {
     display: block;
   }
-
   .subpage-list--2 {
     margin-top: 7px !important;
   }
