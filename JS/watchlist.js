@@ -45,6 +45,7 @@ function addRemoveFromWatchlistEventListeners() {
 }
 
 function listWatchlist() {
+  document.querySelector('#page-title').innerHTML = '';
   filmList.innerHTML = '';
   document.querySelector('#page-list').style = 'visibility: hidden';
   const watchlistArray = getLocalStorageWatchlist();
@@ -53,7 +54,8 @@ function listWatchlist() {
     document.querySelector('#film-list').appendChild(isEmpty)
   }
   watchlistArray.forEach(async (movieObj) => {
-    const isEmpty = document.querySelector('.watchlist-empty')
+    const isEmpty = document.querySelector('.watchlist-empty');
+    if (!isEmpty) document.querySelector('#page-title').innerHTML = 'Sua lista de filmes';
     if (isEmpty) isEmpty.remove();
     await createMovieCard(movieObj);
   })

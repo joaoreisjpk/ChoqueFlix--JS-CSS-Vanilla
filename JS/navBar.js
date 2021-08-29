@@ -89,9 +89,10 @@ async function getRandomChoice() {
 const tryAgain = () => getRandomChoice();
 
 function about() {
+  getFilmList.innerHTML = '';
+  document.querySelector('#page-title').innerHTML = '';
   const comming = document.createElement('p');
   comming.id = 'waiting';
-  getFilmList.innerHTML = '';
   getFilmList.appendChild(comming);
   intervalId = setInterval(() => {
     comming.innerText = text.slice(0, index);
