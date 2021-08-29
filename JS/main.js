@@ -35,7 +35,7 @@ document.querySelectorAll('.inicio').forEach((element) => element.addEventListen
   });
 }));
 
-document.querySelectorAll('div .item')
+document.querySelectorAll('div .genre')
   .forEach((li) => li.addEventListener('click', listByGenre));
 
 document.querySelectorAll('.top-votes').forEach((item) => item.addEventListener('click', () => {
@@ -148,10 +148,10 @@ const listaDeFilmes = async (urlApi, pageName) => {
 
 function removeActive(ev) {
   getFocus.forEach((element) => element.classList.remove('navActive'));
-    document.querySelectorAll('.options li')
+    document.querySelectorAll('.options div')
     .forEach((li) => li.classList.remove('liActive'));
 
-    if (ev.target.parentElement.className === 'options') {
+    if (ev.target.parentElement.className.includes('options')) {
       ev.target.parentElement.parentElement.classList.add('navActive');
       ev.target.className += ' liActive';
     } else ev.target.classList.add('navActive');
@@ -167,7 +167,7 @@ window.onload = async () => {
   document.querySelectorAll('.page')
     .forEach((page) => page.addEventListener('click', () => listaDeFilmes(pageUrl(mainUrl, page.innerHTML), 'Filmes Populares')));
 
-  document.getElementById('about').addEventListener('click', about);
+  document.querySelectorAll('.about').forEach((item) => item.addEventListener('click', about));
 };
 
 export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener, createMovieCard, getLocalStorageWatchlist };

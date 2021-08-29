@@ -37,9 +37,10 @@ function pageEvent() {
 const urlByGenre = (genreId) => `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}&sort_by=prelease_date.desc`;
 
 // Responsável por listar filmes por gênero
-function listByGenre() {
+function listByGenre(event) {
   removeBanner();
-  const genre = this.innerText;
+  const genre = event.target.innerText;
+  console.log(event.target);
   const keyId = genresObj[genre];
   listaDeFilmes(urlByGenre(keyId), genre);
   pageEvent();
@@ -90,7 +91,7 @@ const tryAgain = () => getRandomChoice();
 function about() {
   const comming = document.createElement('p');
   comming.id = 'waiting';
-  getFilmList.innerHTML = ''
+  getFilmList.innerHTML = '';
   getFilmList.appendChild(comming);
   intervalId = setInterval(() => {
     comming.innerText = text.slice(0, index);
