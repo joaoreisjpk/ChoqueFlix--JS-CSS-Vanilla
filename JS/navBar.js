@@ -78,12 +78,15 @@ const randomId = () => parseInt(Math.random() * ((Math.random() + 1) * 100000));
 const randomUrl = () => `https://api.themoviedb.org/3/movie/${randomId()}?api_key=${apiKey}`;
 
 async function getRandomChoice() {
+  const pageTitle = document.querySelector('#page-title');
+  if (pageTitle.innerHTML !== 'Roleta Choqueflix') getFilmList.innerHTML = '';
+  pageTitle.innerHTML = 'Roleta Choqueflix';
+  document.querySelector('#page-list').style = 'visibility: hidden';
   const tryUrl = randomUrl();
   const tries = await fetch(tryUrl);
   const itemJson = await tries.json();
   (itemJson.poster_path) ? await createMovieCard(itemJson) : tryAgain();
-  document.querySelector('#page-list').style = 'visibility: hidden';
-  document.querySelector('.filme').style.margin = 'auto';
+  document.querySelectorAll('.filme').forEach((card) => card.style.margin = 'auto');
 }
 
 const tryAgain = () => getRandomChoice();
@@ -108,4 +111,4 @@ function about() {
   document.querySelector('#page-list').style = 'visibility: hidden';
 }
 
-export { genresObj, urlByGenre, listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl, urlBySuccess, about };
+export { genresObj, urlByGenre, listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl, urlBySuccess, about, intervalId };

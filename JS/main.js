@@ -1,5 +1,5 @@
 
-import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl, about } from './navBar.js';
+import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl, about, intervalId } from './navBar.js';
 import { displayAndVerifyBanner, removeBanner } from './banner.js'
 import { addBtnsWatchlistEventListener, addRemoveFromWatchlistEventListeners, listWatchlist, getName } from './watchlist.js'
 
@@ -130,6 +130,7 @@ const createMovieCard = async ({ title, vote_average, poster_path, overview, id,
     getFilmList.appendChild(createSection); // Adiciona a section à lista de filmes;
     isWatchlistItem ? addRemoveFromWatchlistEventListeners() : addBtnsWatchlistEventListener();
   }
+  if (intervalId) clearInterval(intervalId);
 }
 
 const listaDeFilmes = async (urlApi, pageName) => {
@@ -168,4 +169,4 @@ window.onload = async () => {
   document.querySelectorAll('.about').forEach((item) => item.addEventListener('click', about));
 };
 
-export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener, createMovieCard, getLocalStorageWatchlist };
+export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener, createMovieCard, getLocalStorageWatchlist, intervalId };
