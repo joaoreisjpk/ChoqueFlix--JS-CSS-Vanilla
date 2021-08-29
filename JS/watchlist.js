@@ -46,7 +46,7 @@ function addRemoveFromWatchlistEventListeners() {
 
 function listWatchlist() {
   filmList.innerHTML = '';
-  document.querySelector('#page-list').style = 'display: none';
+  document.querySelector('#page-list').style = 'visibility: hidden';
   const watchlistArray = getLocalStorageWatchlist();
   if (watchlistArray.length === 0) {
     const isEmpty = createElement('p', 'watchlist-empty', 'Sua lista está vazia');

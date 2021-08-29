@@ -82,7 +82,7 @@ async function getRandomChoice() {
   const tries = await fetch(tryUrl);
   const itemJson = await tries.json();
   (itemJson.poster_path) ? await createMovieCard(itemJson) : tryAgain();
-  document.querySelector('#page-list').style.display = 'none';
+  document.querySelector('#page-list').style = 'visibility: hidden';
   document.querySelector('.filme').style.margin = 'auto';
 }
 
@@ -104,7 +104,7 @@ function about() {
     }
   }, 200);
   removeBanner();
-  document.querySelector('#page-list').style = 'display: none';
+  document.querySelector('#page-list').style = 'visibility: hidden';
 }
 
 export { genresObj, urlByGenre, listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl, urlBySuccess, about };
