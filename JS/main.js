@@ -25,7 +25,7 @@ document.querySelectorAll('.watchlist').forEach((item) => item.addEventListener(
   listWatchlist();
 }));
 
-document.querySelectorAll('.inicio').forEach((element) => element.addEventListener('click', () => {
+document.querySelectorAll('.inicio').forEach((element) => element.addEventListener('click', async () => {
   document.querySelector('.banner-div').style.display = 'block';
   getFilmList.style.marginTop = '0';
   listaDeFilmes(mainUrl, 'Filmes Populares');
@@ -35,20 +35,15 @@ document.querySelectorAll('.inicio').forEach((element) => element.addEventListen
   });
 }));
 
-document.querySelectorAll('div .item')
-  .forEach((li) => li.addEventListener('click', listByGenre));
-
-document.querySelectorAll('.top-votes').forEach((item) => item.addEventListener('click', () => {
+document.querySelectorAll('.top-votes').forEach((btn) => btn.addEventListener('click', () => {
   removeBanner()
   listByRank()
 }));
-
-document.querySelectorAll('.sucessos').forEach((item) => item.addEventListener('click', () => {
+document.querySelectorAll('.sucessos').forEach((btn) => btn.addEventListener('click', () => {
   removeBanner();
   listBySuccess()
 }));
-
-document.querySelectorAll('.random-choice').forEach((item) => item.addEventListener('click', () => {
+document.querySelectorAll('.random-choice').forEach((btn) => btn.addEventListener('click', () => {
   removeBanner()
   getRandomChoice()
 }));
@@ -163,11 +158,16 @@ window.onload = async () => {
   listaDeFilmes(mainUrl, 'Filmes Populares');
   displayAndVerifyBanner();
   const interval = setInterval(() => displayAndVerifyBanner(), 60 * 1000);
+  document.querySelectorAll('.options li')
+    .forEach((li) => li.addEventListener('click', listByGenre));
 
+  document.querySelectorAll('.options div')
+    .forEach((li) => li.addEventListener('click', listByGenre));
+  
   document.querySelectorAll('.page')
     .forEach((page) => page.addEventListener('click', () => listaDeFilmes(pageUrl(mainUrl, page.innerHTML), 'Filmes Populares')));
 
-  document.getElementById('about').addEventListener('click', about);
+  document.querySelector('#about').addEventListener('click', about);
 };
 
 export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener, createMovieCard, getLocalStorageWatchlist };
