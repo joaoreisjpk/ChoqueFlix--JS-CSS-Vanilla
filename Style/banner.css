@@ -126,7 +126,7 @@ i.icon.angle.down:before {
 @media (max-width: 600px) {
   .banner-div {
     width: 100%;
-    height: max(50vh, 200px);
+    height: max(70vh, 200px);
     position: relative;
     top: 55px;
   }
