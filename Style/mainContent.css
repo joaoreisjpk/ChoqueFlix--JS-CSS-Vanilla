@@ -117,7 +117,7 @@ body {
 #waiting {
   color: white;
   font-size: 2rem;
-  margin: 100px 0 0 300px;
+  margin: auto;
 }
 
 div#page-list {

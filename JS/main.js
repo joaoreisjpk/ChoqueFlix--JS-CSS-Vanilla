@@ -1,5 +1,5 @@
 
-import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl, about } from './navBar.js';
+import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl, about, intervalId } from './navBar.js';
 import { displayAndVerifyBanner, removeBanner } from './banner.js'
 import { addBtnsWatchlistEventListener, addRemoveFromWatchlistEventListeners, listWatchlist, getName } from './watchlist.js'
 
@@ -35,7 +35,10 @@ document.querySelectorAll('.inicio').forEach((element) => element.addEventListen
   });
 }));
 
-document.querySelectorAll('.top-votes').forEach((btn) => btn.addEventListener('click', () => {
+document.querySelectorAll('div .genre')
+  .forEach((li) => li.addEventListener('click', listByGenre));
+
+document.querySelectorAll('.top-votes').forEach((item) => item.addEventListener('click', () => {
   removeBanner()
   listByRank()
 }));
@@ -127,6 +130,7 @@ const createMovieCard = async ({ title, vote_average, poster_path, overview, id,
     getFilmList.appendChild(createSection); // Adiciona a section à lista de filmes;
     isWatchlistItem ? addRemoveFromWatchlistEventListeners() : addBtnsWatchlistEventListener();
   }
+  if (intervalId) clearInterval(intervalId);
 }
 
 const listaDeFilmes = async (urlApi, pageName) => {
@@ -143,10 +147,10 @@ const listaDeFilmes = async (urlApi, pageName) => {
 
 function removeActive(ev) {
   getFocus.forEach((element) => element.classList.remove('navActive'));
-    document.querySelectorAll('.options li')
+    document.querySelectorAll('.options div')
     .forEach((li) => li.classList.remove('liActive'));
 
-    if (ev.target.parentElement.className === 'options') {
+    if (ev.target.parentElement.className.includes('options')) {
       ev.target.parentElement.parentElement.classList.add('navActive');
       ev.target.className += ' liActive';
     } else ev.target.classList.add('navActive');
@@ -158,16 +162,11 @@ window.onload = async () => {
   listaDeFilmes(mainUrl, 'Filmes Populares');
   displayAndVerifyBanner();
   const interval = setInterval(() => displayAndVerifyBanner(), 60 * 1000);
-  document.querySelectorAll('.options li')
-    .forEach((li) => li.addEventListener('click', listByGenre));
 
-  document.querySelectorAll('.options div')
-    .forEach((li) => li.addEventListener('click', listByGenre));
-  
   document.querySelectorAll('.page')
     .forEach((page) => page.addEventListener('click', () => listaDeFilmes(pageUrl(mainUrl, page.innerHTML), 'Filmes Populares')));
 
-  document.querySelector('#about').addEventListener('click', about);
+  document.querySelectorAll('.about').forEach((item) => item.addEventListener('click', about));
 };
 
-export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener, createMovieCard, getLocalStorageWatchlist };
+export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener, createMovieCard, getLocalStorageWatchlist, intervalId };
