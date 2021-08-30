@@ -131,3 +131,13 @@ header {
   color: white;
 	font-size: 2.5rem;
 }
+
+@media (max-width: 363px) {
+	
+}
+.gerenciamento {
+	height: max(90vh, 800px);
+}
+.titulo {
+	font-size: 2rem;
+}
