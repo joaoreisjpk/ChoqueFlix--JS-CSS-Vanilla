@@ -56,7 +56,6 @@
 i.icon.angle.down:before {
   color: white;
   font-size: 30px;
-  position: absolute;
   bottom: 5px;
   left: 50%;
 }
@@ -134,6 +133,9 @@ i.icon.angle.down:before {
     margin: 15px 0 20px 30px
   }
   p.banner-description {
+    display: none;
+  }
+  i.icon.angle.down:before {
     display: none;
   }
 }
