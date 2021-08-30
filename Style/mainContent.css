@@ -160,6 +160,9 @@ div#page-list {
   display: flex;
 }
 
+.github, .linkedin {
+  color: white;
+}
 /* Extras End*/
 
 @media (max-width: 700px) {

@@ -73,7 +73,7 @@ async function displayBanner() {
       trailerBtn.href = trailerLink;
     } else {
       trailerBtn.innerText = 'Trailer indisponível'
-      trailerBtn.className = 'btn-trailer ui inverted grey button unavailable';
+      trailerBtn.className = 'btn-trailer ui inverted grey disabled button unavailable';
     }
     const watchlistBtn = createElement('button', 'btn-watchlist-banner ui inverted blue button', false, id);
     let localStorageList = getLocalStorageWatchlist();

@@ -123,7 +123,7 @@ const createMovieCard = async ({ title, vote_average, poster_path, overview, id,
       trailerBtn.href = trailerLink;
     } else { 
       trailerBtn.innerText = 'Trailer indisponível'
-      trailerBtn.className = "btn-trailer ui inverted grey button";
+      trailerBtn.className = "btn-trailer ui inverted disabled grey button";
       trailerBtn.classList.add('unavailable');
     }
 
