@@ -13,6 +13,10 @@ header {
   margin: auto;
 }
 
+.title img {
+  height: 40px;
+}
+
 /* Title Style Start */
 .title {
   color: #ee010d;

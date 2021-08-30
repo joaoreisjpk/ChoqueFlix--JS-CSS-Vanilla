@@ -138,6 +138,10 @@ header {
 	}
 }
 
+.title img {
+	height: 40px;
+}
+
 @media (max-width: 362px) {
 	.gerenciamento {
 		height: max(90vh, 800px);
