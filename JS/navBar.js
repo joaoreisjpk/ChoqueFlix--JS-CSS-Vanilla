@@ -1,4 +1,4 @@
-import { listaDeFilmes, apiKey, urlImg, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener, createMovieCard } from './main.js';
+import { listaDeFilmes, apiKey, getFilmList, createMovieCard } from './main.js';
 import { removeBanner } from './banner.js';
 
 let intervalId;
@@ -18,7 +18,7 @@ const pageUrl = (url, page) => `${url}&page=${page}`;
 
 function pageEvent() {
   document.querySelector('#page-list')
-    .innerHTML = `<span><</span>
+    .innerHTML = `<span><i class="angle large left icon"></i></span>
     <span class="page">1</span>
     <span class="page">2</span>
     <span class="page">3</span>
@@ -29,7 +29,7 @@ function pageEvent() {
     <span class="page">8</span>
     <span class="page">9</span>
     <span class="page">10</span>
-    <span>></span>`
+    <span><i class="angle large right icon"></i></span>`
   if (intervalId) clearInterval(intervalId);
 }
 
@@ -40,45 +40,62 @@ const urlByGenre = (genreId) => `https://api.themoviedb.org/3/discover/movie?api
 function listByGenre(event) {
   removeBanner();
   const genre = event.target.innerText;
+  console.log(event.target);
   const keyId = genresObj[genre];
   listaDeFilmes(urlByGenre(keyId), genre);
   pageEvent();
-  const genrePages = (eventPage) => listaDeFilmes(pageUrl(urlByGenre(keyId), eventPage.target.innerHTML), genre);
+
   document.querySelectorAll('.page').forEach((page) => {
-    page.addEventListener('click', genrePages);
-  })
+    page.addEventListener('click', () =>
+      listaDeFilmes(pageUrl(urlByGenre(keyId), page.innerHTML), genre));
+  });
 }
 
 const urlByRank = () => `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=vote_count.desc`;
 const listByRank = () => {
   removeBanner();
   listaDeFilmes(urlByRank(), 'Filmes Mais Votados');
+  pageEvent();
+
+  document.querySelectorAll('.page').forEach((page) => {
+    page.addEventListener('click', () => listaDeFilmes(pageUrl(urlByRank(), page.innerHTML), `Filmes Mais Votados`));
+  });
 }
 
 const urlBySuccess = () => `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=revenue.desc`
+
 const listBySuccess = () => {
   removeBanner();
-  listaDeFilmes(urlBySuccess(), "Sucessos de Bilheteria");
+  listaDeFilmes(urlBySuccess(), 'Sucessos de Bilheteria');
+  pageEvent();
+  document.querySelectorAll('.page').forEach((page) => {
+    page.addEventListener('click', () =>
+    listaDeFilmes(pageUrl(urlBySuccess(), page.innerHTML), `Sucessos de Bilheteria`));
+  });
 }
 
 const randomId = () => parseInt(Math.random() * ((Math.random() + 1) * 100000));
 const randomUrl = () => `https://api.themoviedb.org/3/movie/${randomId()}?api_key=${apiKey}`;
 
 async function getRandomChoice() {
+  const pageTitle = document.querySelector('#page-title');
+  if (pageTitle.innerHTML !== 'Roleta Choqueflix') getFilmList.innerHTML = '';
+  pageTitle.innerHTML = 'Roleta Choqueflix';
+  document.querySelector('#page-list').style = 'visibility: hidden';
   const tryUrl = randomUrl();
   const tries = await fetch(tryUrl);
   const itemJson = await tries.json();
   (itemJson.poster_path) ? await createMovieCard(itemJson) : tryAgain();
-  document.querySelector('#page-list').style.display = 'none';
-  document.querySelector('.filme').style.margin = 'auto';
+  document.querySelectorAll('.filme').forEach((card) => card.style.margin = 'auto');
 }
 
 const tryAgain = () => getRandomChoice();
 
 function about() {
+  getFilmList.innerHTML = '';
+  document.querySelector('#page-title').innerHTML = '';
   const comming = document.createElement('p');
   comming.id = 'waiting';
-  getFilmList.innerHTML = ''
   getFilmList.appendChild(comming);
   intervalId = setInterval(() => {
     comming.innerText = text.slice(0, index);
@@ -91,7 +108,7 @@ function about() {
     }
   }, 200);
   removeBanner();
-  document.querySelector('#page-list').style = 'display: none';
+  document.querySelector('#page-list').style = 'visibility: hidden';
 }
 
-export { genresObj, urlByGenre, listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl, urlBySuccess, about };
+export { genresObj, urlByGenre, listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl, urlBySuccess, about, intervalId };

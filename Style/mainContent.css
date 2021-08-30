@@ -82,9 +82,6 @@ body {
   color: white;
 }
 
-.description {
-}
-
 .description--text {
   font-size: 1.1rem;
   font-weight: 400;
@@ -110,6 +107,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 90vh;
+  top: 55px;
 }
 
 .not-homepage {
@@ -119,7 +117,7 @@ body {
 #waiting {
   color: white;
   font-size: 2rem;
-  margin: 100px 0 0 300px;
+  margin: auto;
 }
 
 div#page-list {
@@ -128,7 +126,7 @@ div#page-list {
   font-weight: 600;
   margin: 20px auto 40px;
   align-self: center;
-  display: flex;
+  display: flex !important;
   align-items: center;
 }
 
@@ -157,6 +155,11 @@ div#page-list {
   align-items: center;
   justify-content: center;
 }
+
+#subpage-list {
+  display: flex;
+}
+
 /* Extras End*/
 
 @media (max-width: 700px) {
@@ -168,9 +171,14 @@ div#page-list {
   #film-list {
     justify-content: center;
   }
-  .page-8, .page-9, .page-10 {
-    display: none;
+  #subpage-list {
+    display: block;
   }
+  .subpage-list--2 {
+    margin-top: 7px !important;
+  }
+
+  
 }
 @media (max-width: 400px) {
   #film-list {
