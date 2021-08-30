@@ -67,8 +67,6 @@ async function displayBanner() {
     const newOverview = overview.match(/.{500}/) ? overview.match(/.{500}/)[0] + '...' : overview;
     const descriptionDiv = createElement('p', 'banner-description', newOverview, 'arrow-down')
     infoDiv.appendChild(descriptionDiv)
-    const angleIcon = createElement('a', 'btn-angle-down', `<i class="angle down icon"></i>`)
-    angleIcon.href = "#arrow-down";
     const trailerBtn = createElement('a', 'btn-trailer ui inverted red button', 'Ver Trailer'); trailerBtn.target = '_blank';
     const trailerLink = await getTrailerLink(id);
     if (trailerLink) {
@@ -103,7 +101,6 @@ async function displayBanner() {
     posterAndInfoDiv.appendChild(btnsDiv);
     bannerDiv.appendChild(bannerImg);
     bannerDiv.appendChild(posterAndInfoDiv);
-    bannerDiv.appendChild(angleIcon); 
     const loader = document.querySelector('#loader-div')
     if(loader) loader.remove();
   }

@@ -63,6 +63,7 @@ i.icon.angle.down:before {
   color: white;
   font-size: 30px;
   bottom: 5px;
+  position: absolute;
   left: 50%;
 }
 
