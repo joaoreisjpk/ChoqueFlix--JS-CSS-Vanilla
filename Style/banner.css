@@ -110,11 +110,11 @@ i.icon.angle.down:before {
 @media (max-width: 1000px) {
   .poster-img {
     display: none;
-  }
+  }                                                                                             
   .poster-and-info-div {
     flex-direction: column;
   }
-  .banner div.btnsDiv {
+  .banner div.btnsDiv {     
     justify-content: flex-start;
     margin: 40px 0 40px 50px;
   }
@@ -141,9 +141,6 @@ i.icon.angle.down:before {
     margin: 15px 0 20px 30px
   }
   p.banner-description {
-    display: none;
-  }
-  i.icon.angle.down:before {
     display: none;
   }
 }

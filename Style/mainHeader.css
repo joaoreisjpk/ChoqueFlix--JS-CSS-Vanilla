@@ -270,11 +270,14 @@ i.icon.angle.down:before {
   #input-menu {
     display: block;
   }
+  .perfil {
+    margin: 0;
+}
 }
 
 @media (max-width: 400px) {
-  .title--div {
-    display: none;
+  .title img {
+    width: 130px;
   }
 }
 
