@@ -120,6 +120,28 @@ body {
   margin: auto;
 }
 
+.devs-div {
+  display: flex;
+  flex-direction: column;
+  /* HEAD */
+  width: 19%;
+  padding: 10px 15px 10px 20px;
+  padding: 15px;
+  border: solid thin black;
+  background-color: rgba(211, 211, 211, 0.1);
+  width: 250px;
+  height: 300px;
+  margin-bottom: 30px !important;
+  color: #ffff;
+  border-radius: 10px;
+  overflow: hidden;
+	transition: all 1s;
+}
+
+.devs-div:hover {
+	transform: scale(1.1);
+}
+
 div#page-list {
   color: white;
   font-size: 1.1rem;

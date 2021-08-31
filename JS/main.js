@@ -1,7 +1,8 @@
 
-import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl, about, intervalId } from './navBar.js';
+import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl } from './navBar.js';
 import { displayAndVerifyBanner, removeBanner } from './banner.js'
 import { addBtnsWatchlistEventListener, addRemoveFromWatchlistEventListeners, listWatchlist, getName } from './watchlist.js'
+import { about, intervalId } from './about.js';
 
 document.querySelector('.search-input').innerHTML += `<a href='./index.html'>
   <div class='perfil'>
@@ -169,4 +170,4 @@ window.onload = async () => {
   document.querySelectorAll('.about').forEach((item) => item.addEventListener('click', about));
 };
 
-export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener, createMovieCard, getLocalStorageWatchlist, intervalId };
+export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener, createMovieCard, getLocalStorageWatchlist, intervalId, removeBanner };

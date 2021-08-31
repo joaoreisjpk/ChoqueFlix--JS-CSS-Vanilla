@@ -1,9 +1,5 @@
-import { listaDeFilmes, apiKey, getFilmList, createMovieCard } from './main.js';
+import { listaDeFilmes, apiKey, getFilmList, createMovieCard, intervalId } from './main.js';
 import { removeBanner } from './banner.js';
-
-let intervalId;
-let index = 1;
-const text = 'Em Breve . . .';
 
 const genresObj = {// Chaves são conteúdo das opções de categoria e valores são Ids de gêneros
   'Ação': 28,
@@ -91,24 +87,4 @@ async function getRandomChoice() {
 
 const tryAgain = () => getRandomChoice();
 
-function about() {
-  getFilmList.innerHTML = '';
-  document.querySelector('#page-title').innerHTML = '';
-  const comming = document.createElement('p');
-  comming.id = 'waiting';
-  getFilmList.appendChild(comming);
-  intervalId = setInterval(() => {
-    comming.innerText = text.slice(0, index);
-    index += 1;
-    if (index === 16) {
-      setTimeout(() => {
-        comming.innerText = '';
-        index = 1;
-      }, 1000);
-    }
-  }, 200);
-  removeBanner();
-  document.querySelector('#page-list').style = 'visibility: hidden';
-}
-
-export { genresObj, urlByGenre, listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl, urlBySuccess, about, intervalId };
+export { genresObj, urlByGenre, listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl, urlBySuccess, intervalId };
