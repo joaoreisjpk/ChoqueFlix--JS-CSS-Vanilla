@@ -7,10 +7,10 @@ const movieCredits = (img, gitHub, linkedIn) =>
 <a target='_blank' class='linkedin' href="${linkedIn}"><i class="linkedin big icon"></i></a>
 </div>`
 
-const imgTakaki = 'https://regariou.github.io/images/takaki.jpeg';
-const imgJoao = 'https://regariou.github.io/images/joaoperfil.jpeg';
-const imgNatan = 'https://regariou.github.io/images/natanielperfil.jpeg';
-const imgGus = 'https://regariou.github.io/images/gusperfil.jpeg';
+const imgTakaki = 'https://github.com/regariou/trybeBonusProject/blob/main/images/takaki.jpeg?raw=true';
+const imgJoao = 'https://github.com/regariou/trybeBonusProject/blob/main/images/joaoperfil.jpeg?raw=true';
+const imgNatan = 'https://github.com/regariou/trybeBonusProject/blob/main/images/natanielperfil.jpeg?raw=true';
+const imgGus = 'https://github.com/regariou/trybeBonusProject/blob/main/images/gusperfil.jpeg?raw=true';
 
 const gitTakaki = 'https://github.com/Gabriel-takaki';
 const gitJoao = 'https://github.com/regariou';
