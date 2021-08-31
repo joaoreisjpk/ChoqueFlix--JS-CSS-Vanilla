@@ -160,6 +160,7 @@ nav {
 /* Perfil Start */
 
 .perfilImg {
+  margin-right: 3px;
   width: 40px;
   overflow: hidden;
   align-self: flex-end;
