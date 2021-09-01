@@ -1,8 +1,8 @@
 // import {  } from "./watchlist.js";
-import { addBtnsWatchlistEventListener, createElement, createImg } from "./main.js";
+import { addBtnsWatchlistEventListener, createElement, createImg, createMovieCard, allApiData } from "./main.js";
 import { removeBanner } from "./banner.js";
 
-const getSearch = document.querySelectorAll('.searchbar')
+const getSearch = document.querySelectorAll('.searchbar')[1];
 const getFilmList = document.getElementById('film-list');
 
 const createHtml = (nota, description) =>
@@ -41,15 +41,20 @@ const createFilme = async (Title, Poster, imdbRating, Plot, imdbID) => {
   addBtnsWatchlistEventListener()
 }
 
-getSearch.forEach((item) => item.addEventListener('keyup', async (e) => {
+getSearch.addEventListener('keyup', async (e) => {
   if (e.keyCode === 13) {
-    const data = await fetch(`https://www.omdbapi.com/?t=${item.value}&apikey=1b999e04`)
-    const dataJson = await data.json()
-    const { Title, Poster, imdbRating, Plot, imdbID } = dataJson
-    createFilme(Title, Poster, imdbRating, Plot, imdbID);
+    const findFilms = allApiData.filter((film) => film.title.toLowerCase().includes(getSearch.value.toLowerCase()));
+    getFilmList.innerHTML = '';
+    document.querySelector('#page-title').innerHTML = 'Resultados da busca:'
+    findFilms.forEach((film) => createMovieCard(film));
+    if (findFilms.length < 1) {
+      const data = await fetch(`https://www.omdbapi.com/?t=${getSearch.value}&apikey=1b999e04`)
+      const dataJson = await data.json()
+      const { Title, Poster, imdbRating, Plot, imdbID } = dataJson
+      createFilme(Title, Poster, imdbRating, Plot, imdbID);
+    }
     removeBanner();
   }
-}));
+});
 
-  
 

@@ -34,6 +34,7 @@ let index = 1;
 const text = 'Em Breve . . .';
 
 function about() {
+  if (intervalId) clearInterval(intervalId);
   getFilmList.innerHTML = '';
   const comming = document.createElement('p');
   comming.id = 'waiting';
@@ -41,9 +42,9 @@ function about() {
   document.querySelector('#page-title').appendChild(comming);
   devsInfos.forEach((dev) => {
     getFilmList
-    .appendChild(createElement('div', 'devs-div', movieCredits(dev.img, dev.git, dev.linked)));
+      .appendChild(createElement('div', 'devs-div', movieCredits(dev.img, dev.git, dev.linked)));
   });
-  getFilmList.querySelectorAll('div').forEach((div) => div.style.margin = 'auto');
+  // getFilmList.querySelectorAll('div').forEach((div) => div.style.margin = 'auto');
   intervalId = setInterval(() => {
     comming.innerText = text.slice(0, index);
     index += 1;

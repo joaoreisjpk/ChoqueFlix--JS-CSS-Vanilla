@@ -21,6 +21,19 @@ const getFocus = document.querySelectorAll('.navFocus')
 const getLocalStorageWatchlist = () => (localStorage.getItem(`watchlist-${getName}`)) ?
 JSON.parse(localStorage.getItem(`watchlist-${getName}`)) : [];
 
+const allApiData = [];
+
+async function getApiData() {
+  for (let ind = 1; ind < 501; ind += 1) { // Pode ser testado até "ind < 501"
+    const apiData = await fetch(`${mainUrl}&page=${ind}`);
+    const jsonPage = await apiData.json();
+    jsonPage.results.forEach((item) => allApiData.push(item));
+    if (ind % 20 === 0) console.log(allApiData.length);  // Verifica tempo de reação da função
+  }
+  console.log(allApiData.length); // Verifica a quantidade de dados baixados
+  console.log(allApiData[9998])
+}
+
 document.querySelectorAll('.watchlist').forEach((item) => item.addEventListener('click', () => {
   removeBanner();
   listWatchlist();
@@ -165,9 +178,11 @@ window.onload = async () => {
   const interval = setInterval(() => displayAndVerifyBanner(), 60 * 1000);
 
   document.querySelectorAll('.page')
-    .forEach((page) => page.addEventListener('click', () => listaDeFilmes(pageUrl(mainUrl, page.innerHTML), 'Filmes Populares')));
+  .forEach((page) => page.addEventListener('click', () => listaDeFilmes(pageUrl(mainUrl, page.innerHTML), 'Filmes Populares')));
 
   document.querySelectorAll('.about').forEach((item) => item.addEventListener('click', about));
+
+  await getApiData();
 };
 
-export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener, createMovieCard, getLocalStorageWatchlist, intervalId, removeBanner };
+export { listaDeFilmes, apiKey, urlImg, mainUrl, getFilmList, getTrailerLink, createImg, createElement, createHtml, addBtnsWatchlistEventListener, createMovieCard, getLocalStorageWatchlist, intervalId, removeBanner, allApiData };
