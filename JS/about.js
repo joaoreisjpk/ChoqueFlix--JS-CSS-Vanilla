@@ -86,7 +86,7 @@ function about() {
     creditsDiv.style.marginTop = `${+(margin) - 1.05}%` :
     creditsDiv.style.marginTop = `${-(margin) + -1.05}%`;
     index += 1;
-    console.log(creditsDiv.style.marginTop, index);
+    // console.log(creditsDiv.style.marginTop, index);
     if (index > 173) {
       clearInterval(intervalId);
       creditsDiv.remove();

@@ -204,7 +204,7 @@ div#page-list {
   max-width: 40%;
   overflow: hidden;
   text-align: center;
-  transition: 15s;
+  transition: 10s;
   z-index: 0;
 }
 
@@ -218,18 +218,38 @@ div#page-list {
 #adContent {
   font-size: 1.5rem;
   margin: auto;
-  width: 40%;
-  padding: 20px;
+  max-width: 40%;
+  padding: 10px;
   border-radius: 5%;
   text-align: center;
-  background-color: rgb(59, 59, 59);
+  background-color: rgb(66, 66, 66);
 }
 
 #adContent img {
   width: 50%;
 }
 
+#adContent div {
+font-size: 1.3rem;
+}
+
+div #jump-ad {
+  margin-top: 3px;
+  padding: 5px;
+  background-color: darkgreen;
+  color: white;
+}
+
+#jump-ad:hover {
+  transform: scale(1.1);
+}
+
 /* Extras End*/
+@media (max-width: 1000px) {
+  .credits, #adContent {
+    max-width: 60%;
+  }
+}
 
 @media (max-width: 700px) {
   .page {
@@ -246,8 +266,10 @@ div#page-list {
   .subpage-list--2 {
     margin-top: 7px !important;
   }
+  .credits, #adContent {
+    max-width: 80%;
+  }
 
-  
 }
 @media (max-width: 400px) {
   #film-list {

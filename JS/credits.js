@@ -29,9 +29,10 @@ Site com finalidade estritamente estudantil, é vedado qualquer uso fora destes 
 
 const trybeAd = `
 <div id="adContent">
-<a href="https://www.betrybe.com/"><img src="https://github.com/regariou/trybeBonusProject/blob/main/images/trybe_logo.png?raw=true" alt="Logo da Trybe"></a><br>
-<p id="waiting">A escola que te ensina a programar, a aprender e a trabalhar!</p><br>
-<p>O anúncio terminará em <span id="trybeAdTime">12</span></p><button id="jump-ad">Pular Anúncio</button>
+<a href="https://www.betrybe.com/"><img src="https://github.com/regariou/trybeBonusProject/blob/main/images/trybe_logo.png?raw=true" alt="Imagem logo da Trybe"></a>
+<p>A escola que te ensina a programar, a aprender e a trabalhar!</p>
+<div>O anúncio terminará em <span id="trybeAdTime">12</span></div><br>
+<button id="jump-ad">Pular Anúncio</button>
 </div>
 `;
 
