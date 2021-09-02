@@ -9,6 +9,14 @@ body {
   background-color: #111;
 }
 
+@keyframes rotateBorder {
+  0% { border: solid thin white; border-top: solid thin red; }
+  25% { border: solid thin white; border-top: solid thin white; border-right: solid thin red; }
+  50% { border: solid thin white; border-right: solid thin white; border-bottom: solid thin red; }
+  75% { border: solid thin white; border-bottom: solid thin white; border-left: solid thin red; }
+  100% { border: solid thin white; border-left: solid thin white; border-top: solid thin red; }
+}
+
 /* Film Section Start */
 
 #film-list {
@@ -18,6 +26,7 @@ body {
   flex-wrap: wrap;
   width: 90%;
   margin: auto;
+  position: relative;
 }
 
 .filme {
@@ -136,10 +145,11 @@ body {
   border-radius: 10px;
   overflow: hidden;
 	transition: all 1s;
+  transform: scale(0.1);
 }
 
 .devs-div:hover {
-	transform: scale(1.1);
+	transform: scale(1.1) !important;
 }
 
 div#page-list {
@@ -185,6 +195,40 @@ div#page-list {
 .github, .linkedin {
   color: white;
 }
+
+.credits {
+  color: white;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  margin: auto;
+  max-width: 40%;
+  overflow: hidden;
+  text-align: center;
+  transition: 15s;
+  z-index: 0;
+}
+
+#trybeAdTime {
+  border: solid thin white;
+  border-radius: 50%;
+  padding: 1rem 1.3rem;
+  animation: rotateBorder 0.5s infinite;
+}
+
+#adContent {
+  font-size: 1.5rem;
+  margin: auto;
+  width: 40%;
+  padding: 20px;
+  border-radius: 5%;
+  text-align: center;
+  background-color: rgb(59, 59, 59);
+}
+
+#adContent img {
+  width: 50%;
+}
+
 /* Extras End*/
 
 @media (max-width: 700px) {

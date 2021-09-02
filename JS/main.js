@@ -2,7 +2,7 @@
 import { listByGenre, listByRank, listBySuccess, getRandomChoice, pageEvent, pageUrl } from './navBar.js';
 import { displayAndVerifyBanner, removeBanner } from './banner.js'
 import { addBtnsWatchlistEventListener, addRemoveFromWatchlistEventListeners, listWatchlist, getName } from './watchlist.js'
-import { about, intervalId } from './about.js';
+import { about, intervalId, editFilmList } from './about.js';
 
 document.querySelector('.search-input').innerHTML += `<a href='./index.html'>
   <div class='perfil'>
@@ -28,10 +28,9 @@ async function getApiData() {
     const apiData = await fetch(`${mainUrl}&page=${ind}`);
     const jsonPage = await apiData.json();
     jsonPage.results.forEach((item) => allApiData.push(item));
-    if (ind % 20 === 0) console.log(allApiData.length);  // Verifica tempo de reação da função
+    // if (ind % 20 === 0) console.log(allApiData.length); // Verifica tempo de reação da função
   }
   console.log(allApiData.length); // Verifica a quantidade de dados baixados
-  console.log(allApiData[9998])
 }
 
 document.querySelectorAll('.watchlist').forEach((item) => item.addEventListener('click', () => {
@@ -144,7 +143,10 @@ const createMovieCard = async ({ title, vote_average, poster_path, overview, id,
     getFilmList.appendChild(createSection); // Adiciona a section à lista de filmes;
     isWatchlistItem ? addRemoveFromWatchlistEventListeners() : addBtnsWatchlistEventListener();
   }
-  if (intervalId) clearInterval(intervalId);
+  if (intervalId) {
+    clearInterval(intervalId);
+    editFilmList(true);
+  }
 }
 
 const listaDeFilmes = async (urlApi, pageName) => {

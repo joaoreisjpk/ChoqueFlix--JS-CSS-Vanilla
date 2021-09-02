@@ -1,4 +1,5 @@
 import { createElement, getFilmList, removeBanner } from './main.js';
+import { credits, trybeAd } from './credits.js';
 
 const movieCredits = (img, gitHub, linkedIn) =>
 `<img src="${img}">
@@ -30,33 +31,82 @@ const devsInfos = [
 ];
 
 let intervalId;
-let index = 1;
-const text = 'Em Breve . . .';
+let index = 0;
+let indexCounter = 0;
 
-function about() {
-  if (intervalId) clearInterval(intervalId);
-  getFilmList.innerHTML = '';
-  const comming = document.createElement('p');
-  comming.id = 'waiting';
-  document.querySelector('#page-title').innerHTML = '';
-  document.querySelector('#page-title').appendChild(comming);
-  devsInfos.forEach((dev) => {
-    getFilmList
-      .appendChild(createElement('div', 'devs-div', movieCredits(dev.img, dev.git, dev.linked)));
-  });
-  // getFilmList.querySelectorAll('div').forEach((div) => div.style.margin = 'auto');
-  intervalId = setInterval(() => {
-    comming.innerText = text.slice(0, index);
-    index += 1;
-    if (index === 16) {
-      setTimeout(() => {
-        comming.innerText = '|';
-        index = 1;
-      }, 1000);
+function beforeAbout() {
+  const pageTitle = document.querySelector('#page-title');
+  pageTitle.innerHTML = trybeAd;
+  const timer = document.querySelector('#trybeAdTime');
+  indexCounter = 0;
+  const countDown = () => {
+    if (timer.innerHTML > 0) {
+      timer.innerHTML = +(timer.innerHTML) - 1;
+      indexCounter += 1;
+      setTimeout(countDown, 1000);
     }
-  }, 200);
-  removeBanner();
-  document.querySelector('#page-list').style = 'visibility: hidden';
+  }
+  if (countDown) clearTimeout(countDown);
+  countDown();
+  setTimeout(() => {
+    if (indexCounter > 11) document.querySelector('#page-title').innerHTML = '';
+  }, 12000);
 }
 
-export { about, intervalId };
+function editFilmList(condition) {
+  if (!condition) {
+    getFilmList.style =
+      `overflow-Y: hidden;
+    height: 500px;
+    top: -50px;`
+  } else {
+    getFilmList.style =
+    `overflow-Y: none;
+  height: none;
+  top: none;`
+  }
+}
+
+function about() {
+  if (intervalId) {
+    clearInterval(intervalId);
+    index = 0;
+  }
+  removeBanner();
+  document.querySelector('#page-list').style = 'visibility: hidden';
+  getFilmList.innerHTML = '';
+  beforeAbout();
+  const creditsDiv = createElement('div', 'credits', credits);
+  creditsDiv.style.marginTop = '45%';
+  getFilmList.appendChild(creditsDiv);
+  editFilmList();
+  intervalId = setInterval(() => {
+    const margin = creditsDiv.style.marginTop.match(/\d+(\.\d)?/g)[0];
+    index < 45 ?
+    creditsDiv.style.marginTop = `${+(margin) - 1.05}%` :
+    creditsDiv.style.marginTop = `${-(margin) + -1.05}%`;
+    index += 1;
+    console.log(creditsDiv.style.marginTop, index);
+    if (index > 173) {
+      clearInterval(intervalId);
+      creditsDiv.remove();
+      editFilmList(true);
+      devsInfos.forEach((dev) => {
+        getFilmList
+          .appendChild(createElement('div', 'devs-div', movieCredits(dev.img, dev.git, dev.linked)));
+      });
+      setTimeout(() => {
+        document.querySelectorAll('.devs-div').forEach((div) => div.style.transform = 'scale(1)');
+      }, 100);
+    }
+  }, 500)
+  const jumpAd = document.querySelector('#jump-ad');
+  jumpAd.addEventListener('click', () => {
+    document.querySelector('#page-title div').remove();
+    creditsDiv.style.marginTop = '12.05%';
+    index = 30;
+    console.log(creditsDiv.style.marginTop,'Clicou');
+  });
+}
+
+export { about, intervalId, editFilmList };
