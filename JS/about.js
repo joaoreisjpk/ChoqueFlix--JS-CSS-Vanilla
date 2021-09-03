@@ -49,7 +49,10 @@ function beforeAbout() {
   if (countDown) clearTimeout(countDown);
   countDown();
   setTimeout(() => {
-    if (indexCounter > 11) document.querySelector('#page-title').innerHTML = '';
+    if (indexCounter > 11) {
+      document.querySelector('#page-title').innerHTML = '';
+      document.querySelector('.credits').style.opacity = '1';
+    }
   }, 12000);
 }
 
@@ -58,7 +61,7 @@ function editFilmList(condition) {
     getFilmList.style =
       `overflow-Y: hidden;
     height: 500px;
-    top: -50px;`
+    top: -80px;`
   } else {
     getFilmList.style =
     `overflow-Y: none;
@@ -72,22 +75,32 @@ function about() {
     clearInterval(intervalId);
     index = 0;
   }
+  let changeNum;
+  let limitNum;
+  const refNum = window.innerWidth;
+  if (refNum < 1001) {
+    changeNum = refNum < 601 ? 1.5 : 1.3;
+    limitNum = refNum < 601 ? 185 : 173;
+  } else {
+    changeNum = 1.2;
+    limitNum = 160;
+  }
   removeBanner();
   document.querySelector('#page-list').style = 'visibility: hidden';
   getFilmList.innerHTML = '';
   beforeAbout();
   const creditsDiv = createElement('div', 'credits', credits);
-  creditsDiv.style.marginTop = '45%';
   getFilmList.appendChild(creditsDiv);
   editFilmList();
+  creditsDiv.style.marginTop = '45%';
   intervalId = setInterval(() => {
-    const margin = creditsDiv.style.marginTop.match(/\d+(\.\d)?/g)[0];
-    index < 45 ?
-    creditsDiv.style.marginTop = `${+(margin) - 1.05}%` :
-    creditsDiv.style.marginTop = `${-(margin) + -1.05}%`;
+    const margin = creditsDiv.style.marginTop.match(/\d+(\.\d+)?/g)[0];
+    index < 40 ?
+    creditsDiv.style.marginTop = `${+(margin) - changeNum}%` :
+    creditsDiv.style.marginTop = `${-(margin) + -changeNum}%`;
     index += 1;
     // console.log(creditsDiv.style.marginTop, index);
-    if (index > 173) {
+    if (index > limitNum) {
       clearInterval(intervalId);
       creditsDiv.remove();
       editFilmList(true);
@@ -100,12 +113,12 @@ function about() {
       }, 100);
     }
   }, 500)
-  const jumpAd = document.querySelector('#jump-ad');
-  jumpAd.addEventListener('click', () => {
+  document.querySelector('#jump-ad button')
+    .addEventListener('click', () => {
     document.querySelector('#page-title div').remove();
-    creditsDiv.style.marginTop = '12.05%';
-    index = 30;
-    console.log(creditsDiv.style.marginTop,'Clicou');
+    creditsDiv.style.marginTop = '10.5%';
+    index = 31;
+    document.querySelector('.credits').style.opacity = '1';
   });
 }
 

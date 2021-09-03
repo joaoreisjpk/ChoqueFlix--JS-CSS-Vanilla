@@ -31,8 +31,10 @@ const trybeAd = `
 <div id="adContent">
 <a href="https://www.betrybe.com/"><img src="https://github.com/regariou/trybeBonusProject/blob/main/images/trybe_logo.png?raw=true" alt="Imagem logo da Trybe"></a>
 <p>A escola que te ensina a programar, a aprender e a trabalhar!</p>
-<div>O anúncio terminará em <span id="trybeAdTime">12</span></div><br>
-<button id="jump-ad">Pular Anúncio</button>
+<div id="jump-ad"><button><div>Pular Anúncio</div></button>
+
+<p>O anúncio terminará em <span id="trybeAdTime">12</span></p>
+</div>
 </div>
 `;
 

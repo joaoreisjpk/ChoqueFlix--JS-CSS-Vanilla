@@ -204,14 +204,16 @@ div#page-list {
   max-width: 40%;
   overflow: hidden;
   text-align: center;
-  transition: 10s;
+  transition: 15s margin;
   z-index: 0;
+  opacity: 0;
 }
 
 #trybeAdTime {
   border: solid thin white;
   border-radius: 50%;
   padding: 1rem 1.3rem;
+  margin: 0 0 1px 0;
   animation: rotateBorder 0.5s infinite;
 }
 
@@ -229,25 +231,36 @@ div#page-list {
   width: 50%;
 }
 
-#adContent div {
+#adContent p {
 font-size: 1.3rem;
 }
 
-div #jump-ad {
-  margin-top: 3px;
-  padding: 5px;
+#jump-ad {
+  padding: 3px;
+}
+
+#jump-ad button {
+  box-sizing: content-box !important;
+  transform: translateY(-10px);
+  margin: 0 0 10px 0;
+  padding: 8px 5px 5px 5px;
   background-color: darkgreen;
   color: white;
 }
 
-#jump-ad:hover {
-  transform: scale(1.1);
+#jump-ad button:hover {
+  transform: translateY(-10px) scale(1.1);
+  border: solid thin red;
+  box-shadow: 1px 1px 2px black;
 }
 
 /* Extras End*/
 @media (max-width: 1000px) {
   .credits, #adContent {
     max-width: 60%;
+  }
+  .credits {
+    line-height: 1.7rem;
   }
 }
 
@@ -266,8 +279,15 @@ div #jump-ad {
   .subpage-list--2 {
     margin-top: 7px !important;
   }
+  #trybeAdTime {
+    padding: 0.5rem 1rem;
+  }
   .credits, #adContent {
+    font-size: 1rem;
     max-width: 80%;
+  }
+  .credits {
+    line-height: 1.3rem;
   }
 
 }
