@@ -19,12 +19,12 @@ function pageEvent() {
     <span class="page">2</span>
     <span class="page">3</span>
     <span class="page">4</span>
-    <span class="page">5</span>
-    <span class="page">6</span>
-    <span class="page">7</span>
-    <span class="page">8</span>
-    <span class="page">9</span>
-    <span class="page">10</span>
+    <span class="page page-5">5</span>
+    <span class="page page-6">6</span>
+    <span class="page page-7">7</span>
+    <span class="page page-8">8</span>
+    <span class="page page-9">9</span>
+    <span class="page page-10">10</span>
     <span><i class="angle large right icon"></i></span>`
   if (intervalId) clearInterval(intervalId);
 }

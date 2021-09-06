@@ -22,46 +22,48 @@
   <header>
     <section class="header">
       <nav>
-        <div class="ui compact menu">
-          <div class="ui simple dropdown item">
-            <i class="bars icon"></i>
-            Menu
-            <div class="menu">
-              <div class="item nav navFocus navActive inicio">Início</div>
-              <div class="ui simple dropdown item nav navFocus">
-                Categorias
-                <i class="caret right icon"></i>
-                <div class="menu options">
-                  <div class="item genre">Ação</div>
-                  <div class="item genre">Aventura</div>
-                  <div class="item genre">Comédia</div>
-                  <div class="item genre">Drama</div>
-                  <div class="item genre">Suspense</div>
-                  <div class="item genre">Terror</div>
-                </div>
+        <!-- here -->
+        <div class="ui dropdown" id="small-screen">
+          <i class="bars icon"></i>
+          <div class="text">Menu</div>
+          <div class="menu">
+            <div class="item nav navFocus navActive inicio">Início</div>
+            <div class="item nav navFocus">
+              <i class="dropdown icon"></i>
+              Categorias
+              <div class="menu">
+                <div class="item genre">Ação</div>
+                <div class="item genre">Aventura</div>
+                <div class="item genre">Comédia</div>
+                <div class="item genre">Drama</div>
+                <div class="item genre">Suspense</div>
+                <div class="item genre">Terror</div>
               </div>
-              <div class="item nav navFocus watchlist">Minha Lista</div>
-              <div class="ui simple dropdown item nav navFocus">
-                Mais
-                <i class="caret right icon"></i>
-                <div class="menu options">
-                  <div class="item more-options top-votes">Mais Votados</div>
-                  <div class="item more-options sucessos">Sucesso de Bilheteria</div>
-                  <div class="item more-options random-choice">Sugestão ChoqueFlix</div>
-                </div>
+            </div>
+            <div class="item nav navFocus watchlist">Minha Lista</div>
+            <div class="item nav navFocus">
+              <i class="dropdown icon"></i>
+              Mais
+              <div class="menu">
+                <div class="item more-options top-votes">Mais Votados</div>
+                <div class="item more-options sucessos">Sucesso de Bilheteria</div>
+                <div class="item more-options random-choice">Sugestão ChoqueFlix</div>
               </div>
-              <div class="item about">Sobre</div>
-              <div class="item" id="input-menu">
-                <div class="ui category search">
-                  <div class="ui icon input">
-                    <input class="prompt searchbar" type="text" placeholder="Search films...">
-                    <i class="search icon"></i>
-                  </div>
+            </div>
+            <div class="item about">Sobre</div>
+            <div class="item" id="input-menu">
+              <div class="ui category search">
+                <div class="ui icon input">
+                  <input class="prompt searchbar" type="text" placeholder="Search films...">
+                  <i class="search icon"></i>
+                  <div class="menu"></div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </div>  
+
+        <!-- here -->
         
         <div class="inicio title--div">
           <div class="title">

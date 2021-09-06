@@ -205,7 +205,7 @@ i.icon.angle.down:before {
   margin-right: 2px;
 }
 
-.compact.menu {
+#small-screen{
   display: none !important;
 }
 #input-menu {
@@ -229,7 +229,7 @@ i.icon.angle.down:before {
   #large-screen {
     display: none;
   }
-  .compact.menu {
+  #small-screen{
     display: block !important;
   }
 }
@@ -258,5 +258,8 @@ i.icon.angle.down:before {
   }
 }
 
+#small-screen {
+  font-size: 1.2rem;
+}
 
 

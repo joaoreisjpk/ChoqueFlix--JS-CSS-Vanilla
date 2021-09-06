@@ -2,7 +2,7 @@
 import { addBtnsWatchlistEventListener, createElement, createImg, createMovieCard, allApiData } from "./main.js";
 import { removeBanner } from "./banner.js";
 
-const getSearch = document.querySelectorAll('.searchbar')[1];
+const getSearch = document.querySelectorAll('.searchbar');
 const getFilmList = document.getElementById('film-list');
 
 const createHtml = (nota, description) =>
@@ -60,9 +60,9 @@ const filmSearch = async (e) => {
 }
 
 
-getSearch.addEventListener('change', () => {
+getSearch.forEach((item, index) => item.addEventListener('change', () => {
   setTimeout( async() => {
-    const findFilms = allApiData.filter((film) => film.title.toLowerCase().includes(getSearch.value.toLowerCase()));
+    const findFilms = allApiData.filter((film) => film.title.toLowerCase().includes(getSearch[index].value.toLowerCase()));
     getFilmList.innerHTML = '';
     document.querySelector('#page-title').innerHTML = 'Resultados da busca:'
     findFilms.forEach((film) => createMovieCard(film));
@@ -74,12 +74,12 @@ getSearch.addEventListener('change', () => {
     }
     removeBanner();
   }, 500);
-});
+}));
 
 
-getSearch.addEventListener('keyup', async (e) => {
+getSearch.forEach((item, index) => item.addEventListener('keyup', async (e) => {
   if (e.keyCode === 13) {
-    const findFilms = allApiData.filter((film) => film.title.toLowerCase().includes(getSearch.value.toLowerCase()));
+    const findFilms = allApiData.filter((film) => film.title.toLowerCase().includes(getSearch[index].value.toLowerCase()));
     getFilmList.innerHTML = '';
     document.querySelector('#page-title').innerHTML = 'Resultados da busca:'
     findFilms.forEach((film) => createMovieCard(film));
@@ -91,4 +91,4 @@ getSearch.addEventListener('keyup', async (e) => {
     }
     removeBanner();
   }
-})
+}));

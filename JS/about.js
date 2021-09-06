@@ -61,7 +61,7 @@ function editFilmList(condition) {
   if (!condition) {
     getFilmList.style =
       `overflow-Y: hidden;
-    height: 500px;
+    height: ${window.innerHeight}px;
     top: -80px;`
   } else {
     getFilmList.style =

@@ -141,8 +141,8 @@ body {
 }
 
 @media (max-width: 700px) {
-  .page {
-    margin-right: 5px;
+  span.page {
+    margin: 0 10px;
   }
 }
 @media (max-width: 600px) {
@@ -165,6 +165,9 @@ body {
   .credits {
     line-height: 1.3rem;
   }
+  .page-8, .page-9, .page-10 {
+    display: none;
+  }
 
 }
 @media (max-width: 400px) {
@@ -173,5 +176,8 @@ body {
   }
   .page-6, .page-7,.page-8, .page-9, .page-10 {
     display: none;
+  }
+  span.page {
+    margin: 0 8px;
   }
 }
