@@ -28,9 +28,18 @@ async function getApiData() {
     const apiData = await fetch(`${mainUrl}&page=${ind}`);
     const jsonPage = await apiData.json();
     jsonPage.results.forEach((item) => allApiData.push(item));
+
     // if (ind % 20 === 0) console.log(allApiData.length); // Verifica tempo de reação da função
   }
-  console.log(allApiData.length); // Verifica a quantidade de dados baixados
+  $('.ui.search')
+  .search({
+    source: allApiData,
+    searchFields   : [
+      'title',
+      'overview'
+    ],
+  })
+;
 }
 
 document.querySelectorAll('.watchlist').forEach((item) => item.addEventListener('click', () => {

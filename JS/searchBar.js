@@ -41,6 +41,42 @@ const createFilme = async (Title, Poster, imdbRating, Plot, imdbID) => {
   addBtnsWatchlistEventListener()
 }
 
+let aprove = false;
+
+const filmSearch = async (e) => {
+  console.log(e.target.innerHTML)
+  const findFilms = allApiData.filter((film) => film.title === e.target.innerHTML);
+  getFilmList.innerHTML = '';
+  document.querySelector('#page-title').innerHTML = 'Resultados da busca:'
+  findFilms.forEach((film) => createMovieCard(film));
+  if (findFilms.length < 1) {
+    const data = await fetch(`https://www.omdbapi.com/?t=${getSearch.value}&apikey=1b999e04`)
+    const dataJson = await data.json()
+    const { Title, Poster, imdbRating, Plot, imdbID } = dataJson
+    createFilme(Title, Poster, imdbRating, Plot, imdbID);
+  }
+  removeBanner();
+  aprove = false;
+}
+
+
+getSearch.addEventListener('change', () => {
+  setTimeout( async() => {
+    const findFilms = allApiData.filter((film) => film.title.toLowerCase().includes(getSearch.value.toLowerCase()));
+    getFilmList.innerHTML = '';
+    document.querySelector('#page-title').innerHTML = 'Resultados da busca:'
+    findFilms.forEach((film) => createMovieCard(film));
+    if (findFilms.length < 1) {
+      const data = await fetch(`https://www.omdbapi.com/?t=${getSearch.value}&apikey=1b999e04`)
+      const dataJson = await data.json()
+      const { Title, Poster, imdbRating, Plot, imdbID } = dataJson
+      createFilme(Title, Poster, imdbRating, Plot, imdbID);
+    }
+    removeBanner();
+  }, 500);
+});
+
+
 getSearch.addEventListener('keyup', async (e) => {
   if (e.keyCode === 13) {
     const findFilms = allApiData.filter((film) => film.title.toLowerCase().includes(getSearch.value.toLowerCase()));
@@ -55,6 +91,4 @@ getSearch.addEventListener('keyup', async (e) => {
     }
     removeBanner();
   }
-});
-
-
+})

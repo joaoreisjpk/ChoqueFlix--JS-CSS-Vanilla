@@ -1,0 +1,126 @@
+
+.devs-div {
+  display: flex;
+  flex-direction: column;
+  /* HEAD */
+  padding: 15px;
+  border: solid thin black;
+  background-color: rgba(211, 211, 211, 0.1);
+  width: 250px;
+  margin-bottom: 30px !important;
+  color: #ffff;
+  border-radius: 10px;
+  overflow: hidden;
+	transition: all 1s;
+  transform: scale(0.1);
+}
+
+.credit-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.sobre--name {
+  margin: 5px;
+}
+
+.devs-div:hover {
+	transform: scale(1.1) !important;
+}
+
+div#page-list {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 20px auto 40px;
+  align-self: center;
+  display: flex !important;
+  align-items: center;
+}
+
+.page {
+  padding: 5px;
+  margin: 0 15px;
+  font-size: 1.7rem;
+  cursor: pointer;
+  align-self: center;
+}
+
+#page-title {
+  color: white;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 30px;
+}
+
+.watchlist-empty {
+  width: 100%;
+  height: 100%;
+  color: white;
+  font-size: 1.5rem;
+  padding-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#subpage-list {
+  display: flex;
+}
+
+.github, .linkedin {
+  color: white;
+}
+
+.credits {
+  color: white;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  margin: auto;
+  max-width: 40%;
+  overflow: hidden;
+  text-align: center;
+  transition: 15s margin;
+  z-index: 0;
+  opacity: 0;
+}
+
+#trybeAdTime {
+  border: solid thin white;
+  border-radius: 50%;
+  padding: .7rem 1rem;
+  margin: 0 0 1px 10px;
+  animation: rotateBorder 0.5s infinite;
+}
+
+#adContent {
+  font-size: 1.5rem;
+  margin: auto;
+  height: 290px;
+  width: 500px;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  background-color: rgb(66, 66, 66);
+}
+
+#adContent img {
+  width: 50%;
+}
+
+#adContent p {
+font-size: 1.3rem;
+}
+
+#jump-ad {
+  padding: 3px;
+}
+
+#jump-ad button {
+  margin: 0 0 20px 0;
+}
+
+.sobre--name {
+  font-size: 1.3rem;
+  text-align: center;
+}

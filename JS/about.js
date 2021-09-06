@@ -1,11 +1,12 @@
 import { createElement, getFilmList, removeBanner } from './main.js';
 import { credits, trybeAd } from './credits.js';
 
-const movieCredits = (img, gitHub, linkedIn) =>
+const movieCredits = (img, nome, gitHub, linkedIn) =>
 `<img src="${img}">
+<p class="sobre--name"> ${nome} </p>
 <div class="btnsDiv">
-<a target='_blank' class='github' href="${gitHub}"><i class="github big icon"></i></a>
-<a target='_blank' class='linkedin' href="${linkedIn}"><i class="linkedin big icon"></i></a>
+  <a target='_blank' class='github' href="${gitHub}"><i class="github big icon"></i></a>
+  <a target='_blank' class='linkedin' href="${linkedIn}"><i class="linkedin big icon"></i></a>
 </div>`
 
 const imgTakaki = 'https://github.com/regariou/trybeBonusProject/blob/main/images/takaki.jpeg?raw=true';
@@ -24,10 +25,10 @@ const linkedNatan = 'https://www.linkedin.com/in/nataniel-santos/';
 const linkedGus = 'https://www.linkedin.com/in/g-s-s/';
 
 const devsInfos = [
-  { img: imgTakaki, git: gitTakaki, linked: linkedTakaki },
-  { img: imgJoao, git: gitJoao, linked: linkedJoao },
-  { img: imgNatan, git: gitNatan, linked: linkedNatan },
-  { img: imgGus, git: gitGus, linked: linkedGus }
+  { img: imgTakaki, nome: 'Gabriel Takaki', git: gitTakaki, linked: linkedTakaki },
+  { img: imgJoao, nome: 'João Pedro Reis', git: gitJoao, linked: linkedJoao },
+  { img: imgNatan, nome: 'Nataniel Santos', git: gitNatan, linked: linkedNatan },
+  { img: imgGus, nome: "Gustavo Sant'Anna", git: gitGus, linked: linkedGus }
 ];
 
 let intervalId;
@@ -49,11 +50,11 @@ function beforeAbout() {
   if (countDown) clearTimeout(countDown);
   countDown();
   setTimeout(() => {
-    if (indexCounter > 11) {
+    if (indexCounter > 4) {
       document.querySelector('#page-title').innerHTML = '';
       document.querySelector('.credits').style.opacity = '1';
     }
-  }, 12000);
+  }, 5000);
 }
 
 function editFilmList(condition) {
@@ -83,7 +84,7 @@ function about() {
     limitNum = refNum < 601 ? 185 : 173;
   } else {
     changeNum = 1.2;
-    limitNum = 160;
+    limitNum = 130;
   }
   removeBanner();
   document.querySelector('#page-list').style = 'visibility: hidden';
@@ -99,14 +100,14 @@ function about() {
     creditsDiv.style.marginTop = `${+(margin) - changeNum}%` :
     creditsDiv.style.marginTop = `${-(margin) + -changeNum}%`;
     index += 1;
-    // console.log(creditsDiv.style.marginTop, index);
+    console.log(creditsDiv.style.marginTop, index);
     if (index > limitNum) {
       clearInterval(intervalId);
       creditsDiv.remove();
       editFilmList(true);
       devsInfos.forEach((dev) => {
         getFilmList
-          .appendChild(createElement('div', 'devs-div', movieCredits(dev.img, dev.git, dev.linked)));
+          .appendChild(createElement('div', 'devs-div', movieCredits(dev.img, dev.nome, dev.git, dev.linked)));
       });
       setTimeout(() => {
         document.querySelectorAll('.devs-div').forEach((div) => div.style.transform = 'scale(1)');

@@ -4,16 +4,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <script
-    src="https://code.jquery.com/jquery-3.1.1.min.js"
-    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-    crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
   <link rel="stylesheet" href="Style/banner.css">
   <link rel="stylesheet" href="Style/mainHeader.css">
   <link rel="stylesheet" href="Style/mainContent.css">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="./Style/about.css">
   <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -100,7 +97,7 @@
           </div>
           <div class="item about nav navFocus">Sobre</div>
         </div>
-        <div class="ui category search search-input">
+        <div class="ui fluid category search search-input">
           <div class="ui icon input" id="input-large">
             <input class="prompt searchbar" type="text" placeholder="Search films...">
             <i class="search icon"></i>
@@ -147,5 +144,15 @@
 
   <script type="module" src="JS/main.js"></script>
   <script type="module" src="JS/searchBar.js"></script>
+  <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous">
+  </script>
+  <script src="semantic/dist/semantic.min.js"></script>
+  <script>
+    $('.ui.dropdown')
+      .dropdown();
+  </script>
 </body>
 </html>

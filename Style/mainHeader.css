@@ -126,7 +126,7 @@ nav {
   opacity: 1;
   font-weight: 900;
   font-size: 1.3rem;
-  text-shadow: 0px 0px 2px rgb(245, 245, 245);
+  color: red;
 }
 
 .options div {
@@ -138,7 +138,7 @@ nav {
   opacity: 1;
   font-weight: 900;
   font-size: 1.2rem;
-  text-shadow: 0px 0px 1px rgb(245, 245, 245) !important;
+  color: red;
 }
 
 /* Nav-menu Ends */
@@ -170,6 +170,7 @@ nav {
   display: flex;
   margin: 0 0 0 20px;
   border: 2px solid red;
+  border-radius: 3px;
 }
 
 .angle {
@@ -187,34 +188,6 @@ i.icon.angle.down:before {
 .perfil:hover .angle {
   transform: rotate(180deg);
 	transition: all .3s;
-}
-
-.ui.dropdown .menu>.item, .ui.menu .item, .ui.menu .ui.dropdown .menu>.item {
-  color: rgba(252, 252, 252, 1) !important;
-  font-size: 1.3rem;
-}
-
-.ui.menu .item {
-  border: 2px solid white;
-  border-radius: 2px !important;
-  padding: 10px;
-  font-size: 1.1rem;
-}
-
-.ui.dropdown .menu>.item:hover, .ui.menu .dropdown.item:hover, .ui.menu .ui.dropdown .menu>.item:hover {
-  color: rgba(252, 252, 252, 1) !important;
-  background: rgba(0, 0, 0, 1) !important;
-}
-
-.ui.dropdown .menu, .ui.menu, .ui.menu .ui.dropdown .menu>.item {
-  color: rgba(252, 252, 252, 1) !important;
-  font-weight: 900 !important;
-  text-shadow: 0px 0px 1px rgb(245, 245, 245);
-  background: rgba(0, 0, 0, .7) !important;
-}
-
-.ui.dropdown .menu>.item:first-child {
-  margin-top: 10px;
 }
 
 
@@ -242,7 +215,10 @@ i.icon.angle.down:before {
 
 @media (max-width: 1100px) {
   .searchbar {
-    width: 150px;
+    width: 140px;
+  }
+  .title img {
+    height: 30px;
   }
 }
 
