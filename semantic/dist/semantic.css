@@ -36734,13 +36734,13 @@ a.ui.nag {
 .ui.category.search > .results .category .result.active {
   position: relative;
   border-left-color: rgba(34, 36, 38, 0.1);
-  background: #F3F4F5;
+  background: #808080;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
 
 .ui.search > .results .result.active .title {
-  color: red;
+  color: #ffffff;
 }
 
 .ui.search > .results .result.active .description {
