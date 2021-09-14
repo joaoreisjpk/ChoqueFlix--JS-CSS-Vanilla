@@ -17,7 +17,8 @@ const mainUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
 const urlImg = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
 const getFilmList = document.getElementById('film-list');
 const getMainSection = document.querySelector('#main-section');
-const getFocus = document.querySelectorAll('.navFocus')
+const getFocus = document.querySelectorAll('.navFocus');
+const getTitle = document.querySelector('.title');
 const getLocalStorageWatchlist = () => (localStorage.getItem(`watchlist-${getName}`)) ?
 JSON.parse(localStorage.getItem(`watchlist-${getName}`)) : [];
 
@@ -182,6 +183,20 @@ function removeActive(ev) {
 }
 
 getFocus.forEach((element) => element.addEventListener('click', removeActive));
+
+getTitle.addEventListener('click', () => {
+  getFocus.forEach((element) => element.classList.remove('navActive'));
+  document.querySelectorAll('.options div')
+  .forEach((li) => li.classList.remove('liActive'));
+
+  document.querySelectorAll('.inicio').forEach((item) => item.classList.add('navActive'));
+
+  document.querySelectorAll('div.item').forEach((item) => item.classList.remove('active'));
+  document.querySelectorAll('div.item').forEach((item) => item.classList.remove('selected'));
+  document.querySelectorAll('.inicio')[0].classList.add('active');
+  document.querySelectorAll('.inicio')[0].classList.add('selected');
+  document.querySelector('.text').innerText = "Início";
+})
 
 window.onload = async () => {
   listaDeFilmes(mainUrl, 'Filmes Populares');
