@@ -61,6 +61,7 @@ const filmSearch = async (e) => {
 
 
 getSearch.forEach((item, index) => item.addEventListener('change', () => {
+  item.value !== '' ?
   setTimeout( async() => {
     const findFilms = allApiData.filter((film) => film.title.toLowerCase().includes(getSearch[index].value.toLowerCase()));
     getFilmList.innerHTML = '';
@@ -73,11 +74,13 @@ getSearch.forEach((item, index) => item.addEventListener('change', () => {
       createFilme(Title, Poster, imdbRating, Plot, imdbID);
     }
     removeBanner();
-  }, 500);
+  }, 500)
+  : console.log('vazio');
 }));
 
 
 getSearch.forEach((item, index) => item.addEventListener('keyup', async (e) => {
+  if (item.value !== '') {
   if (e.keyCode === 13) {
     const findFilms = allApiData.filter((film) => film.title.toLowerCase().includes(getSearch[index].value.toLowerCase()));
     getFilmList.innerHTML = '';
@@ -91,4 +94,4 @@ getSearch.forEach((item, index) => item.addEventListener('keyup', async (e) => {
     }
     removeBanner();
   }
-}));
+}}));
