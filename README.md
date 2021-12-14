@@ -16,7 +16,8 @@ Gustavo Sant'Anna > [linkedin](https://www.linkedin.com/in/g-s-s/)</br>
 [JavaScript] Aplication </br>
 Uso de duas API externas sobre filmes como...
   - A [TMDB](https://www.themoviedb.org/)
-  - A [OMDB](https://rapidapi.com/blog/lp/omdb-api/) </br>
+  - A [OMDB](https://rapidapi.com/blog/lp/omdb-api/)
+
 Uso da biblioteca de CSS [Semantic UI](https://semantic-ui.com/)
 
 
