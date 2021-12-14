@@ -1,4 +1,4 @@
-### ChoqueFlix
+## ChoqueFlix
 
 ### Esse foi um projeto bônus da Trybe, pelo qual eu e minha equipe ganhamos o prêmio(com direito a livro sobre Algoritimos e DataStructures no JavaScript) de melhor projeto da turma, que possui 150 pessoas.
 
