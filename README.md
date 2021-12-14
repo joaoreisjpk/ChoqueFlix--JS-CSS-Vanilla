@@ -1,13 +1,13 @@
 ## ChoqueFlix
 
-### Esse foi um projeto bônus da Trybe, pelo qual eu e minha equipe ganhamos o prêmio(com direito a livro sobre Algoritimos e DataStructures no JavaScript) de melhor projeto da turma, que possui 150 pessoas.
+### Esse foi um projeto bônus da Trybe, pelo qual eu e minha equipe ganhamos o prêmio de melhor projeto da turma, que possui 150 pessoas.
 
 Projeto desenvolvido em parceria com o time... </br>
 Gabriel Takaki > [linkedin](https://www.linkedin.com/in/gabriel-felipe-takaki-99987b214/) </br>
 Nataniel Santos > [linkedin](https://www.linkedin.com/in/nataniel-santos/) </br>
 Gustavo Sant'Anna > [linkedin](https://www.linkedin.com/in/g-s-s/)</br>
 
-[Clique para ir para o site/DEMO](https://choqueflix.vercel.app/)
+[Link do Site](https://choqueflix.vercel.app/)
 
 ![plot](./images/choquePreview.png)
 
